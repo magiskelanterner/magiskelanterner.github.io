@@ -1,0 +1,1474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magiske Lanterner | Test Cut /2</title>
+  <meta
+    name="description"
+    content="A film-strip test version of Stavanger Film Club: stacked frames, curated screenings at Folken, programme posters, membership details, and contact information."
+  >
+  <meta property="og:title" content="Magiske Lanterner | Test Cut /2">
+  <meta property="og:description" content="A film-strip version of Stavanger Film Club with every section staged as a cinematic frame.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://magiskelanterner.github.io/2/">
+  <meta property="og:image" content="https://magiskelanterner.github.io/assets/2026%20Spring.png">
+  <meta name="theme-color" content="#08090b">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%2308090b'/><rect x='12' y='10' width='18' height='80' rx='5' fill='%2335291b'/><rect x='70' y='10' width='18' height='80' rx='5' fill='%2335291b'/><rect x='38' y='26' width='24' height='48' rx='3' fill='%23f2e5c5'/></svg>">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #08090b;
+      --bg-soft: #121418;
+      --paper: #efe3c7;
+      --paper-soft: #dbcaa6;
+      --ink: #161515;
+      --ink-soft: rgba(17, 15, 12, 0.76);
+      --rail-shadow: rgba(0, 0, 0, 0.48);
+      --accent: #d6aa4b;
+      --accent-soft: #f3d38a;
+      --ruby: #b25d44;
+      --blue: #9bb6d8;
+      --line: rgba(244, 224, 180, 0.18);
+      --shadow: 0 28px 70px rgba(0, 0, 0, 0.42);
+      --frame-width: 1120px;
+      --header-height: 82px;
+      --rail-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 156'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2357402c'/%3E%3Cstop offset='0.52' stop-color='%23332519'/%3E%3Cstop offset='1' stop-color='%23171210'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='56' height='156' fill='url(%23g)'/%3E%3Crect x='14' y='12' width='28' height='30' rx='7' fill='%23060709'/%3E%3Crect x='14' y='63' width='28' height='30' rx='7' fill='%23060709'/%3E%3Crect x='14' y='114' width='28' height='30' rx='7' fill='%23060709'/%3E%3Crect x='5' y='0' width='1' height='156' fill='%23f0cf89' fill-opacity='.2'/%3E%3Crect x='50' y='0' width='1' height='156' fill='%23f0cf89' fill-opacity='.12'/%3E%3C/svg%3E");
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      color: var(--paper);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(214, 170, 75, 0.18), transparent 34%),
+        radial-gradient(circle at 10% 12%, rgba(155, 182, 216, 0.12), transparent 24%),
+        linear-gradient(180deg, #070809 0%, #0d0f12 38%, #050608 100%);
+      min-height: 100vh;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::before {
+      opacity: 0.22;
+      background:
+        repeating-linear-gradient(
+          90deg,
+          transparent 0,
+          transparent 16px,
+          rgba(255, 255, 255, 0.018) 16px,
+          rgba(255, 255, 255, 0.018) 17px
+        ),
+        repeating-linear-gradient(
+          180deg,
+          transparent 0,
+          transparent 34px,
+          rgba(255, 221, 168, 0.016) 34px,
+          rgba(255, 221, 168, 0.016) 35px
+        );
+    }
+
+    body::after {
+      opacity: 0.16;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.32) 0 1px, transparent 1.8px),
+        radial-gradient(circle at 76% 38%, rgba(255, 255, 255, 0.24) 0 1px, transparent 1.8px),
+        radial-gradient(circle at 35% 72%, rgba(255, 255, 255, 0.16) 0 1px, transparent 1.8px),
+        radial-gradient(circle at 66% 90%, rgba(255, 255, 255, 0.12) 0 1px, transparent 1.8px);
+      background-size: 220px 220px;
+      animation: dust-drift 24s linear infinite;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 16px;
+      top: -48px;
+      background: #fff6df;
+      color: #111;
+      padding: 0.7rem 1rem;
+      border-radius: 999px;
+      z-index: 30;
+    }
+
+    .skip-link:focus {
+      top: 16px;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      width: min(1220px, calc(100% - 24px));
+      margin: 0 auto;
+      padding: 16px 0 12px;
+      min-height: var(--header-height);
+      backdrop-filter: blur(18px);
+    }
+
+    .site-header::before {
+      content: "";
+      position: absolute;
+      inset: 8px 0 0;
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(11, 12, 14, 0.94), rgba(11, 12, 14, 0.68));
+      border: 1px solid rgba(240, 214, 157, 0.14);
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.24);
+      z-index: -1;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      padding-left: 1rem;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(240, 214, 157, 0.24);
+      background: rgba(255, 255, 255, 0.04);
+      flex: 0 0 auto;
+    }
+
+    .brand-copy {
+      min-width: 0;
+    }
+
+    .brand-copy strong,
+    .brand-copy small {
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-copy strong {
+      font-size: 0.96rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand-copy small {
+      color: rgba(239, 227, 199, 0.66);
+      font-size: 0.82rem;
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0 0.65rem 0 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .site-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .site-nav a {
+      flex: 0 0 auto;
+      padding: 0.72rem 0.94rem;
+      border-radius: 999px;
+      color: rgba(239, 227, 199, 0.72);
+      font-size: 0.88rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+
+    .site-nav a:hover,
+    .site-nav a:focus-visible,
+    .site-nav a.is-active {
+      color: #0d0f12;
+      background: linear-gradient(135deg, #f4d99a, #d19a35);
+      transform: translateY(-1px);
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      padding: 18px 0 80px;
+      scroll-snap-type: y proximity;
+    }
+
+    .film-frame {
+      position: relative;
+      width: min(var(--frame-width), calc(100vw - 132px), calc((100vh - 170px) * 16 / 9));
+      margin: 0 auto 34px;
+      padding: 0 58px;
+      aspect-ratio: 16 / 9;
+      scroll-snap-align: center;
+      transition: transform 0.45s ease, opacity 0.45s ease, filter 0.45s ease;
+      opacity: 0.74;
+      filter: saturate(0.88);
+    }
+
+    .film-frame.is-active {
+      transform: translateY(-4px) scale(1.012);
+      opacity: 1;
+      filter: none;
+    }
+
+    .film-frame::before,
+    .film-frame::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 52px;
+      background-image: var(--rail-pattern);
+      background-size: 100% 156px;
+      background-repeat: repeat-y;
+      box-shadow: inset 0 0 0 1px rgba(255, 218, 150, 0.06), inset 0 0 24px rgba(0, 0, 0, 0.24);
+    }
+
+    .film-frame::before {
+      left: 0;
+    }
+
+    .film-frame::after {
+      right: 0;
+    }
+
+    .frame-window {
+      position: relative;
+      isolation: isolate;
+      display: grid;
+      height: 100%;
+      overflow: hidden;
+      border-radius: 16px;
+      border: 1px solid rgba(241, 223, 183, 0.12);
+      box-shadow: var(--shadow);
+      background: var(--panel-bg, linear-gradient(145deg, #161a20, #0f1317));
+    }
+
+    .frame-window::before {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border: 1px solid rgba(255, 230, 185, 0.1);
+      border-radius: 10px;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .frame-window::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top, rgba(255, 222, 161, 0.14), transparent 30%),
+        linear-gradient(180deg, transparent 58%, rgba(0, 0, 0, 0.22));
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .frame-content {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      height: 100%;
+      padding: clamp(22px, 3vw, 38px);
+      gap: clamp(16px, 2vw, 28px);
+    }
+
+    .frame-topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(245, 228, 191, 0.7);
+    }
+
+    .frame-index {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .frame-index::before {
+      content: "";
+      width: 1.8rem;
+      height: 1px;
+      background: rgba(245, 228, 191, 0.34);
+    }
+
+    .eyebrow {
+      margin: 0;
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(245, 228, 191, 0.72);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    p {
+      margin: 0;
+    }
+
+    .display,
+    .frame-title,
+    .card h3,
+    .info-card h3,
+    .ticket-card h3 {
+      font-family: "Fraunces", serif;
+      letter-spacing: -0.03em;
+      line-height: 0.94;
+    }
+
+    .display {
+      max-width: 11ch;
+      font-size: clamp(3.25rem, 5vw, 5.7rem);
+    }
+
+    .lead {
+      max-width: 37rem;
+      color: rgba(247, 235, 209, 0.86);
+      font-size: clamp(1rem, 1.35vw, 1.14rem);
+      line-height: 1.55;
+    }
+
+    .hero-grid,
+    .split-grid,
+    .venue-grid,
+    .programme-grid,
+    .archive-grid,
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+      gap: clamp(18px, 2vw, 28px);
+      align-items: stretch;
+      min-height: 0;
+    }
+
+    .hero-grid {
+      grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
+    }
+
+    .hero-copy {
+      display: grid;
+      align-content: space-between;
+      gap: 1rem;
+      min-height: 0;
+    }
+
+    .cta-row,
+    .link-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0.82rem 1.25rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 226, 168, 0.18);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+      transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .button:hover,
+    .button:focus-visible {
+      transform: translateY(-1px);
+      border-color: rgba(255, 226, 168, 0.42);
+    }
+
+    .button-primary {
+      background: linear-gradient(135deg, #f6dc9e, #cb9733);
+      color: #151310;
+    }
+
+    .button-secondary {
+      background: rgba(245, 228, 191, 0.08);
+      color: var(--paper);
+    }
+
+    .hero-stage {
+      display: grid;
+      grid-template-rows: 1fr auto;
+      gap: 1rem;
+      min-height: 0;
+    }
+
+    .logo-panel,
+    .ticket-card,
+    .card,
+    .info-card,
+    .metric-chip,
+    .archive-note,
+    .copy-card {
+      border: 1px solid rgba(247, 230, 187, 0.12);
+      background: rgba(12, 15, 18, 0.42);
+      border-radius: 22px;
+      box-shadow: inset 0 1px 0 rgba(255, 233, 187, 0.04);
+    }
+
+    .logo-panel {
+      display: grid;
+      place-items: center;
+      padding: clamp(18px, 2.4vw, 28px);
+      background:
+        radial-gradient(circle at top, rgba(246, 220, 158, 0.18), transparent 44%),
+        linear-gradient(145deg, rgba(13, 16, 20, 0.92), rgba(7, 8, 10, 0.92));
+    }
+
+    .logo-panel img {
+      width: min(86%, 340px);
+      filter: drop-shadow(0 16px 34px rgba(0, 0, 0, 0.4));
+    }
+
+    .ticket-card {
+      padding: 1.25rem 1.25rem 1.3rem;
+      display: grid;
+      gap: 0.7rem;
+      align-content: start;
+    }
+
+    .ticket-card h3 {
+      font-size: clamp(1.8rem, 2.4vw, 2.4rem);
+      color: var(--accent-soft);
+    }
+
+    .ticket-card p,
+    .info-card p,
+    .card p,
+    .archive-note p,
+    .copy-card p,
+    .contact-list,
+    .schedule-list li,
+    .detail-list li,
+    .steps li {
+      color: rgba(245, 232, 205, 0.82);
+      line-height: 1.5;
+    }
+
+    .ticket-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(245, 228, 191, 0.66);
+    }
+
+    .hero-footnote {
+      color: rgba(245, 228, 191, 0.66);
+      font-size: 0.92rem;
+    }
+
+    .frame-title {
+      font-size: clamp(2.2rem, 3vw, 3.3rem);
+      max-width: 12ch;
+    }
+
+    .deck {
+      max-width: 44rem;
+      color: rgba(30, 20, 10, 0.76);
+      line-height: 1.55;
+    }
+
+    .tone-cream .deck,
+    .tone-amber .deck {
+      color: rgba(38, 30, 19, 0.78);
+    }
+
+    .story-grid,
+    .pillar-grid,
+    .membership-grid,
+    .community-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .story-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .pillar-grid,
+    .membership-grid,
+    .community-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card,
+    .info-card,
+    .archive-note,
+    .copy-card {
+      padding: 1.1rem 1.2rem;
+    }
+
+    .card small,
+    .info-card small {
+      display: block;
+      margin-bottom: 0.6rem;
+      font-size: 0.74rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(245, 228, 191, 0.62);
+    }
+
+    .tone-cream .card,
+    .tone-cream .info-card,
+    .tone-amber .card,
+    .tone-amber .archive-note,
+    .tone-cream .copy-card {
+      background: rgba(74, 55, 31, 0.08);
+      border-color: rgba(67, 48, 24, 0.14);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16);
+    }
+
+    .tone-cream .card p,
+    .tone-cream .info-card p,
+    .tone-cream .copy-card p,
+    .tone-amber .card p,
+    .tone-amber .archive-note p,
+    .tone-amber .deck,
+    .tone-cream .contact-list,
+    .tone-cream .steps li,
+    .tone-cream .detail-list li,
+    .tone-amber .schedule-list li {
+      color: rgba(32, 24, 16, 0.84);
+    }
+
+    .story-label {
+      margin-bottom: 0.55rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(32, 24, 16, 0.58);
+    }
+
+    .image-panel {
+      position: relative;
+      min-height: 0;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(246, 220, 158, 0.14);
+      background: rgba(13, 16, 19, 0.5);
+    }
+
+    .image-panel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .image-caption {
+      position: absolute;
+      left: 1rem;
+      right: 1rem;
+      bottom: 1rem;
+      padding: 0.75rem 0.9rem;
+      border-radius: 14px;
+      background: rgba(10, 12, 14, 0.74);
+      color: rgba(245, 228, 191, 0.82);
+      font-size: 0.88rem;
+    }
+
+    .detail-list,
+    .schedule-list,
+    .contact-list,
+    .steps {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .detail-list,
+    .contact-list {
+      display: grid;
+      gap: 0.65rem;
+    }
+
+    .detail-list li,
+    .contact-list li,
+    .steps li {
+      padding-left: 1.2rem;
+      position: relative;
+    }
+
+    .detail-list li::before,
+    .contact-list li::before,
+    .steps li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.72em;
+      width: 0.42rem;
+      height: 0.42rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #e4b956, #93631d);
+      transform: translateY(-50%);
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.8rem;
+    }
+
+    .metric-chip {
+      padding: 0.85rem 0.95rem;
+      text-align: center;
+    }
+
+    .metric-chip strong {
+      display: block;
+      font-size: 1.3rem;
+      font-family: "Fraunces", serif;
+      color: var(--accent-soft);
+    }
+
+    .metric-chip span {
+      display: block;
+      margin-top: 0.3rem;
+      font-size: 0.76rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(245, 228, 191, 0.62);
+    }
+
+    .poster-panel {
+      position: relative;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(246, 220, 158, 0.16);
+      background: rgba(7, 9, 11, 0.58);
+      min-height: 0;
+    }
+
+    .poster-panel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .schedule-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.7rem 1rem;
+    }
+
+    .schedule-list li {
+      padding: 0.8rem 0.95rem;
+      border-radius: 16px;
+      background: rgba(74, 55, 31, 0.08);
+      border: 1px solid rgba(67, 48, 24, 0.12);
+    }
+
+    .schedule-list strong {
+      display: block;
+      margin-bottom: 0.15rem;
+      font-size: 0.98rem;
+      color: #251c12;
+    }
+
+    .schedule-list span {
+      display: block;
+      font-size: 0.85rem;
+      color: rgba(37, 28, 18, 0.74);
+    }
+
+    .archive-grid {
+      grid-template-columns: minmax(260px, 0.85fr) minmax(0, 1.15fr);
+    }
+
+    .archive-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.55rem 0.8rem;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .archive-list li {
+      padding: 0.72rem 0.8rem;
+      border-radius: 14px;
+      background: rgba(255, 247, 230, 0.18);
+      font-size: 0.88rem;
+      color: rgba(32, 24, 16, 0.84);
+    }
+
+    .price {
+      display: block;
+      margin: 0.4rem 0 0.7rem;
+      font-size: clamp(2rem, 3vw, 3rem);
+      font-family: "Fraunces", serif;
+      color: var(--accent-soft);
+    }
+
+    .tone-cream .price {
+      color: #4d3512;
+    }
+
+    .steps {
+      display: grid;
+      gap: 0.6rem;
+    }
+
+    .steps li {
+      padding-left: 1.4rem;
+    }
+
+    .community-grid .card h3,
+    .membership-grid .card h3 {
+      font-size: 1.55rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-grid {
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+    }
+
+    .copy-card {
+      display: grid;
+      gap: 1rem;
+      align-content: start;
+    }
+
+    .copy-card img {
+      width: 120px;
+      border-radius: 16px;
+      border: 1px solid rgba(67, 48, 24, 0.12);
+    }
+
+    .footer {
+      width: min(1220px, calc(100% - 24px));
+      margin: 0 auto 28px;
+      color: rgba(239, 227, 199, 0.56);
+      font-size: 0.84rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .tone-hero {
+      --panel-bg:
+        radial-gradient(circle at 76% 18%, rgba(214, 170, 75, 0.28), transparent 28%),
+        radial-gradient(circle at 18% 26%, rgba(155, 182, 216, 0.18), transparent 34%),
+        linear-gradient(135deg, #15181c 0%, #0b0d10 100%);
+    }
+
+    .tone-cream {
+      color: #1f1810;
+      --panel-bg:
+        radial-gradient(circle at top, rgba(214, 170, 75, 0.16), transparent 34%),
+        linear-gradient(135deg, #f3e6ca 0%, #dbc89c 100%);
+    }
+
+    .tone-amber {
+      color: #21170f;
+      --panel-bg:
+        radial-gradient(circle at 82% 18%, rgba(178, 93, 68, 0.16), transparent 28%),
+        linear-gradient(135deg, #e8d5b0 0%, #d3b07b 100%);
+    }
+
+    .tone-night {
+      --panel-bg:
+        radial-gradient(circle at 84% 16%, rgba(155, 182, 216, 0.18), transparent 28%),
+        linear-gradient(135deg, #161a1f 0%, #0a0d11 100%);
+    }
+
+    .tone-ruby {
+      --panel-bg:
+        radial-gradient(circle at 18% 24%, rgba(214, 170, 75, 0.22), transparent 28%),
+        linear-gradient(135deg, #3b2320 0%, #1b1012 100%);
+    }
+
+    .js .film-frame {
+      opacity: 0.58;
+      transform: translateY(28px);
+    }
+
+    .js .film-frame.is-visible {
+      opacity: 0.74;
+      transform: translateY(0);
+    }
+
+    .js .film-frame.is-visible.is-active {
+      opacity: 1;
+      transform: translateY(-4px) scale(1.012);
+    }
+
+    @keyframes dust-drift {
+      0% {
+        transform: translate3d(0, 0, 0);
+      }
+      50% {
+        transform: translate3d(-1.5%, 1.2%, 0);
+      }
+      100% {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    @media (max-width: 1080px) {
+      .film-frame {
+        width: min(var(--frame-width), calc(100vw - 72px));
+        aspect-ratio: auto;
+        min-height: 78svh;
+      }
+
+      .hero-grid,
+      .split-grid,
+      .venue-grid,
+      .programme-grid,
+      .archive-grid,
+      .contact-grid,
+      .story-grid,
+      .pillar-grid,
+      .membership-grid,
+      .community-grid,
+      .schedule-list,
+      .archive-list,
+      .stats-row {
+        grid-template-columns: 1fr;
+      }
+
+      .poster-panel {
+        min-height: 320px;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .site-header {
+        width: calc(100% - 16px);
+      }
+
+      .site-header::before {
+        inset: 6px 0 0;
+      }
+
+      .brand {
+        padding-left: 0.8rem;
+      }
+
+      .site-nav {
+        width: 100%;
+        padding: 0 0.4rem 0.45rem;
+      }
+
+      .film-frame {
+        width: calc(100% - 18px);
+        padding: 0 34px;
+        min-height: 82svh;
+      }
+
+      .film-frame::before,
+      .film-frame::after {
+        width: 28px;
+        background-size: 100% 124px;
+      }
+
+      .frame-content {
+        padding: 18px 18px 20px;
+      }
+
+      .display {
+        font-size: clamp(2.6rem, 10vw, 4.5rem);
+      }
+
+      .frame-title {
+        font-size: clamp(1.9rem, 7vw, 2.7rem);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .site-header {
+        gap: 0.45rem;
+        padding-top: 10px;
+      }
+
+      .brand-mark {
+        width: 42px;
+        height: 42px;
+      }
+
+      .brand-copy small {
+        font-size: 0.74rem;
+      }
+
+      .site-nav a {
+        padding: 0.62rem 0.8rem;
+        font-size: 0.77rem;
+      }
+
+      .film-frame {
+        min-height: 88svh;
+      }
+
+      .frame-topline {
+        font-size: 0.69rem;
+      }
+
+      .button {
+        width: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      body::after,
+      .film-frame,
+      .site-nav a,
+      .button {
+        animation: none;
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Magiske Lanterner test version">
+      <span class="brand-mark" aria-hidden="true">
+        <img src="../assets/LogoMLFK.jpg" alt="" loading="lazy" decoding="async">
+      </span>
+      <span class="brand-copy">
+        <strong>Magiske Lanterner</strong>
+        <small>Test Cut /2 • Stavanger Film Club</small>
+      </span>
+    </a>
+
+    <nav class="site-nav" aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#screenings">Screenings</a>
+      <a href="#programme">Programme</a>
+      <a href="#archive">Archive</a>
+      <a href="#membership">Membership</a>
+      <a href="#community">Community</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="content">
+    <section class="film-frame is-active" id="top">
+      <article class="frame-window tone-hero">
+        <div class="frame-content">
+          <div class="frame-topline">
+            <span class="frame-index">Frame 01</span>
+            <span>Opening Titles</span>
+          </div>
+
+          <div class="hero-grid">
+            <div class="hero-copy">
+              <div>
+                <p class="eyebrow">Stavanger filmklubb / at Folken</p>
+                <h1 class="display">Film gems on a real big screen.</h1>
+              </div>
+
+              <p class="lead">
+                Magiske Lanterner brings carefully selected classics, discoveries, and contemporary film culture to Stavanger. This version stages the club like a vertical reel: one screen-sized frame at a time.
+              </p>
+
+              <div class="cta-row">
+                <a class="button button-primary" href="https://www.filmklubbmedlem.no/registrer/86" target="_blank" rel="noreferrer">Become a member</a>
+                <a class="button button-secondary" href="../assets/2026%20Spring.png" target="_blank" rel="noreferrer">Open spring poster</a>
+              </div>
+
+              <p class="hero-footnote">
+                Membership is 80 NOK per season. Screenings are 40 NOK each, payable at the door by card or Vipps.
+              </p>
+            </div>
+
+            <div class="hero-stage">
+              <div class="logo-panel">
+                <img
+                  src="../assets/darkbackgroundLogo.png"
+                  alt="Magiske Lanterner logo on dark background."
+                  loading="lazy"
+                  decoding="async"
+                >
+              </div>
+
+              <div class="ticket-card">
+                <p class="eyebrow">Up next</p>
+                <h3>The Hunt</h3>
+                <div class="ticket-meta">
+                  <span>Friday 13 March 2026</span>
+                  <span>19:00</span>
+                  <span>Folken</span>
+                </div>
+                <p>
+                  Thomas Vinterberg's chilling chamber drama leads the current spring run before <em>Graduation</em>, <em>Kneecap</em> and <em>Tampopo</em> later in the season.
+                </p>
+                <a class="button button-secondary" href="#programme">See the full programme</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="film-frame" id="about">
+      <article class="frame-window tone-cream">
+        <div class="frame-content">
+          <div class="frame-topline">
+            <span class="frame-index">Frame 02</span>
+            <span>About the Club</span>
+          </div>
+
+          <div class="split-grid">
+            <div style="display:grid; gap: 1rem; align-content:start;">
+              <div>
+                <p class="eyebrow" style="color: rgba(32, 24, 16, 0.58);">Named after the magic lantern</p>
+                <h2 class="frame-title">A film club built for people who want more than a standard cinema night.</h2>
+              </div>
+              <p class="deck">
+                The name comes from one of cinema's earliest projection devices. The club keeps that feeling of shared discovery alive with adventurous programming, a social room, and screenings chosen to reward curiosity.
+              </p>
+              <div class="story-grid">
+                <article class="card">
+                  <p class="story-label" lang="nb">NO</p>
+                  <p lang="nb">Vi viser filmperler som underholder, engasjerer og inspirerer, og bygger et sosialt møtested for filminteresserte i Stavanger.</p>
+                </article>
+                <article class="card">
+                  <p class="story-label">EN</p>
+                  <p>Expect classics, discoveries, and newer film art, plus a room where people actually stay to talk after the credits.</p>
+                </article>
+              </div>
+            </div>
+
+            <div class="pillar-grid">
+              <article class="card">
+                <small>Programming</small>
+                <h3>Curated, not generic.</h3>
+                <p>Landmarks sit next to lesser-known work and contemporary films that rarely land in ordinary multiplex schedules.</p>
+              </article>
+              <article class="card">
+                <small>Atmosphere</small>
+                <h3>Social, not transactional.</h3>
+                <p>Free popcorn, an open bar, and enough room around the screening to make the night feel communal.</p>
+              </article>
+              <article class="card">
+                <small>Audience</small>
+                <h3>Local and international.</h3>
+                <p>NFK has singled out the club for its warm mix of regulars, newcomers, Stavanger locals, and international film lovers.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="film-frame" id="screenings">
+      <article class="frame-window tone-night">
+        <div class="frame-content">
+          <div class="frame-topline">
+            <span class="frame-index">Frame 03</span>
+            <span>Venue</span>
+          </div>
+
+          <div class="venue-grid">
+            <figure class="image-panel">
+              <img
+                src="../assets/folken1930.jpg"
+                alt="Historic interior view of the Folken hall in Stavanger."
+                loading="lazy"
+                decoding="async"
+              >
+              <figcaption class="image-caption">Folken's main hall carries some of Stavanger's early cinema history into the present club night.</figcaption>
+            </figure>
+
+            <div style="display:grid; gap: 1rem; align-content:start;">
+              <div>
+                <p class="eyebrow">Screenings at Folken</p>
+                <h2 class="frame-title">Historic room, proper projection, club-night warmth.</h2>
+              </div>
+
+              <ul class="detail-list">
+                <li>Main hall at Folken in central Stavanger.</li>
+                <li>Supports digital, 35mm and 16mm projection.</li>
+                <li>Large screen measuring roughly 7 by 4 metres.</li>
+                <li>Free popcorn every screening, with the bar open all evening.</li>
+                <li>Rights are cleared through Norsk Filmklubbforbund.</li>
+              </ul>
+
+              <div class="stats-row">
+                <article class="metric-chip">
+                  <strong>35mm</strong>
+                  <span>Analogue ready</span>
+                </article>
+                <article class="metric-chip">
+                  <strong>16mm</strong>
+                  <span>Also supported</span>
+                </article>
+                <article class="metric-chip">
+                  <strong>7 x 4m</strong>
+                  <span>Big screen</span>
+                </article>
+                <article class="metric-chip">
+                  <strong>Popcorn</strong>
+                  <span>Included</span>
+                </article>
+              </div>
+
+              <div class="link-row">
+                <a class="button button-secondary" href="https://www.folken.no/" target="_blank" rel="noreferrer">Visit Folken</a>
+                <a class="button button-secondary" href="https://filmklubb.no/" target="_blank" rel="noreferrer">About NFK</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="film-frame" id="programme">
+      <article class="frame-window tone-amber">
+        <div class="frame-content">
+          <div class="frame-topline">
+            <span class="frame-index">Frame 04</span>
+            <span>Spring 2026 Programme</span>
+          </div>
+
+          <div class="programme-grid">
+            <div class="poster-panel">
+              <img
+                src="../assets/2026%20Spring.png"
+                alt="Magiske Lanterner 2026 Spring programme poster."
+                loading="lazy"
+                decoding="async"
+              >
+            </div>
+
+            <div style="display:grid; gap: 1rem; align-content:start;">
+              <div>
+                <p class="eyebrow" style="color: rgba(37, 28, 18, 0.58);">January to April</p>
+                <h2 class="frame-title">Eight titles, one very good run of films.</h2>
+              </div>
+
+              <ul class="schedule-list">
+                <li><strong>16 Jan</strong><span><em>Sin City</em> • USA • 2005</span></li>
+                <li><strong>30 Jan</strong><span><em>Totem</em> • Mexico • 2023</span></li>
+                <li><strong>13 Feb</strong><span><em>Fallen Leaves</em> • Finland • 2023</span></li>
+                <li><strong>27 Feb</strong><span><em>Memoir of a Snail</em> • Australia • 2024</span></li>
+                <li><strong>13 Mar</strong><span><em>The Hunt</em> • Denmark • 2012</span></li>
+                <li><strong>27 Mar</strong><span><em>Graduation</em> • Romania • 2016</span></li>
+                <li><strong>10 Apr</strong><span><em>Kneecap</em> • Ireland / UK • 2024</span></li>
+                <li><strong>24 Apr</strong><span><em>Tampopo</em> • Japan • 1985</span></li>
+              </ul>
+
+              <div class="archive-note">
+                <p>The spring poster is the fastest overview, but the season itself moves from stylised noir and family drama to Kaurismäki deadpan, political comedy, and one perfect ramen western.</p>
+              </div>
+
+              <div class="link-row">
+                <a class="button button-primary" href="../assets/2026%20Spring.png" target="_blank" rel="noreferrer">Open spring poster</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="film-frame" id="archive">
+      <article class="frame-window tone-cream">
+        <div class="frame-content">
+          <div class="frame-topline">
+            <span class="frame-index">Frame 05</span>
+            <span>Past Season</span>
+          </div>
+
+          <div class="archive-grid">
+            <div class="poster-panel">
+              <img
+                src="../assets/2025%20Autumn%20Edition.png"
+                alt="Magiske Lanterner 2025 Autumn Edition programme poster."
+                loading="lazy"
+                decoding="async"
+              >
+            </div>
+
+            <div style="display:grid; gap: 1rem; align-content:start;">
+              <div>
+                <p class="eyebrow" style="color: rgba(32, 24, 16, 0.58);">Autumn 2025 archive</p>
+                <h2 class="frame-title">The reel keeps its earlier chapters.</h2>
+              </div>
+
+              <p class="deck">
+                The previous season leaned into animation, melodrama, political tension, food, ghosts, and one lighthouse with extremely bad vibes.
+              </p>
+
+              <ul class="archive-list">
+                <li><em>Paprika</em></li>
+                <li><em>On Body and Soul</em></li>
+                <li><em>The Lunchbox</em></li>
+                <li><em>Phoenix</em></li>
+                <li><em>The Lighthouse</em></li>
+                <li><em>The Cemetery of Cinema</em></li>
+                <li><em>Maria Full of Grace</em></li>
+                <li><em>La Grande Vadrouille</em></li>
+              </ul>
+
+              <div class="archive-note">
+                <p>For last-minute changes and extra announcements, the club still uses Facebook as the quickest broadcast channel.</p>
+              </div>
+
+              <div class="link-row">
+                <a class="button button-primary" href="../assets/2025%20Autumn%20Edition.png" target="_blank" rel="noreferrer">View autumn poster</a>
+                <a class="button button-secondary" href="https://www.facebook.com/filmklubbstavanger/" target="_blank" rel="noreferrer">Open Facebook</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="film-frame" id="membership">
+      <article class="frame-window tone-night">
+        <div class="frame-content">
+          <div class="frame-topline">
+            <span class="frame-index">Frame 06</span>
+            <span>Membership & Tickets</span>
+          </div>
+
+          <div style="display:grid; gap: 1rem; align-content:start;">
+            <div>
+              <p class="eyebrow">Straightforward pricing</p>
+              <h2 class="frame-title">Join once per season, then drop in whenever a title pulls you back.</h2>
+            </div>
+
+            <div class="membership-grid">
+              <article class="card">
+                <small>Membership</small>
+                <h3>Season pass</h3>
+                <span class="price">80 NOK</span>
+                <p>Mandatory once each season through Filmklubbmedlem before your first screening.</p>
+              </article>
+              <article class="card">
+                <small>Ticket</small>
+                <h3>Per screening</h3>
+                <span class="price">40 NOK</span>
+                <p>Paid at the door at Folken. Card and Vipps are accepted.</p>
+              </article>
+              <article class="card">
+                <small>How it works</small>
+                <h3>Three quick steps</h3>
+                <ol class="steps">
+                  <li>Register as a member for the current season.</li>
+                  <li>Show up at Folken and pay 40 NOK for the film.</li>
+                  <li>Stay for popcorn, conversation, or just the credits.</li>
+                </ol>
+              </article>
+            </div>
+
+            <div class="link-row">
+              <a class="button button-primary" href="https://www.filmklubbmedlem.no/registrer/86" target="_blank" rel="noreferrer">Register now</a>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="film-frame" id="community">
+      <article class="frame-window tone-ruby">
+        <div class="frame-content">
+          <div class="frame-topline">
+            <span class="frame-index">Frame 07</span>
+            <span>Community</span>
+          </div>
+
+          <div style="display:grid; gap: 1rem; align-content:start;">
+            <div>
+              <p class="eyebrow">Volunteer-run, serious taste</p>
+              <h2 class="frame-title">A club-night atmosphere backed by a wider film-club network.</h2>
+            </div>
+
+            <div class="community-grid">
+              <article class="card">
+                <small>Recognition</small>
+                <h3>Film Club of the Year 2023.</h3>
+                <p>Norsk Filmklubbforbund highlighted the programming range, hospitality, and international audience mix.</p>
+              </article>
+              <article class="card">
+                <small>People</small>
+                <h3>Volunteer energy.</h3>
+                <p>The screenings feel personal because the people running them care about curation, atmosphere, and making film culture accessible.</p>
+              </article>
+              <article class="card">
+                <small>Network</small>
+                <h3>Connected to NFK.</h3>
+                <p>The club keeps its own personality while operating with proper screening-rights support through the national film-club federation.</p>
+              </article>
+            </div>
+
+            <div class="link-row">
+              <a class="button button-secondary" href="https://filmklubb.no/aktuelt/prisvinnerne-pa-filmklubbenes-husstyremote-2023/" target="_blank" rel="noreferrer">Read the award note</a>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="film-frame" id="contact">
+      <article class="frame-window tone-cream">
+        <div class="frame-content">
+          <div class="frame-topline">
+            <span class="frame-index">Frame 08</span>
+            <span>Roll Credits</span>
+          </div>
+
+          <div class="contact-grid">
+            <div style="display:grid; gap: 1rem; align-content:start;">
+              <div>
+                <p class="eyebrow" style="color: rgba(32, 24, 16, 0.58);">Contact</p>
+                <h2 class="frame-title">Join the next screening, or follow the reel as it keeps moving.</h2>
+              </div>
+
+              <p class="deck">
+                Facebook is the fastest place for updates. For direct questions, use the club email. The original WordPress site remains online as an archive.
+              </p>
+
+              <div class="link-row">
+                <a class="button button-primary" href="https://www.facebook.com/filmklubbstavanger/" target="_blank" rel="noreferrer">Follow on Facebook</a>
+                <button class="button button-secondary" type="button" data-email-copy>Copy email</button>
+              </div>
+            </div>
+
+            <div class="copy-card">
+              <img
+                src="../assets/LogoMLFK.jpg"
+                alt="Magiske Lanterner logo."
+                loading="lazy"
+                decoding="async"
+              >
+              <ul class="contact-list">
+                <li><strong>Email:</strong> <span id="email-text">filmklubbstavanger [at] gmail.com</span></li>
+                <li><strong>Venue:</strong> Folken, Stavanger</li>
+                <li><strong>Archive:</strong> <a href="https://magiskelanterner.wordpress.com/" target="_blank" rel="noreferrer">magiskelanterner.wordpress.com</a></li>
+                <li><strong>Registration:</strong> <a href="https://www.filmklubbmedlem.no/registrer/86" target="_blank" rel="noreferrer">filmklubbmedlem.no</a></li>
+              </ul>
+              <p>Membership registration happens through Filmklubbmedlem. Screening rights are handled through Norsk Filmklubbforbund.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Magiske Lanterner Stavanger Filmklubb • Test Cut /2
+  </footer>
+
+  <script>
+    const frameLinks = [...document.querySelectorAll('.site-nav a')];
+    const frames = [...document.querySelectorAll('.film-frame')];
+    const emailButton = document.querySelector('[data-email-copy]');
+    const emailText = document.getElementById('email-text');
+    const email = ['filmklubbstavanger', 'gmail.com'].join('@');
+
+    if ('IntersectionObserver' in window) {
+      const visibilityObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          }
+        });
+      }, { threshold: 0.18 });
+
+      frames.forEach((frame) => visibilityObserver.observe(frame));
+
+      const activeObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          frames.forEach((frame) => frame.classList.toggle('is-active', frame === entry.target));
+          frameLinks.forEach((link) => {
+            link.classList.toggle('is-active', link.getAttribute('href') === `#${entry.target.id}`);
+          });
+        });
+      }, { threshold: 0.58 });
+
+      frames.forEach((frame) => activeObserver.observe(frame));
+    } else {
+      frames.forEach((frame, index) => {
+        frame.classList.add('is-visible');
+        frame.classList.toggle('is-active', index === 0);
+      });
+      if (frameLinks[0]) {
+        frameLinks[0].classList.add('is-active');
+      }
+    }
+
+    if (emailButton && emailText) {
+      emailButton.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(email);
+          emailText.textContent = email;
+          emailButton.textContent = 'Email copied';
+
+          window.setTimeout(() => {
+            emailText.textContent = 'filmklubbstavanger [at] gmail.com';
+            emailButton.textContent = 'Copy email';
+          }, 1800);
+        } catch (error) {
+          window.location.href = `mailto:${email}`;
+        }
+      });
+    }
+  </script>
+</body>
+</html>
