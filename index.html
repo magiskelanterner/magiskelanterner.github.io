@@ -323,7 +323,8 @@
     }
 
     .hero {
-      min-height: calc(100svh - 72px);
+      min-height: 0;
+      aspect-ratio: 16 / 9;
       display: grid;
       align-items: center;
       grid-template-columns: minmax(0, 1fr);
@@ -436,68 +437,6 @@
       max-width: 33rem;
     }
 
-    .clubmark-section {
-      margin-top: 18px;
-      padding-top: 0;
-      padding-bottom: 0;
-      background: transparent;
-      border: 0;
-      box-shadow: none;
-      overflow: visible;
-    }
-
-    .clubmark-wrap {
-      display: grid;
-      justify-items: end;
-    }
-
-    .hero-brand-card {
-      width: min(100%, 620px);
-      padding: clamp(22px, 4vw, 34px);
-      border-radius: 30px;
-      border: 1px solid rgba(243, 234, 220, 0.12);
-      background:
-        linear-gradient(180deg, rgba(243, 234, 220, 0.11), rgba(243, 234, 220, 0.03)),
-        rgba(8, 20, 34, 0.68);
-      box-shadow: 0 28px 80px rgba(7, 18, 31, 0.28);
-      backdrop-filter: blur(18px);
-    }
-
-    .hero-logo-stage {
-      position: relative;
-      min-height: clamp(280px, 34vw, 390px);
-      margin-top: 0.95rem;
-      padding: clamp(22px, 4vw, 34px);
-      border-radius: 24px;
-      overflow: hidden;
-      border: 1px solid rgba(243, 234, 220, 0.08);
-      background:
-        radial-gradient(circle at 22% 18%, rgba(240, 181, 90, 0.16), transparent 20%),
-        radial-gradient(circle at 76% 68%, rgba(255, 246, 218, 0.07), transparent 18%),
-        linear-gradient(145deg, rgba(6, 13, 22, 0.98) 0%, rgba(17, 33, 54, 0.94) 100%);
-      display: grid;
-      align-content: space-between;
-      gap: 1.25rem;
-    }
-
-    .hero-logo-stage::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 78% 24%, rgba(255, 248, 226, 0.15), rgba(255, 248, 226, 0) 20%),
-        repeating-linear-gradient(
-          0deg,
-          rgba(243, 234, 220, 0.02) 0,
-          rgba(243, 234, 220, 0.02) 1px,
-          transparent 1px,
-          transparent 7px
-        );
-      mix-blend-mode: screen;
-      opacity: 0.34;
-      pointer-events: none;
-    }
-
     .poster-label,
     .story-label,
     .metric-label,
@@ -515,24 +454,6 @@
 
     .story-label {
       color: var(--ruby);
-    }
-
-    .hero-logo {
-      position: relative;
-      z-index: 1;
-      width: auto;
-      max-width: 100%;
-      height: clamp(180px, 26vw, 290px);
-      object-fit: contain;
-      filter: drop-shadow(0 18px 22px rgba(0, 0, 0, 0.28));
-    }
-
-    .hero-brand-note {
-      position: relative;
-      z-index: 1;
-      max-width: 26rem;
-      color: rgba(243, 234, 220, 0.8);
-      font-size: 0.98rem;
     }
 
     .poster-grid {
@@ -1089,10 +1010,6 @@
         grid-template-columns: 1fr;
       }
 
-      .hero-brand-card {
-        width: min(100%, 100%);
-      }
-
       .pricing-grid,
       .feature-grid,
       .contact-grid {
@@ -1141,6 +1058,7 @@
 
       .hero {
         min-height: auto;
+        aspect-ratio: auto;
         padding-top: calc(var(--header-height) + 24px);
       }
 
@@ -1148,16 +1066,8 @@
         font-size: clamp(3.4rem, 15vw, 5.2rem);
       }
 
-      .clubmark-wrap {
-        justify-items: stretch;
-      }
-
       .curtain-panel {
         width: 58%;
-      }
-
-      .hero-logo-stage {
-        min-height: 240px;
       }
 
       .story-grid,
@@ -1252,53 +1162,6 @@
         <p class="hero-note">
           Mandatory membership is 80 NOK per season. Screenings are 40 NOK each, payable at the door by card or Vipps.
         </p>
-      </div>
-    </section>
-
-    <section class="section-shell clubmark-section" aria-labelledby="clubmark-title">
-      <div class="clubmark-wrap reveal">
-        <div class="hero-brand-card">
-          <p class="poster-label" id="clubmark-title">Club mark</p>
-
-          <div class="hero-logo-stage">
-            <img
-              class="hero-logo"
-              src="assets/darkbackgroundLogo.png"
-              alt="Magiske Lanterner logo"
-              loading="lazy"
-              fetchpriority="low"
-              decoding="async"
-            >
-            <p class="hero-brand-note">
-              Volunteer-run film culture in Stavanger with seasonal curation, analogue-friendly screenings and a room that feels more like a club night than a standard cinema slot.
-            </p>
-          </div>
-
-          <div class="poster-grid hero-stats">
-            <article class="poster-stat">
-              <strong>80 NOK</strong>
-              <span>Season membership</span>
-            </article>
-            <article class="poster-stat">
-              <strong>40 NOK</strong>
-              <span>Per screening</span>
-            </article>
-            <article class="poster-stat">
-              <strong>Folken</strong>
-              <span>Main hall in central Stavanger</span>
-            </article>
-            <article class="poster-stat">
-              <strong>35 / 16mm</strong>
-              <span>Digital and analogue-ready venue</span>
-            </article>
-          </div>
-
-          <div class="pill-row">
-            <span class="pill">Film Club of the Year 2023</span>
-            <span class="pill">Free popcorn</span>
-            <span class="pill">Rights cleared through NFK</span>
-          </div>
-        </div>
       </div>
     </section>
 
