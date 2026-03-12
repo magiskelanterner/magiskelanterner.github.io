@@ -1,0 +1,12 @@
+# Ignore Playwright's local browser binaries and cache
+.playwright/
+
+# Also recommended: ignore test results and reports
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# Ignore macOS system files
+.DS_Store
+.DS_Store
