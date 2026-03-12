@@ -100,18 +100,6 @@
       overflow: hidden;
     }
 
-    .curtain-stage::before {
-      content: "";
-      position: absolute;
-      inset: 0 0 auto;
-      height: min(18vh, 160px);
-      background:
-        linear-gradient(180deg, rgba(255, 227, 193, 0.08), transparent 40%),
-        linear-gradient(180deg, #7a1020 0%, #5a0b17 48%, #3c050d 100%);
-      box-shadow: 0 22px 60px rgba(0, 0, 0, 0.22);
-      z-index: 4;
-    }
-
     .curtain-stage::after {
       content: "";
       position: absolute;
@@ -134,8 +122,8 @@
 
     .curtain-panel {
       position: absolute;
-      top: -4%;
-      bottom: -6%;
+      top: 0;
+      bottom: 0;
       width: 54%;
       background:
         linear-gradient(180deg, rgba(255, 231, 206, 0.16), rgba(255, 231, 206, 0.04) 14%, rgba(0, 0, 0, 0.18) 100%),
@@ -338,8 +326,8 @@
       min-height: calc(100svh - 72px);
       display: grid;
       align-items: center;
-      grid-template-columns: minmax(0, 1.18fr) minmax(300px, 0.82fr);
-      gap: clamp(28px, 4vw, 56px);
+      grid-template-columns: minmax(0, 1fr);
+      gap: clamp(20px, 3vw, 36px);
       padding-top: calc(var(--header-height) + 40px);
       padding-bottom: clamp(48px, 7vw, 84px);
       color: var(--paper-strong);
@@ -368,7 +356,7 @@
     .hero-copy {
       position: relative;
       z-index: 1;
-      max-width: 44rem;
+      max-width: 54rem;
     }
 
     .eyebrow {
@@ -391,12 +379,12 @@
 
     .hero h1 {
       font-size: clamp(4.2rem, 10vw, 7.8rem);
-      max-width: 11ch;
+      max-width: 12ch;
     }
 
     .lead {
       margin: 1.3rem 0 0;
-      max-width: 38rem;
+      max-width: 44rem;
       color: rgba(243, 234, 220, 0.84);
       font-size: clamp(1.05rem, 1.8vw, 1.22rem);
     }
@@ -448,15 +436,23 @@
       max-width: 33rem;
     }
 
-    .hero-panel {
-      position: relative;
-      z-index: 1;
+    .clubmark-section {
+      margin-top: 18px;
+      padding-top: 0;
+      padding-bottom: 0;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      overflow: visible;
+    }
+
+    .clubmark-wrap {
       display: grid;
       justify-items: end;
     }
 
     .hero-brand-card {
-      width: min(100%, 540px);
+      width: min(100%, 620px);
       padding: clamp(22px, 4vw, 34px);
       border-radius: 30px;
       border: 1px solid rgba(243, 234, 220, 0.12);
@@ -1093,12 +1089,8 @@
         grid-template-columns: 1fr;
       }
 
-      .hero-panel {
-        justify-items: start;
-      }
-
       .hero-brand-card {
-        width: min(100%, 520px);
+        width: min(100%, 100%);
       }
 
       .pricing-grid,
@@ -1154,6 +1146,10 @@
 
       .hero h1 {
         font-size: clamp(3.4rem, 15vw, 5.2rem);
+      }
+
+      .clubmark-wrap {
+        justify-items: stretch;
       }
 
       .curtain-panel {
@@ -1257,10 +1253,12 @@
           Mandatory membership is 80 NOK per season. Screenings are 40 NOK each, payable at the door by card or Vipps.
         </p>
       </div>
+    </section>
 
-      <div class="hero-panel">
+    <section class="section-shell clubmark-section" aria-labelledby="clubmark-title">
+      <div class="clubmark-wrap reveal">
         <div class="hero-brand-card">
-          <p class="poster-label">Club mark</p>
+          <p class="poster-label" id="clubmark-title">Club mark</p>
 
           <div class="hero-logo-stage">
             <img
