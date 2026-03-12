@@ -3,390 +3,1311 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Project Docs</title>
+  <title>Magiske Lanterner | Stavanger Film Club</title>
+  <meta
+    name="description"
+    content="Magiske Lanterner is Stavanger's film club for curated screenings at Folken: classics, discoveries, contemporary film art, free popcorn, and a welcoming film community."
+  >
+  <meta name="theme-color" content="#07121f">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&amp;family=Space+Grotesk:wght@400;500;700&amp;display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #ffffff;
-      --bg-secondary: #f8f9fa;
-      --text: #1a1a2e;
-      --text-muted: #6c757d;
-      --accent: #4361ee;
-      --accent-light: #eef0ff;
-      --border: #e2e8f0;
-      --sidebar-w: 260px;
-      --header-h: 56px;
+      --paper: #f3eadc;
+      --paper-strong: #fcf8f2;
+      --ink: #112032;
+      --ink-soft: #3c4d61;
+      --night: #07121f;
+      --night-strong: #0c1f34;
+      --night-soft: rgba(8, 20, 34, 0.82);
+      --gold: #f0b55a;
+      --ruby: #d76a52;
+      --line: rgba(17, 32, 50, 0.12);
+      --line-light: rgba(243, 234, 220, 0.18);
+      --shadow: 0 24px 70px rgba(7, 18, 31, 0.16);
+      --radius-xl: 36px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --max-width: 1180px;
+      --header-height: 76px;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      color: var(--text);
-      line-height: 1.65;
-      background: var(--bg);
+      margin: 0;
+      font-family: "Space Grotesk", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(240, 181, 90, 0.2), transparent 32%),
+        linear-gradient(180deg, #f7f0e4 0%, #efe6d7 100%);
+      line-height: 1.6;
     }
 
-    /* ── Header ── */
-    header {
-      position: fixed; top: 0; left: 0; right: 0;
-      height: var(--header-h);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 24px;
-      background: var(--bg);
-      border-bottom: 1px solid var(--border);
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        repeating-linear-gradient(
+          90deg,
+          rgba(17, 32, 50, 0.016) 0,
+          rgba(17, 32, 50, 0.016) 1px,
+          transparent 1px,
+          transparent 4px
+        );
+      opacity: 0.4;
+      mix-blend-mode: multiply;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 16px;
+      top: -48px;
+      z-index: 200;
+      padding: 0.75rem 1rem;
+      border-radius: 999px;
+      background: var(--paper-strong);
+      color: var(--night);
+      transition: top 0.2s ease;
+    }
+
+    .skip-link:focus {
+      top: 16px;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 16px;
       z-index: 100;
+      width: min(var(--max-width), calc(100% - 24px));
+      margin: 16px auto 0;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      border: 1px solid var(--line-light);
+      border-radius: 999px;
+      background: rgba(7, 18, 31, 0.74);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 14px 40px rgba(7, 18, 31, 0.18);
+      color: var(--paper-strong);
     }
-    header .logo {
-      font-weight: 700; font-size: 1.1rem;
-      display: flex; align-items: center; gap: 8px;
-    }
-    header .logo span { color: var(--accent); }
-    header nav { display: flex; gap: 20px; }
-    header nav a {
-      text-decoration: none; color: var(--text-muted); font-size: .9rem; font-weight: 500;
-      transition: color .2s;
-    }
-    header nav a:hover { color: var(--accent); }
 
-    /* ── Sidebar ── */
-    aside {
-      position: fixed; top: var(--header-h); left: 0; bottom: 0;
-      width: var(--sidebar-w);
-      padding: 24px 16px;
-      overflow-y: auto;
-      border-right: 1px solid var(--border);
-      background: var(--bg-secondary);
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.9rem;
+      min-width: 0;
     }
-    aside h4 {
-      font-size: .7rem; text-transform: uppercase; letter-spacing: .08em;
-      color: var(--text-muted); margin: 16px 0 8px; padding-left: 12px;
-    }
-    aside h4:first-child { margin-top: 0; }
-    aside a {
-      display: block; padding: 6px 12px; border-radius: 6px;
-      text-decoration: none; color: var(--text); font-size: .88rem;
-      transition: background .15s, color .15s;
-    }
-    aside a:hover { background: var(--accent-light); color: var(--accent); }
-    aside a.active { background: var(--accent-light); color: var(--accent); font-weight: 600; }
 
-    /* ── Main Content ── */
+    .brand-mark {
+      width: 46px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      border: 1px solid rgba(243, 234, 220, 0.24);
+      background:
+        radial-gradient(circle at 35% 35%, rgba(240, 181, 90, 0.9), rgba(215, 106, 82, 0.86) 48%, rgba(7, 18, 31, 0.15) 49%),
+        radial-gradient(circle at center, rgba(243, 234, 220, 0.12), transparent 70%);
+      box-shadow: inset 0 0 0 8px rgba(7, 18, 31, 0.52);
+      flex-shrink: 0;
+    }
+
+    .brand strong,
+    .brand small {
+      display: block;
+      white-space: nowrap;
+    }
+
+    .brand strong {
+      font-size: 0.96rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .brand small {
+      color: rgba(243, 234, 220, 0.72);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .menu-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 46px;
+      height: 46px;
+      border: 1px solid rgba(243, 234, 220, 0.2);
+      border-radius: 50%;
+      background: transparent;
+      color: var(--paper-strong);
+      cursor: pointer;
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .site-nav a {
+      padding: 0.65rem 0.95rem;
+      border-radius: 999px;
+      color: rgba(243, 234, 220, 0.74);
+      font-size: 0.92rem;
+      transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+
+    .site-nav a:hover,
+    .site-nav a:focus-visible,
+    .site-nav a.is-active {
+      background: rgba(243, 234, 220, 0.12);
+      color: var(--paper-strong);
+      transform: translateY(-1px);
+    }
+
     main {
-      margin-left: var(--sidebar-w);
-      margin-top: var(--header-h);
-      max-width: 780px;
-      padding: 40px 48px 80px;
+      padding-bottom: 40px;
     }
 
-    h1 { font-size: 2rem; font-weight: 800; margin-bottom: 8px; }
-    h2 { font-size: 1.35rem; font-weight: 700; margin: 40px 0 12px; padding-top: 16px; border-top: 1px solid var(--border); }
-    h3 { font-size: 1.05rem; font-weight: 600; margin: 28px 0 8px; }
-    p { margin-bottom: 14px; color: #333; }
-    .subtitle { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 28px; }
-
-    /* ── Code Blocks ── */
-    pre {
-      background: #1e1e2e; color: #cdd6f4; padding: 16px 20px;
-      border-radius: 8px; overflow-x: auto; font-size: .85rem;
-      margin: 12px 0 20px; line-height: 1.6;
-    }
-    code {
-      font-family: "SF Mono", "Fira Code", "Cascadia Code", monospace;
-    }
-    p code, li code {
-      background: var(--accent-light); color: var(--accent);
-      padding: 2px 6px; border-radius: 4px; font-size: .85em;
+    section {
+      scroll-margin-top: 112px;
     }
 
-    /* ── Callout Boxes ── */
-    .callout {
-      padding: 14px 18px; border-radius: 8px; margin: 16px 0 20px;
-      border-left: 4px solid; font-size: .92rem;
+    .section-shell {
+      width: min(var(--max-width), calc(100% - 24px));
+      margin: 22px auto 0;
+      padding: clamp(28px, 4vw, 56px);
+      border-radius: var(--radius-xl);
+      position: relative;
+      overflow: hidden;
     }
-    .callout.info { background: #eef6ff; border-color: #3b82f6; }
-    .callout.warn { background: #fff8ee; border-color: #f59e0b; }
-    .callout.tip  { background: #eefbf4; border-color: #10b981; }
-    .callout strong { display: block; margin-bottom: 4px; }
 
-    /* ── Table ── */
-    table {
-      width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: .9rem;
+    .hero {
+      min-height: calc(100svh - 72px);
+      display: grid;
+      align-items: center;
+      grid-template-columns: minmax(0, 1.18fr) minmax(300px, 0.82fr);
+      gap: clamp(28px, 4vw, 56px);
+      padding-top: calc(var(--header-height) + 40px);
+      padding-bottom: clamp(48px, 7vw, 84px);
+      color: var(--paper-strong);
+      background:
+        radial-gradient(circle at 15% 18%, rgba(240, 181, 90, 0.26), transparent 26%),
+        radial-gradient(circle at 78% 18%, rgba(215, 106, 82, 0.24), transparent 24%),
+        linear-gradient(135deg, rgba(243, 234, 220, 0.06), transparent 44%),
+        linear-gradient(135deg, #07121f 0%, #102139 58%, #13243a 100%);
+      box-shadow: var(--shadow);
     }
-    th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border); }
-    th { font-weight: 600; background: var(--bg-secondary); }
 
-    ul, ol { margin: 8px 0 16px 24px; }
-    li { margin-bottom: 6px; }
-
-    /* ── Cards grid ── */
-    .card-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0;
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: auto -6% -18% 38%;
+      height: 70%;
+      background:
+        linear-gradient(105deg, rgba(240, 181, 90, 0.34), rgba(240, 181, 90, 0) 58%),
+        linear-gradient(105deg, rgba(243, 234, 220, 0.18), rgba(243, 234, 220, 0) 62%);
+      transform: rotate(-8deg);
+      filter: blur(6px);
+      opacity: 0.9;
+      pointer-events: none;
     }
-    .card {
-      padding: 18px; border: 1px solid var(--border); border-radius: 10px;
-      transition: box-shadow .2s, border-color .2s; cursor: default;
+
+    .hero-copy {
+      position: relative;
+      z-index: 1;
+      max-width: 44rem;
     }
-    .card:hover { border-color: var(--accent); box-shadow: 0 2px 12px rgba(67,97,238,.1); }
-    .card h4 { font-size: .95rem; margin-bottom: 4px; }
-    .card p { font-size: .85rem; color: var(--text-muted); margin: 0; }
 
-    /* ── Badge ── */
-    .badge {
-      display: inline-block; padding: 2px 10px; border-radius: 99px;
-      font-size: .75rem; font-weight: 600;
+    .eyebrow {
+      margin: 0 0 1rem;
+      color: rgba(243, 234, 220, 0.78);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.78rem;
     }
-    .badge.green { background: #dcfce7; color: #16a34a; }
-    .badge.blue  { background: #dbeafe; color: #2563eb; }
 
-    /* ── Section visibility ── */
-    .section { display: none; }
-    .section.active { display: block; }
+    .hero h1,
+    .section-heading h2,
+    .contact-card h2 {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      font-weight: 600;
+    }
 
-    /* ── Responsive ── */
-    @media (max-width: 768px) {
-      aside { display: none; }
-      main { margin-left: 0; padding: 24px 20px 60px; }
-      .card-grid { grid-template-columns: 1fr; }
+    .hero h1 {
+      font-size: clamp(4.2rem, 10vw, 7.8rem);
+      max-width: 11ch;
+    }
+
+    .lead {
+      margin: 1.3rem 0 0;
+      max-width: 38rem;
+      color: rgba(243, 234, 220, 0.84);
+      font-size: clamp(1.05rem, 1.8vw, 1.22rem);
+    }
+
+    .cta-row,
+    .link-row,
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 1.9rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      min-height: 52px;
+      padding: 0.9rem 1.2rem;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+      cursor: pointer;
+    }
+
+    .button:hover,
+    .button:focus-visible {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      background: linear-gradient(135deg, var(--gold), #ffc978);
+      color: var(--night);
+      box-shadow: 0 18px 32px rgba(240, 181, 90, 0.22);
+    }
+
+    .button-secondary {
+      color: var(--paper-strong);
+      border-color: rgba(243, 234, 220, 0.2);
+      background: rgba(243, 234, 220, 0.08);
+    }
+
+    .hero-note {
+      margin: 1.1rem 0 0;
+      color: rgba(243, 234, 220, 0.72);
+      font-size: 0.95rem;
+      max-width: 33rem;
+    }
+
+    .hero-panel {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      justify-items: end;
+    }
+
+    .poster-card {
+      width: min(100%, 420px);
+      padding: clamp(22px, 4vw, 34px);
+      border-radius: 30px;
+      border: 1px solid rgba(243, 234, 220, 0.12);
+      background:
+        linear-gradient(180deg, rgba(243, 234, 220, 0.11), rgba(243, 234, 220, 0.03)),
+        rgba(8, 20, 34, 0.68);
+      box-shadow: 0 28px 80px rgba(7, 18, 31, 0.28);
+      backdrop-filter: blur(18px);
+    }
+
+    .poster-label,
+    .story-label,
+    .metric-label,
+    .card-kicker {
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.78rem;
+    }
+
+    .poster-label,
+    .metric-label {
+      color: rgba(243, 234, 220, 0.66);
+    }
+
+    .story-label {
+      color: var(--ruby);
+    }
+
+    .poster-card h2 {
+      margin: 0.8rem 0 1.2rem;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      line-height: 0.95;
+      font-weight: 600;
+      letter-spacing: -0.04em;
+      max-width: 8ch;
+    }
+
+    .poster-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.85rem;
+    }
+
+    .poster-stat {
+      padding: 1rem;
+      min-height: 120px;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(243, 234, 220, 0.08);
+      background: rgba(243, 234, 220, 0.05);
+    }
+
+    .poster-stat strong,
+    .price-card strong,
+    .metric strong {
+      display: block;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .poster-stat strong {
+      margin-bottom: 0.5rem;
+      font-size: clamp(1.7rem, 4vw, 2.4rem);
+      color: #ffe1a2;
+    }
+
+    .poster-stat span {
+      display: block;
+      color: rgba(243, 234, 220, 0.78);
+      font-size: 0.95rem;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 1.2rem;
+    }
+
+    .pill {
+      padding: 0.55rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(243, 234, 220, 0.14);
+      background: rgba(243, 234, 220, 0.07);
+      color: rgba(243, 234, 220, 0.84);
+      font-size: 0.86rem;
+    }
+
+    .light-section {
+      border: 1px solid rgba(17, 32, 50, 0.08);
+      background:
+        radial-gradient(circle at top right, rgba(240, 181, 90, 0.12), transparent 34%),
+        rgba(252, 248, 242, 0.88);
+      box-shadow: var(--shadow);
+    }
+
+    .dark-section {
+      color: var(--paper-strong);
+      border: 1px solid rgba(243, 234, 220, 0.08);
+      background:
+        radial-gradient(circle at 80% 0%, rgba(215, 106, 82, 0.18), transparent 28%),
+        linear-gradient(135deg, #0a1625 0%, #10233c 100%);
+      box-shadow: var(--shadow);
+    }
+
+    .section-heading {
+      max-width: 52rem;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2.9rem, 6vw, 5.3rem);
+      color: var(--ink);
+    }
+
+    .dark-section .section-heading h2,
+    .dark-section .section-heading p,
+    .dark-section .eyebrow {
+      color: var(--paper-strong);
+    }
+
+    .section-heading p {
+      margin: 1rem 0 0;
+      color: var(--ink-soft);
+      font-size: 1.04rem;
+      max-width: 42rem;
+    }
+
+    .story-grid,
+    .feature-grid,
+    .programme-grid,
+    .pricing-grid,
+    .community-grid,
+    .contact-grid,
+    .venue-layout {
+      display: grid;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .story-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .story-card,
+    .feature-card,
+    .programme-card,
+    .price-card,
+    .community-card,
+    .contact-card,
+    .venue-card,
+    .metric {
+      border-radius: var(--radius-lg);
+    }
+
+    .story-card {
+      padding: 1.4rem;
+      border: 1px solid rgba(17, 32, 50, 0.08);
+      background: rgba(255, 255, 255, 0.58);
+    }
+
+    .story-card p:not(.story-label) {
+      margin: 0.8rem 0 0;
+      font-size: 1.03rem;
+      color: var(--ink);
+    }
+
+    .feature-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .feature-card {
+      padding: 1.45rem;
+      border: 1px solid rgba(17, 32, 50, 0.08);
+      background: rgba(255, 255, 255, 0.45);
+    }
+
+    .feature-card h3,
+    .programme-card h3,
+    .price-card h3,
+    .community-card h3,
+    .venue-card h3 {
+      margin: 0.7rem 0 0;
+      font-size: 1.16rem;
+      line-height: 1.25;
+    }
+
+    .feature-card p,
+    .programme-card p,
+    .price-card p,
+    .community-card p {
+      margin: 0.8rem 0 0;
+      color: var(--ink-soft);
+    }
+
+    .venue-layout {
+      grid-template-columns: minmax(0, 1.1fr) minmax(240px, 0.72fr);
+      align-items: start;
+    }
+
+    .venue-card {
+      padding: clamp(22px, 4vw, 34px);
+      border: 1px solid rgba(243, 234, 220, 0.1);
+      background: rgba(243, 234, 220, 0.06);
+    }
+
+    .venue-card h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.3rem, 5vw, 3.8rem);
+      line-height: 0.98;
+      font-weight: 600;
+      letter-spacing: -0.04em;
+      margin-top: 0.55rem;
+    }
+
+    .detail-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.35rem 0 0;
+      display: grid;
+      gap: 0.95rem;
+    }
+
+    .detail-list li {
+      position: relative;
+      padding-left: 1.2rem;
+      color: rgba(243, 234, 220, 0.84);
+    }
+
+    .detail-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.7rem;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), #ffe1a2);
+    }
+
+    .link-row a {
+      color: var(--paper-strong);
+      border-bottom: 1px solid rgba(243, 234, 220, 0.28);
+      padding-bottom: 0.1rem;
+    }
+
+    .metrics-stack {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .metric {
+      padding: 1.2rem 1.2rem 1.35rem;
+      border: 1px solid rgba(243, 234, 220, 0.1);
+      background: rgba(243, 234, 220, 0.06);
+    }
+
+    .metric strong {
+      margin-top: 0.55rem;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      color: #ffe1a2;
+    }
+
+    .metric p {
+      margin: 0.65rem 0 0;
+      color: rgba(243, 234, 220, 0.82);
+    }
+
+    .programme-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .programme-card {
+      padding: 1.45rem;
+      border: 1px solid rgba(17, 32, 50, 0.08);
+      background: rgba(255, 255, 255, 0.48);
+    }
+
+    .programme-card strong {
+      color: var(--ruby);
+    }
+
+    .pricing-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      align-items: stretch;
+    }
+
+    .price-card {
+      padding: 1.55rem;
+      border: 1px solid rgba(17, 32, 50, 0.08);
+      background: rgba(255, 255, 255, 0.58);
+    }
+
+    .price-card--accent {
+      background: linear-gradient(165deg, rgba(240, 181, 90, 0.14), rgba(255, 255, 255, 0.72));
+      border-color: rgba(240, 181, 90, 0.28);
+    }
+
+    .price-card strong {
+      margin-top: 1rem;
+      font-size: clamp(3.1rem, 7vw, 4.4rem);
+      color: var(--night);
+    }
+
+    .price-card small {
+      display: block;
+      margin-top: 0.45rem;
+      color: var(--ink-soft);
+      font-size: 0.92rem;
+    }
+
+    .steps {
+      list-style: none;
+      padding: 0;
+      margin: 1.1rem 0 0;
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .steps li {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.75rem;
+      align-items: start;
+    }
+
+    .steps span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.8rem;
+      height: 1.8rem;
+      border-radius: 50%;
+      background: var(--night);
+      color: var(--paper-strong);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .community-grid {
+      grid-template-columns: minmax(0, 1.15fr) repeat(2, minmax(0, 1fr));
+    }
+
+    .community-card {
+      padding: 1.5rem;
+      border: 1px solid rgba(243, 234, 220, 0.08);
+      background: rgba(243, 234, 220, 0.06);
+    }
+
+    .community-card--highlight {
+      background:
+        linear-gradient(180deg, rgba(240, 181, 90, 0.18), rgba(243, 234, 220, 0.06)),
+        rgba(243, 234, 220, 0.06);
+    }
+
+    .community-card p {
+      color: rgba(243, 234, 220, 0.82);
+    }
+
+    .community-card a {
+      color: #ffe1a2;
+      border-bottom: 1px solid rgba(255, 225, 162, 0.3);
+    }
+
+    .contact-card {
+      padding: clamp(24px, 4vw, 42px);
+      border: 1px solid rgba(243, 234, 220, 0.08);
+      background:
+        radial-gradient(circle at top right, rgba(240, 181, 90, 0.18), transparent 32%),
+        linear-gradient(135deg, #091623 0%, #0f2138 100%);
+      color: var(--paper-strong);
+      box-shadow: var(--shadow);
+    }
+
+    .contact-card h2 {
+      font-size: clamp(3rem, 7vw, 5.8rem);
+      max-width: 10ch;
+    }
+
+    .contact-card > p {
+      margin: 1rem 0 0;
+      max-width: 40rem;
+      color: rgba(243, 234, 220, 0.82);
+    }
+
+    .contact-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .contact-block {
+      padding: 1rem 0 0;
+      border-top: 1px solid rgba(243, 234, 220, 0.12);
+    }
+
+    .contact-block h3 {
+      margin: 0;
+      font-size: 0.82rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(243, 234, 220, 0.64);
+    }
+
+    .contact-block p,
+    .contact-block a {
+      margin: 0.65rem 0 0;
+      color: var(--paper-strong);
+      font-size: 1rem;
+    }
+
+    .fine-print {
+      margin: 1.25rem 0 0;
+      color: rgba(243, 234, 220, 0.66);
+      font-size: 0.92rem;
+    }
+
+    .footer {
+      width: min(var(--max-width), calc(100% - 24px));
+      margin: 18px auto 24px;
+      padding: 0 8px;
+      color: rgba(17, 32, 50, 0.66);
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer a {
+      border-bottom: 1px solid rgba(17, 32, 50, 0.18);
+    }
+
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .js .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 1024px) {
+      .hero,
+      .venue-layout,
+      .community-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-panel {
+        justify-items: start;
+      }
+
+      .poster-card {
+        width: min(100%, 520px);
+      }
+
+      .programme-grid,
+      .pricing-grid,
+      .feature-grid,
+      .contact-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .site-header {
+        top: 12px;
+        border-radius: 28px;
+        align-items: flex-start;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+      }
+
+      .site-nav {
+        display: none;
+        position: absolute;
+        left: 12px;
+        right: 12px;
+        top: calc(100% + 10px);
+        padding: 0.7rem;
+        border: 1px solid rgba(243, 234, 220, 0.12);
+        border-radius: 24px;
+        background: rgba(7, 18, 31, 0.96);
+        box-shadow: 0 18px 40px rgba(7, 18, 31, 0.28);
+      }
+
+      .site-nav.is-open {
+        display: grid;
+      }
+
+      .site-nav a {
+        width: 100%;
+      }
+
+      .section-shell {
+        width: calc(100% - 16px);
+        margin-top: 16px;
+        padding: 22px 18px;
+        border-radius: 28px;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: calc(var(--header-height) + 24px);
+      }
+
+      .hero h1 {
+        font-size: clamp(3.4rem, 15vw, 5.2rem);
+      }
+
+      .story-grid,
+      .feature-grid,
+      .programme-grid,
+      .pricing-grid,
+      .community-grid,
+      .contact-grid,
+      .poster-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer {
+        width: calc(100% - 16px);
+        margin-bottom: 20px;
+        padding: 0 2px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .button,
+      .site-nav a,
+      .js .reveal {
+        transition: none;
+      }
     }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#content">Skip to content</a>
 
-<!-- ── Header ── -->
-<header>
-  <div class="logo"><span>&#9670;</span> ProjectName Docs</div>
-  <nav>
-    <a href="https://github.com/your-username/your-repo" target="_blank">GitHub</a>
-    <a href="#">Changelog</a>
-  </nav>
-</header>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Magiske Lanterner homepage">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>
+        <strong>Magiske Lanterner</strong>
+        <small>Stavanger Film Club</small>
+      </span>
+    </a>
 
-<!-- ── Sidebar ── -->
-<aside>
-  <h4>Getting Started</h4>
-  <a href="#" class="active" data-section="overview">Overview</a>
-  <a href="#" data-section="installation">Installation</a>
-  <a href="#" data-section="quickstart">Quick Start</a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="sr-only">Open navigation</span>
+      <span aria-hidden="true">Menu</span>
+    </button>
 
-  <h4>Guides</h4>
-  <a href="#" data-section="configuration">Configuration</a>
-  <a href="#" data-section="deployment">Deployment</a>
+    <nav class="site-nav" id="site-nav" aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#screenings">Screenings</a>
+      <a href="#programme">Programme</a>
+      <a href="#membership">Membership</a>
+      <a href="#community">Community</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-  <h4>Reference</h4>
-  <a href="#" data-section="api">API Reference</a>
-  <a href="#" data-section="faq">FAQ</a>
-</aside>
+  <main id="content">
+    <section class="section-shell hero" id="top">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">Stavanger filmklubb / screenings at Folken</p>
+        <h1>Film gems on a real big screen.</h1>
+        <p class="lead">
+          Magiske Lanterner brings carefully selected classics, contemporary discoveries and international film culture to Stavanger. It is cinema for people who want more than an ordinary night at the movies.
+        </p>
 
-<!-- ── Main Content ── -->
-<main>
+        <div class="cta-row">
+          <a class="button button-primary" href="https://www.filmklubbmedlem.no/registrer/86" target="_blank" rel="noreferrer">Become a member</a>
+          <a class="button button-secondary" href="https://www.facebook.com/filmklubbstavanger/" target="_blank" rel="noreferrer">Latest programme</a>
+        </div>
 
-  <!-- ====== OVERVIEW ====== -->
-  <div class="section active" id="overview">
-    <p><span class="badge green">v1.0.0</span> <span class="badge blue">MIT License</span></p>
-    <h1>ProjectName</h1>
-    <p class="subtitle">A short, compelling description of what your project does and why someone should use it.</p>
-
-    <div class="card-grid">
-      <div class="card">
-        <h4>Fast Setup</h4>
-        <p>Get up and running in under 2 minutes with a single command.</p>
+        <p class="hero-note">
+          Mandatory membership is 80 NOK per season. Screenings are 40 NOK each, payable at the door by card or Vipps.
+        </p>
       </div>
-      <div class="card">
-        <h4>Lightweight</h4>
-        <p>Zero dependencies. Under 5 KB gzipped.</p>
+
+      <div class="hero-panel reveal">
+        <div class="poster-card">
+          <p class="poster-label">A night with Magiske Lanterner</p>
+          <h2>No ordinary cinema.</h2>
+
+          <div class="poster-grid">
+            <article class="poster-stat">
+              <strong>80 NOK</strong>
+              <span>Season membership</span>
+            </article>
+            <article class="poster-stat">
+              <strong>40 NOK</strong>
+              <span>Per screening</span>
+            </article>
+            <article class="poster-stat">
+              <strong>Folken</strong>
+              <span>Main hall in central Stavanger</span>
+            </article>
+            <article class="poster-stat">
+              <strong>35 / 16mm</strong>
+              <span>Digital and analogue-ready venue</span>
+            </article>
+          </div>
+
+          <div class="pill-row">
+            <span class="pill">Film Club of the Year 2023</span>
+            <span class="pill">Free popcorn</span>
+            <span class="pill">Rights cleared through NFK</span>
+          </div>
+        </div>
       </div>
-      <div class="card">
-        <h4>Extensible</h4>
-        <p>Plugin system lets you add exactly what you need.</p>
+    </section>
+
+    <section class="section-shell light-section" id="about">
+      <div class="section-heading reveal">
+        <p class="eyebrow" style="color: var(--ruby);">About the club</p>
+        <h2>Named after the magic lantern.</h2>
+        <p>
+          The club takes its name from the early projection device that made moving images feel uncanny, shared and alive. That same atmosphere shapes the screenings today: adventurous programming, a social room, and films worth discovering together.
+        </p>
       </div>
-      <div class="card">
-        <h4>Well Tested</h4>
-        <p>95%+ code coverage across all modules.</p>
+
+      <div class="story-grid">
+        <article class="story-card reveal">
+          <p class="story-label" lang="nb">NO</p>
+          <p lang="nb">
+            Vi viser filmperler som underholder, engasjerer og inspirerer, og bygger et sosialt møtested for filminteresserte i Stavanger.
+          </p>
+        </article>
+
+        <article class="story-card reveal">
+          <p class="story-label">EN</p>
+          <p>
+            Expect carefully curated films that reward curiosity, plus a welcoming room for people who actually want to talk about what they watched.
+          </p>
+        </article>
       </div>
-    </div>
 
-    <h2>Features</h2>
-    <ul>
-      <li>Feature one — describe the value it provides</li>
-      <li>Feature two — explain how it helps users</li>
-      <li>Feature three — mention what makes it unique</li>
-    </ul>
-  </div>
+      <div class="feature-grid">
+        <article class="feature-card reveal">
+          <p class="card-kicker" style="color: var(--ruby);">Programming</p>
+          <h3>Classics, discoveries, newer film art.</h3>
+          <p>
+            The club mixes beloved landmarks with lesser-known works and contemporary films that usually fall outside a standard cinema schedule.
+          </p>
+        </article>
 
-  <!-- ====== INSTALLATION ====== -->
-  <div class="section" id="installation">
-    <h1>Installation</h1>
-    <p class="subtitle">Install ProjectName using your preferred package manager.</p>
+        <article class="feature-card reveal">
+          <p class="card-kicker" style="color: var(--ruby);">Atmosphere</p>
+          <h3>A social screening night, not just a screening.</h3>
+          <p>
+            Popcorn is free, the bar is open, and the evening is designed to feel like a meeting point for film lovers rather than a fast in-and-out show.
+          </p>
+        </article>
 
-    <h3>npm</h3>
-    <pre><code>npm install projectname</code></pre>
+        <article class="feature-card reveal">
+          <p class="card-kicker" style="color: var(--ruby);">Audience</p>
+          <h3>International, local, curious.</h3>
+          <p>
+            NFK has highlighted the club's warm and international community. It is a place for newcomers, regulars and everyone in between.
+          </p>
+        </article>
+      </div>
+    </section>
 
-    <h3>yarn</h3>
-    <pre><code>yarn add projectname</code></pre>
+    <section class="section-shell dark-section" id="screenings">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Screenings</p>
+        <h2>At Folken's historic main hall.</h2>
+        <p>
+          Screenings take place at Folken, in a room connected to Stavanger's early cinema history and equipped for both digital and analogue projection.
+        </p>
+      </div>
 
-    <h3>pnpm</h3>
-    <pre><code>pnpm add projectname</code></pre>
+      <div class="venue-layout">
+        <article class="venue-card reveal">
+          <p class="poster-label">The room</p>
+          <h3>Big-screen cinema with club-night warmth.</h3>
 
-    <h2>Requirements</h2>
-    <table>
-      <tr><th>Dependency</th><th>Version</th></tr>
-      <tr><td>Node.js</td><td>&ge; 18.0</td></tr>
-      <tr><td>npm</td><td>&ge; 9.0</td></tr>
-    </table>
+          <ul class="detail-list">
+            <li>Main hall at Folken in central Stavanger.</li>
+            <li>Professional projection for digital, 35mm and 16mm formats.</li>
+            <li>A screen measuring roughly 7 by 4 metres.</li>
+            <li>Free popcorn at every screening.</li>
+            <li>The bar is open, and guests can bring their own snacks.</li>
+            <li>Screening rights are cleared through Norsk Filmklubbforbund.</li>
+          </ul>
 
-    <div class="callout info">
-      <strong>Note</strong>
-      If you're using an older Node version, install the compatibility package instead: <code>npm install projectname-legacy</code>
-    </div>
-  </div>
+          <div class="link-row">
+            <a href="https://www.folken.no/" target="_blank" rel="noreferrer">Visit Folken</a>
+            <a href="https://filmklubb.no/" target="_blank" rel="noreferrer">About NFK</a>
+          </div>
+        </article>
 
-  <!-- ====== QUICK START ====== -->
-  <div class="section" id="quickstart">
-    <h1>Quick Start</h1>
-    <p class="subtitle">Build your first project in 3 steps.</p>
+        <aside class="metrics-stack">
+          <article class="metric reveal">
+            <p class="metric-label">Formats</p>
+            <strong>Digital + analogue</strong>
+            <p>The venue supports digital screenings alongside 35mm and 16mm projection.</p>
+          </article>
 
-    <h3>1. Initialize</h3>
-    <pre><code>npx projectname init my-app
-cd my-app</code></pre>
+          <article class="metric reveal">
+            <p class="metric-label">Experience</p>
+            <strong>Popcorn included</strong>
+            <p>Low-friction, welcoming film nights with space to hang around before or after.</p>
+          </article>
 
-    <h3>2. Start the dev server</h3>
-    <pre><code>npm run dev</code></pre>
+          <article class="metric reveal">
+            <p class="metric-label">Location</p>
+            <strong>Folken</strong>
+            <p>A central Stavanger venue with strong ties to the city's cultural scene.</p>
+          </article>
+        </aside>
+      </div>
+    </section>
 
-    <h3>3. Open your browser</h3>
-    <p>Visit <code>http://localhost:3000</code> and you should see the welcome page.</p>
+    <section class="section-shell light-section" id="programme">
+      <div class="section-heading reveal">
+        <p class="eyebrow" style="color: var(--ruby);">Programme</p>
+        <h2>Curated for discovery.</h2>
+        <p>
+          The club's identity comes from range: films across countries, decades, genres and moods, with room for themed evenings and special events.
+        </p>
+      </div>
 
-    <div class="callout tip">
-      <strong>Tip</strong>
-      Run <code>npx projectname --help</code> to see all available CLI commands.
-    </div>
-  </div>
+      <div class="programme-grid">
+        <article class="programme-card reveal">
+          <p class="card-kicker" style="color: var(--ruby);">Across borders</p>
+          <h3>More than the usual Anglo-American canon.</h3>
+          <p>
+            Recent seasons have been noted for adventurous international programming and a clear taste for films that audiences might not find anywhere else in town.
+          </p>
+        </article>
 
-  <!-- ====== CONFIGURATION ====== -->
-  <div class="section" id="configuration">
-    <h1>Configuration</h1>
-    <p class="subtitle">Customize behavior through the config file.</p>
+        <article class="programme-card reveal">
+          <p class="card-kicker" style="color: var(--ruby);">Special nights</p>
+          <h3>From silent-film events to themed screenings.</h3>
+          <p>
+            The club format leaves room for fundraising events, mini-focuses and one-off screenings that feel more like a happening than a listing.
+          </p>
+        </article>
 
-    <p>Create a <code>project.config.js</code> in your root directory:</p>
-    <pre><code>// project.config.js
-export default {
-  port: 3000,
-  output: './dist',
-  plugins: [],
-  theme: {
-    primary: '#4361ee',
-  },
-};</code></pre>
+        <article class="programme-card reveal">
+          <p class="card-kicker" style="color: var(--ruby);">Stay updated</p>
+          <h3>The latest programme lives on Facebook.</h3>
+          <p>
+            Use the club's Facebook page for upcoming titles, event dates and the current season's announcements.
+          </p>
+          <div class="cta-row" style="margin-top: 1.15rem;">
+            <a class="button" style="background: var(--night); color: var(--paper-strong);" href="https://www.facebook.com/filmklubbstavanger/" target="_blank" rel="noreferrer">Open Facebook</a>
+          </div>
+        </article>
+      </div>
+    </section>
 
-    <h2>Options</h2>
-    <table>
-      <tr><th>Option</th><th>Type</th><th>Default</th><th>Description</th></tr>
-      <tr><td><code>port</code></td><td>number</td><td>3000</td><td>Dev server port</td></tr>
-      <tr><td><code>output</code></td><td>string</td><td>"./dist"</td><td>Build output directory</td></tr>
-      <tr><td><code>plugins</code></td><td>array</td><td>[]</td><td>List of plugins to load</td></tr>
-      <tr><td><code>theme</code></td><td>object</td><td>{}</td><td>Theme customization</td></tr>
-    </table>
+    <section class="section-shell light-section" id="membership">
+      <div class="section-heading reveal">
+        <p class="eyebrow" style="color: var(--ruby);">Membership and tickets</p>
+        <h2>Simple, affordable, built for repeat visits.</h2>
+        <p>
+          Membership is part of the film-club model. Join once per season, then pay a low ticket price whenever you come to a screening.
+        </p>
+      </div>
 
-    <div class="callout warn">
-      <strong>Warning</strong>
-      Changing the <code>output</code> path after your first build may leave stale files in the old directory.
-    </div>
-  </div>
+      <div class="pricing-grid">
+        <article class="price-card price-card--accent reveal">
+          <p class="card-kicker" style="color: var(--ruby);">Membership</p>
+          <h3>Mandatory season pass</h3>
+          <strong>80 NOK</strong>
+          <p>
+            Register through the official Filmklubbmedlem portal before your first screening of the season.
+          </p>
+          <small>One membership per season.</small>
+        </article>
 
-  <!-- ====== DEPLOYMENT ====== -->
-  <div class="section" id="deployment">
-    <h1>Deployment</h1>
-    <p class="subtitle">Ship your project to production.</p>
+        <article class="price-card reveal">
+          <p class="card-kicker" style="color: var(--ruby);">Ticket</p>
+          <h3>Per screening</h3>
+          <strong>40 NOK</strong>
+          <p>
+            Tickets are paid at Folken. Card and Vipps are accepted at the door.
+          </p>
+          <small>Low commitment, easy to drop in.</small>
+        </article>
 
-    <h3>Build for production</h3>
-    <pre><code>npm run build</code></pre>
+        <article class="price-card reveal">
+          <p class="card-kicker" style="color: var(--ruby);">How it works</p>
+          <h3>Three quick steps</h3>
+          <ol class="steps">
+            <li><span>1</span><p>Register as a member for the current season.</p></li>
+            <li><span>2</span><p>Show up at Folken and pay 40 NOK for the screening.</p></li>
+            <li><span>3</span><p>Grab popcorn, watch the film, and stay if you feel like talking afterwards.</p></li>
+          </ol>
+          <div class="cta-row" style="margin-top: 1.1rem;">
+            <a class="button" style="background: var(--night); color: var(--paper-strong);" href="https://www.filmklubbmedlem.no/registrer/86" target="_blank" rel="noreferrer">Register now</a>
+          </div>
+        </article>
+      </div>
+    </section>
 
-    <h3>Deploy to GitHub Pages</h3>
-    <pre><code>npm run deploy</code></pre>
+    <section class="section-shell dark-section" id="community">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Community</p>
+        <h2>A volunteer-run club with serious taste.</h2>
+        <p>
+          Magiske Lanterner is part of the Norsk Filmklubbforbund network and has been recognised for bold programming, a welcoming atmosphere and a truly international film culture.
+        </p>
+      </div>
 
-    <h3>Deploy with Docker</h3>
-    <pre><code>docker build -t my-app .
-docker run -p 8080:80 my-app</code></pre>
+      <div class="community-grid">
+        <article class="community-card community-card--highlight reveal">
+          <p class="card-kicker" style="color: #ffe1a2;">Recognition</p>
+          <h3>Film Club of the Year 2023.</h3>
+          <p>
+            Norsk Filmklubbforbund highlighted the club for its programming range, its mixed local and international audience, and the people behind the screenings.
+          </p>
+          <p>
+            <a href="https://filmklubb.no/aktuelt/prisvinnerne-pa-filmklubbenes-husstyremote-2023/" target="_blank" rel="noreferrer">Read the NFK award note</a>
+          </p>
+        </article>
 
-    <h2>Environment Variables</h2>
-    <table>
-      <tr><th>Variable</th><th>Required</th><th>Description</th></tr>
-      <tr><td><code>API_URL</code></td><td>Yes</td><td>Backend API endpoint</td></tr>
-      <tr><td><code>NODE_ENV</code></td><td>No</td><td>Set to "production" for optimized builds</td></tr>
-    </table>
-  </div>
+        <article class="community-card reveal">
+          <p class="card-kicker" style="color: #ffe1a2;">People</p>
+          <h3>Volunteer energy, club-night intimacy.</h3>
+          <p>
+            The atmosphere comes from volunteers who care about curation, hospitality and making film culture feel accessible.
+          </p>
+        </article>
 
-  <!-- ====== API REFERENCE ====== -->
-  <div class="section" id="api">
-    <h1>API Reference</h1>
-    <p class="subtitle">Core functions and their signatures.</p>
+        <article class="community-card reveal">
+          <p class="card-kicker" style="color: #ffe1a2;">Network</p>
+          <h3>Connected to a wider film-club movement.</h3>
+          <p>
+            Through NFK, screenings run with proper rights clearance while still keeping the flexibility and personality of an independent club.
+          </p>
+        </article>
+      </div>
+    </section>
 
-    <h3><code>init(options)</code></h3>
-    <p>Initialize a new project instance.</p>
-    <pre><code>import { init } from 'projectname';
+    <section class="section-shell" id="contact">
+      <div class="contact-card reveal">
+        <p class="eyebrow">Contact</p>
+        <h2>Join the next screening.</h2>
+        <p>
+          For updates, follow the club on Facebook. For direct questions, use the club email. The old WordPress site is still available as an archive.
+        </p>
 
-const app = init({
-  port: 3000,
-  debug: true,
-});</code></pre>
+        <div class="contact-actions">
+          <a class="button button-primary" href="https://www.facebook.com/filmklubbstavanger/" target="_blank" rel="noreferrer">Follow on Facebook</a>
+          <button class="button button-secondary" type="button" data-email-copy>Copy email</button>
+        </div>
 
-    <table>
-      <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
-      <tr><td><code>options.port</code></td><td>number</td><td>Server port (default: 3000)</td></tr>
-      <tr><td><code>options.debug</code></td><td>boolean</td><td>Enable debug logging</td></tr>
-    </table>
+        <div class="contact-grid">
+          <div class="contact-block">
+            <h3>Email</h3>
+            <p id="email-text">filmklubbstavanger [at] gmail.com</p>
+          </div>
 
-    <h3><code>app.use(plugin)</code></h3>
-    <p>Register a plugin with the application.</p>
-    <pre><code>import { myPlugin } from 'projectname-plugin';
+          <div class="contact-block">
+            <h3>Venue</h3>
+            <p>Folken, Stavanger</p>
+          </div>
 
-app.use(myPlugin({ option: true }));</code></pre>
+          <div class="contact-block">
+            <h3>Archive</h3>
+            <a href="https://magiskelanterner.wordpress.com/" target="_blank" rel="noreferrer">magiskelanterner.wordpress.com</a>
+          </div>
+        </div>
 
-    <h3><code>app.start()</code></h3>
-    <p>Start the application server. Returns a Promise.</p>
-    <pre><code>await app.start();
-console.log('Server running');</code></pre>
-  </div>
+        <p class="fine-print">
+          Membership registration happens through the official Filmklubbmedlem portal. Screening rights are handled through Norsk Filmklubbforbund.
+        </p>
+      </div>
+    </section>
+  </main>
 
-  <!-- ====== FAQ ====== -->
-  <div class="section" id="faq">
-    <h1>FAQ</h1>
-    <p class="subtitle">Common questions and answers.</p>
+  <footer class="footer">
+    <span>Magiske Lanterner Stavanger Filmklubb</span>
+    <a href="https://www.filmklubbmedlem.no/registrer/86" target="_blank" rel="noreferrer">Official membership registration</a>
+  </footer>
 
-    <h3>How do I update to the latest version?</h3>
-    <p>Run <code>npm update projectname</code> or <code>yarn upgrade projectname</code>.</p>
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const siteNav = document.querySelector('.site-nav');
+    const navLinks = [...document.querySelectorAll('.site-nav a')];
+    const revealItems = [...document.querySelectorAll('.reveal')];
+    const sections = [...document.querySelectorAll('main section[id]')];
+    const emailCopyButton = document.querySelector('[data-email-copy]');
+    const emailText = document.getElementById('email-text');
+    const email = ['filmklubbstavanger', 'gmail.com'].join('@');
 
-    <h3>Can I use this with TypeScript?</h3>
-    <p>Yes — type definitions are included out of the box. No additional packages needed.</p>
+    if (menuToggle && siteNav) {
+      menuToggle.addEventListener('click', () => {
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', String(!expanded));
+        siteNav.classList.toggle('is-open', !expanded);
+      });
 
-    <h3>Where do I report bugs?</h3>
-    <p>Open an issue on the <a href="#">GitHub repository</a>. Please include steps to reproduce the problem.</p>
+      navLinks.forEach((link) => {
+        link.addEventListener('click', () => {
+          menuToggle.setAttribute('aria-expanded', 'false');
+          siteNav.classList.remove('is-open');
+        });
+      });
+    }
 
-    <h3>Is this production-ready?</h3>
-    <p>Yes. Version 1.0+ follows semantic versioning and is used in production by several teams.</p>
-  </div>
+    if ('IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
 
-</main>
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.18 });
 
-<!-- ── Navigation Script ── -->
-<script>
-  const links = document.querySelectorAll('aside a[data-section]');
-  const sections = document.querySelectorAll('.section');
+      revealItems.forEach((item) => revealObserver.observe(item));
 
-  links.forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      const target = link.dataset.section;
+      const navObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
 
-      links.forEach(l => l.classList.remove('active'));
-      link.classList.add('active');
+          navLinks.forEach((link) => {
+            const isActive = link.getAttribute('href') === `#${entry.target.id}`;
+            link.classList.toggle('is-active', isActive);
+          });
+        });
+      }, { rootMargin: '-40% 0px -45% 0px', threshold: 0 });
 
-      sections.forEach(s => s.classList.remove('active'));
-      document.getElementById(target).classList.add('active');
+      sections.forEach((section) => navObserver.observe(section));
+    } else {
+      revealItems.forEach((item) => item.classList.add('is-visible'));
+    }
 
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  });
-</script>
+    if (emailCopyButton) {
+      emailCopyButton.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(email);
+          emailCopyButton.textContent = 'Email copied';
+          emailText.textContent = email;
 
+          window.setTimeout(() => {
+            emailCopyButton.textContent = 'Copy email';
+            emailText.textContent = 'filmklubbstavanger [at] gmail.com';
+          }, 1800);
+        } catch (error) {
+          window.location.href = `mailto:${email}`;
+        }
+      });
+    }
+  </script>
 </body>
 </html>
