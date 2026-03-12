@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Docs</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-secondary: #f8f9fa;
+      --text: #1a1a2e;
+      --text-muted: #6c757d;
+      --accent: #4361ee;
+      --accent-light: #eef0ff;
+      --border: #e2e8f0;
+      --sidebar-w: 260px;
+      --header-h: 56px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: var(--text);
+      line-height: 1.65;
+      background: var(--bg);
+    }
+
+    /* ── Header ── */
+    header {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: var(--header-h);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+    }
+    header .logo {
+      font-weight: 700; font-size: 1.1rem;
+      display: flex; align-items: center; gap: 8px;
+    }
+    header .logo span { color: var(--accent); }
+    header nav { display: flex; gap: 20px; }
+    header nav a {
+      text-decoration: none; color: var(--text-muted); font-size: .9rem; font-weight: 500;
+      transition: color .2s;
+    }
+    header nav a:hover { color: var(--accent); }
+
+    /* ── Sidebar ── */
+    aside {
+      position: fixed; top: var(--header-h); left: 0; bottom: 0;
+      width: var(--sidebar-w);
+      padding: 24px 16px;
+      overflow-y: auto;
+      border-right: 1px solid var(--border);
+      background: var(--bg-secondary);
+    }
+    aside h4 {
+      font-size: .7rem; text-transform: uppercase; letter-spacing: .08em;
+      color: var(--text-muted); margin: 16px 0 8px; padding-left: 12px;
+    }
+    aside h4:first-child { margin-top: 0; }
+    aside a {
+      display: block; padding: 6px 12px; border-radius: 6px;
+      text-decoration: none; color: var(--text); font-size: .88rem;
+      transition: background .15s, color .15s;
+    }
+    aside a:hover { background: var(--accent-light); color: var(--accent); }
+    aside a.active { background: var(--accent-light); color: var(--accent); font-weight: 600; }
+
+    /* ── Main Content ── */
+    main {
+      margin-left: var(--sidebar-w);
+      margin-top: var(--header-h);
+      max-width: 780px;
+      padding: 40px 48px 80px;
+    }
+
+    h1 { font-size: 2rem; font-weight: 800; margin-bottom: 8px; }
+    h2 { font-size: 1.35rem; font-weight: 700; margin: 40px 0 12px; padding-top: 16px; border-top: 1px solid var(--border); }
+    h3 { font-size: 1.05rem; font-weight: 600; margin: 28px 0 8px; }
+    p { margin-bottom: 14px; color: #333; }
+    .subtitle { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 28px; }
+
+    /* ── Code Blocks ── */
+    pre {
+      background: #1e1e2e; color: #cdd6f4; padding: 16px 20px;
+      border-radius: 8px; overflow-x: auto; font-size: .85rem;
+      margin: 12px 0 20px; line-height: 1.6;
+    }
+    code {
+      font-family: "SF Mono", "Fira Code", "Cascadia Code", monospace;
+    }
+    p code, li code {
+      background: var(--accent-light); color: var(--accent);
+      padding: 2px 6px; border-radius: 4px; font-size: .85em;
+    }
+
+    /* ── Callout Boxes ── */
+    .callout {
+      padding: 14px 18px; border-radius: 8px; margin: 16px 0 20px;
+      border-left: 4px solid; font-size: .92rem;
+    }
+    .callout.info { background: #eef6ff; border-color: #3b82f6; }
+    .callout.warn { background: #fff8ee; border-color: #f59e0b; }
+    .callout.tip  { background: #eefbf4; border-color: #10b981; }
+    .callout strong { display: block; margin-bottom: 4px; }
+
+    /* ── Table ── */
+    table {
+      width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: .9rem;
+    }
+    th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border); }
+    th { font-weight: 600; background: var(--bg-secondary); }
+
+    ul, ol { margin: 8px 0 16px 24px; }
+    li { margin-bottom: 6px; }
+
+    /* ── Cards grid ── */
+    .card-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0;
+    }
+    .card {
+      padding: 18px; border: 1px solid var(--border); border-radius: 10px;
+      transition: box-shadow .2s, border-color .2s; cursor: default;
+    }
+    .card:hover { border-color: var(--accent); box-shadow: 0 2px 12px rgba(67,97,238,.1); }
+    .card h4 { font-size: .95rem; margin-bottom: 4px; }
+    .card p { font-size: .85rem; color: var(--text-muted); margin: 0; }
+
+    /* ── Badge ── */
+    .badge {
+      display: inline-block; padding: 2px 10px; border-radius: 99px;
+      font-size: .75rem; font-weight: 600;
+    }
+    .badge.green { background: #dcfce7; color: #16a34a; }
+    .badge.blue  { background: #dbeafe; color: #2563eb; }
+
+    /* ── Section visibility ── */
+    .section { display: none; }
+    .section.active { display: block; }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      aside { display: none; }
+      main { margin-left: 0; padding: 24px 20px 60px; }
+      .card-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Header ── -->
+<header>
+  <div class="logo"><span>&#9670;</span> ProjectName Docs</div>
+  <nav>
+    <a href="https://github.com/your-username/your-repo" target="_blank">GitHub</a>
+    <a href="#">Changelog</a>
+  </nav>
+</header>
+
+<!-- ── Sidebar ── -->
+<aside>
+  <h4>Getting Started</h4>
+  <a href="#" class="active" data-section="overview">Overview</a>
+  <a href="#" data-section="installation">Installation</a>
+  <a href="#" data-section="quickstart">Quick Start</a>
+
+  <h4>Guides</h4>
+  <a href="#" data-section="configuration">Configuration</a>
+  <a href="#" data-section="deployment">Deployment</a>
+
+  <h4>Reference</h4>
+  <a href="#" data-section="api">API Reference</a>
+  <a href="#" data-section="faq">FAQ</a>
+</aside>
+
+<!-- ── Main Content ── -->
+<main>
+
+  <!-- ====== OVERVIEW ====== -->
+  <div class="section active" id="overview">
+    <p><span class="badge green">v1.0.0</span> <span class="badge blue">MIT License</span></p>
+    <h1>ProjectName</h1>
+    <p class="subtitle">A short, compelling description of what your project does and why someone should use it.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <h4>Fast Setup</h4>
+        <p>Get up and running in under 2 minutes with a single command.</p>
+      </div>
+      <div class="card">
+        <h4>Lightweight</h4>
+        <p>Zero dependencies. Under 5 KB gzipped.</p>
+      </div>
+      <div class="card">
+        <h4>Extensible</h4>
+        <p>Plugin system lets you add exactly what you need.</p>
+      </div>
+      <div class="card">
+        <h4>Well Tested</h4>
+        <p>95%+ code coverage across all modules.</p>
+      </div>
+    </div>
+
+    <h2>Features</h2>
+    <ul>
+      <li>Feature one — describe the value it provides</li>
+      <li>Feature two — explain how it helps users</li>
+      <li>Feature three — mention what makes it unique</li>
+    </ul>
+  </div>
+
+  <!-- ====== INSTALLATION ====== -->
+  <div class="section" id="installation">
+    <h1>Installation</h1>
+    <p class="subtitle">Install ProjectName using your preferred package manager.</p>
+
+    <h3>npm</h3>
+    <pre><code>npm install projectname</code></pre>
+
+    <h3>yarn</h3>
+    <pre><code>yarn add projectname</code></pre>
+
+    <h3>pnpm</h3>
+    <pre><code>pnpm add projectname</code></pre>
+
+    <h2>Requirements</h2>
+    <table>
+      <tr><th>Dependency</th><th>Version</th></tr>
+      <tr><td>Node.js</td><td>&ge; 18.0</td></tr>
+      <tr><td>npm</td><td>&ge; 9.0</td></tr>
+    </table>
+
+    <div class="callout info">
+      <strong>Note</strong>
+      If you're using an older Node version, install the compatibility package instead: <code>npm install projectname-legacy</code>
+    </div>
+  </div>
+
+  <!-- ====== QUICK START ====== -->
+  <div class="section" id="quickstart">
+    <h1>Quick Start</h1>
+    <p class="subtitle">Build your first project in 3 steps.</p>
+
+    <h3>1. Initialize</h3>
+    <pre><code>npx projectname init my-app
+cd my-app</code></pre>
+
+    <h3>2. Start the dev server</h3>
+    <pre><code>npm run dev</code></pre>
+
+    <h3>3. Open your browser</h3>
+    <p>Visit <code>http://localhost:3000</code> and you should see the welcome page.</p>
+
+    <div class="callout tip">
+      <strong>Tip</strong>
+      Run <code>npx projectname --help</code> to see all available CLI commands.
+    </div>
+  </div>
+
+  <!-- ====== CONFIGURATION ====== -->
+  <div class="section" id="configuration">
+    <h1>Configuration</h1>
+    <p class="subtitle">Customize behavior through the config file.</p>
+
+    <p>Create a <code>project.config.js</code> in your root directory:</p>
+    <pre><code>// project.config.js
+export default {
+  port: 3000,
+  output: './dist',
+  plugins: [],
+  theme: {
+    primary: '#4361ee',
+  },
+};</code></pre>
+
+    <h2>Options</h2>
+    <table>
+      <tr><th>Option</th><th>Type</th><th>Default</th><th>Description</th></tr>
+      <tr><td><code>port</code></td><td>number</td><td>3000</td><td>Dev server port</td></tr>
+      <tr><td><code>output</code></td><td>string</td><td>"./dist"</td><td>Build output directory</td></tr>
+      <tr><td><code>plugins</code></td><td>array</td><td>[]</td><td>List of plugins to load</td></tr>
+      <tr><td><code>theme</code></td><td>object</td><td>{}</td><td>Theme customization</td></tr>
+    </table>
+
+    <div class="callout warn">
+      <strong>Warning</strong>
+      Changing the <code>output</code> path after your first build may leave stale files in the old directory.
+    </div>
+  </div>
+
+  <!-- ====== DEPLOYMENT ====== -->
+  <div class="section" id="deployment">
+    <h1>Deployment</h1>
+    <p class="subtitle">Ship your project to production.</p>
+
+    <h3>Build for production</h3>
+    <pre><code>npm run build</code></pre>
+
+    <h3>Deploy to GitHub Pages</h3>
+    <pre><code>npm run deploy</code></pre>
+
+    <h3>Deploy with Docker</h3>
+    <pre><code>docker build -t my-app .
+docker run -p 8080:80 my-app</code></pre>
+
+    <h2>Environment Variables</h2>
+    <table>
+      <tr><th>Variable</th><th>Required</th><th>Description</th></tr>
+      <tr><td><code>API_URL</code></td><td>Yes</td><td>Backend API endpoint</td></tr>
+      <tr><td><code>NODE_ENV</code></td><td>No</td><td>Set to "production" for optimized builds</td></tr>
+    </table>
+  </div>
+
+  <!-- ====== API REFERENCE ====== -->
+  <div class="section" id="api">
+    <h1>API Reference</h1>
+    <p class="subtitle">Core functions and their signatures.</p>
+
+    <h3><code>init(options)</code></h3>
+    <p>Initialize a new project instance.</p>
+    <pre><code>import { init } from 'projectname';
+
+const app = init({
+  port: 3000,
+  debug: true,
+});</code></pre>
+
+    <table>
+      <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+      <tr><td><code>options.port</code></td><td>number</td><td>Server port (default: 3000)</td></tr>
+      <tr><td><code>options.debug</code></td><td>boolean</td><td>Enable debug logging</td></tr>
+    </table>
+
+    <h3><code>app.use(plugin)</code></h3>
+    <p>Register a plugin with the application.</p>
+    <pre><code>import { myPlugin } from 'projectname-plugin';
+
+app.use(myPlugin({ option: true }));</code></pre>
+
+    <h3><code>app.start()</code></h3>
+    <p>Start the application server. Returns a Promise.</p>
+    <pre><code>await app.start();
+console.log('Server running');</code></pre>
+  </div>
+
+  <!-- ====== FAQ ====== -->
+  <div class="section" id="faq">
+    <h1>FAQ</h1>
+    <p class="subtitle">Common questions and answers.</p>
+
+    <h3>How do I update to the latest version?</h3>
+    <p>Run <code>npm update projectname</code> or <code>yarn upgrade projectname</code>.</p>
+
+    <h3>Can I use this with TypeScript?</h3>
+    <p>Yes — type definitions are included out of the box. No additional packages needed.</p>
+
+    <h3>Where do I report bugs?</h3>
+    <p>Open an issue on the <a href="#">GitHub repository</a>. Please include steps to reproduce the problem.</p>
+
+    <h3>Is this production-ready?</h3>
+    <p>Yes. Version 1.0+ follows semantic versioning and is used in production by several teams.</p>
+  </div>
+
+</main>
+
+<!-- ── Navigation Script ── -->
+<script>
+  const links = document.querySelectorAll('aside a[data-section]');
+  const sections = document.querySelectorAll('.section');
+
+  links.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = link.dataset.section;
+
+      links.forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+
+      sections.forEach(s => s.classList.remove('active'));
+      document.getElementById(target).classList.add('active');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+</script>
+
+</body>
+</html>
