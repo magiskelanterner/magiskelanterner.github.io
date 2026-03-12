@@ -99,7 +99,7 @@
       pointer-events: none;
       opacity: 1;
       visibility: visible;
-      transition: opacity 0.7s ease, visibility 0s linear 0.7s;
+      transition: opacity 0.55s ease, visibility 0s linear 0.55s;
     }
 
     .js body.page-intro-complete .intro-screen {
@@ -111,152 +111,65 @@
       position: absolute;
       inset: 0;
       overflow: hidden;
-      background: #0a0506;
     }
 
-    /* Floor shadow */
     .curtain-stage::after {
       content: "";
       position: absolute;
       inset: auto 0 0;
-      height: 22vh;
+      height: 16vh;
       background:
-        linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)),
-        radial-gradient(ellipse at center bottom, rgba(0, 0, 0, 0.3), transparent 70%);
+        linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.32)),
+        radial-gradient(circle at center, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0) 65%);
       z-index: 1;
     }
 
-    /* Projector glow — warm cone of light from above center */
     .curtain-glow {
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse 28% 60% at 50% 0%, rgba(255, 248, 228, 0.32), rgba(255, 248, 228, 0.06) 50%, transparent 100%),
-        radial-gradient(circle at 50% 30%, rgba(255, 244, 214, 0.14), transparent 40%),
-        radial-gradient(circle at 50% 50%, rgba(255, 249, 235, 0.06), transparent 50%);
+        radial-gradient(circle at 30% 34%, rgba(255, 248, 228, 0.34), rgba(255, 248, 228, 0.1) 18%, rgba(255, 248, 228, 0) 36%),
+        radial-gradient(circle at center, rgba(255, 249, 235, 0.12), rgba(255, 249, 235, 0) 24%);
       z-index: 0;
     }
 
-    /* Projector light beam — visible cone that appears as curtains part */
-    .curtain-beam {
-      position: absolute;
-      top: -10%;
-      left: 50%;
-      width: 0;
-      height: 130%;
-      transform: translateX(-50%);
-      background:
-        linear-gradient(180deg,
-          rgba(255, 248, 228, 0.08) 0%,
-          rgba(255, 244, 214, 0.04) 40%,
-          rgba(255, 244, 214, 0) 100%
-        );
-      clip-path: polygon(42% 0%, 58% 0%, 80% 100%, 20% 100%);
-      z-index: 0;
-    }
-
-    /* Floating dust particles in the light */
-    .curtain-dust {
-      position: absolute;
-      inset: 0;
-      z-index: 3;
-      opacity: 0;
-    }
-
-    .curtain-dust span {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      border-radius: 50%;
-      background: rgba(255, 248, 228, 0.6);
-      box-shadow: 0 0 4px rgba(255, 248, 228, 0.3);
-    }
-
-    .curtain-dust span:nth-child(1) { top: 22%; left: 48%; animation: dust-float 6s ease-in-out 2.8s infinite; }
-    .curtain-dust span:nth-child(2) { top: 38%; left: 51%; width: 1.5px; height: 1.5px; animation: dust-float 8s ease-in-out 3.2s infinite reverse; }
-    .curtain-dust span:nth-child(3) { top: 55%; left: 47%; animation: dust-float 7s ease-in-out 3.5s infinite; }
-    .curtain-dust span:nth-child(4) { top: 30%; left: 53%; width: 1px; height: 1px; animation: dust-float 9s ease-in-out 2.6s infinite reverse; }
-    .curtain-dust span:nth-child(5) { top: 45%; left: 49%; width: 2.5px; height: 2.5px; animation: dust-float 5.5s ease-in-out 4s infinite; }
-    .curtain-dust span:nth-child(6) { top: 62%; left: 52%; width: 1px; height: 1px; animation: dust-float 7.5s ease-in-out 3.8s infinite reverse; }
-
-    @keyframes dust-float {
-      0%, 100% { transform: translate(0, 0) scale(1); opacity: 0; }
-      10% { opacity: 0.7; }
-      50% { transform: translate(12px, -18px) scale(1.3); opacity: 0.4; }
-      90% { opacity: 0.6; }
-    }
-
-    /* Curtain panels — richer fabric texture */
     .curtain-panel {
       position: absolute;
       top: 0;
       bottom: 0;
       width: 54%;
-      z-index: 2;
       background:
-        linear-gradient(180deg,
-          rgba(255, 231, 206, 0.18) 0%,
-          rgba(255, 231, 206, 0.04) 8%,
-          rgba(0, 0, 0, 0) 40%,
-          rgba(0, 0, 0, 0.22) 100%
-        ),
+        linear-gradient(180deg, rgba(255, 231, 206, 0.16), rgba(255, 231, 206, 0.04) 14%, rgba(0, 0, 0, 0.18) 100%),
         repeating-linear-gradient(
           90deg,
-          rgba(74, 9, 17, 0.84) 0%,
-          rgba(120, 18, 30, 0.78) 3%,
-          rgba(88, 10, 20, 0.86) 6%,
-          rgba(148, 28, 48, 0.74) 9%,
-          rgba(74, 9, 17, 0.86) 12%,
-          rgba(105, 14, 26, 0.8) 15%,
-          rgba(160, 38, 58, 0.72) 18%,
-          rgba(82, 10, 18, 0.85) 21%,
-          rgba(130, 22, 38, 0.76) 24%
+          rgba(74, 9, 17, 0.82) 0,
+          rgba(125, 18, 34, 0.78) 6%,
+          rgba(90, 11, 23, 0.84) 12%,
+          rgba(159, 39, 64, 0.76) 18%,
+          rgba(79, 9, 19, 0.84) 24%
         );
-      box-shadow:
-        inset -28px 0 48px rgba(0, 0, 0, 0.25),
-        inset 8px 0 16px rgba(255, 200, 160, 0.04),
-        0 20px 60px rgba(0, 0, 0, 0.4);
+      box-shadow: inset -22px 0 38px rgba(0, 0, 0, 0.2), 0 16px 40px rgba(0, 0, 0, 0.24);
       backdrop-filter: blur(4px) saturate(1.1);
+      z-index: 2;
     }
 
-    /* Fabric fold highlights and shadows */
     .curtain-panel::before {
       content: "";
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(90deg,
-          rgba(255, 240, 220, 0.12) 0%,
-          transparent 8%,
-          rgba(0, 0, 0, 0.06) 20%,
-          rgba(255, 240, 220, 0.06) 30%,
-          transparent 38%,
-          rgba(0, 0, 0, 0.1) 50%,
-          transparent 58%,
-          rgba(255, 240, 220, 0.05) 68%,
-          rgba(0, 0, 0, 0.08) 78%,
-          transparent 86%,
-          rgba(0, 0, 0, 0.18) 100%
-        );
-      opacity: 0.9;
+        linear-gradient(90deg, rgba(255, 243, 220, 0.14), transparent 14%, rgba(0, 0, 0, 0.14) 42%, transparent 62%, rgba(0, 0, 0, 0.2));
+      opacity: 0.82;
     }
 
-    /* Inner edge — dark return where curtain wraps around */
     .curtain-panel::after {
       content: "";
       position: absolute;
       top: 0;
       bottom: 0;
-      width: 10px;
-      background:
-        linear-gradient(180deg,
-          #1a0a10 0%,
-          #0e0608 50%,
-          #080305 100%
-        );
-      box-shadow:
-        0 0 22px rgba(0, 0, 0, 0.4),
-        0 0 6px rgba(160, 40, 60, 0.12);
+      width: 7px;
+      background: linear-gradient(180deg, #18314d 0%, #0b182a 100%);
+      box-shadow: 0 0 18px rgba(16, 33, 57, 0.22);
     }
 
     .curtain-panel--left {
@@ -275,88 +188,6 @@
 
     .curtain-panel--right::after {
       left: 0;
-    }
-
-    /* Gold fringe along the inner edge */
-    .curtain-fringe {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 3px;
-      z-index: 3;
-      background:
-        repeating-linear-gradient(
-          180deg,
-          rgba(240, 181, 90, 0.7) 0px,
-          rgba(218, 155, 60, 0.5) 4px,
-          rgba(240, 181, 90, 0.8) 8px,
-          rgba(200, 140, 40, 0.4) 12px,
-          rgba(240, 181, 90, 0.7) 16px
-        );
-      box-shadow:
-        0 0 8px rgba(240, 181, 90, 0.2),
-        0 0 3px rgba(240, 181, 90, 0.3);
-    }
-
-    .curtain-panel--left .curtain-fringe {
-      right: 8px;
-    }
-
-    .curtain-panel--right .curtain-fringe {
-      left: 8px;
-    }
-
-    /* Decorative valance across the top */
-    .curtain-valance {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 9vh;
-      z-index: 4;
-      background:
-        linear-gradient(180deg,
-          rgba(100, 14, 24, 0.95) 0%,
-          rgba(120, 20, 34, 0.92) 40%,
-          rgba(90, 12, 22, 0.9) 60%,
-          rgba(74, 9, 17, 0.94) 80%,
-          transparent 100%
-        );
-      mask-image: linear-gradient(180deg, black 60%, transparent 100%);
-      -webkit-mask-image: linear-gradient(180deg, black 60%, transparent 100%);
-    }
-
-    /* Valance scalloped drape and highlights */
-    .curtain-valance::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 8% 100% at 12% 100%, rgba(0, 0, 0, 0.2), transparent),
-        radial-gradient(ellipse 8% 100% at 25% 100%, rgba(255, 240, 220, 0.06), transparent),
-        radial-gradient(ellipse 8% 100% at 38% 100%, rgba(0, 0, 0, 0.18), transparent),
-        radial-gradient(ellipse 8% 100% at 50% 100%, rgba(255, 240, 220, 0.06), transparent),
-        radial-gradient(ellipse 8% 100% at 62% 100%, rgba(0, 0, 0, 0.2), transparent),
-        radial-gradient(ellipse 8% 100% at 75% 100%, rgba(255, 240, 220, 0.06), transparent),
-        radial-gradient(ellipse 8% 100% at 88% 100%, rgba(0, 0, 0, 0.18), transparent);
-    }
-
-    /* Gold trim on valance bottom edge */
-    .curtain-valance::after {
-      content: "";
-      position: absolute;
-      bottom: 28%;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg,
-        rgba(240, 181, 90, 0.1),
-        rgba(240, 181, 90, 0.5) 20%,
-        rgba(240, 181, 90, 0.6) 50%,
-        rgba(240, 181, 90, 0.5) 80%,
-        rgba(240, 181, 90, 0.1)
-      );
-      box-shadow: 0 0 6px rgba(240, 181, 90, 0.15);
     }
 
     a {
