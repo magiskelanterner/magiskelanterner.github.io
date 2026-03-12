@@ -781,40 +781,96 @@
 
     .js .curtain-glow {
       opacity: 0;
-      transform: scaleX(0.18);
+      transform: scaleX(0.12);
     }
 
+    .js .curtain-beam {
+      width: 0;
+      opacity: 0;
+    }
+
+    .js .curtain-dust {
+      opacity: 0;
+    }
+
+    .js .curtain-valance {
+      opacity: 1;
+    }
+
+    /* Curtains open with weight — slow start, gathering momentum, then easing to rest */
     .js.curtain-ready .curtain-panel--left {
-      animation: curtain-left-open 4s cubic-bezier(0.23, 0.78, 0.16, 1) 1.5s both;
+      animation: curtain-left-open 4.5s cubic-bezier(0.16, 0.6, 0.14, 1) 1.6s both;
     }
 
     .js.curtain-ready .curtain-panel--right {
-      animation: curtain-right-open 4s cubic-bezier(0.23, 0.78, 0.16, 1) 1.5s both;
+      animation: curtain-right-open 4.5s cubic-bezier(0.16, 0.6, 0.14, 1) 1.6s both;
     }
 
+    /* Glow intensifies as the gap widens */
     .js.curtain-ready .curtain-glow {
-      animation: curtain-glow-on 4s ease-out 1.62s both;
+      animation: curtain-glow-on 5s ease-out 1.8s both;
+    }
+
+    /* Light beam widens as curtains part */
+    .js.curtain-ready .curtain-beam {
+      animation: beam-widen 5s ease-out 2s both;
+    }
+
+    /* Dust particles fade in once the light is visible */
+    .js.curtain-ready .curtain-dust {
+      animation: dust-appear 2s ease-out 3.2s both;
+    }
+
+    /* Valance fades out with the rest of the intro */
+    .js.curtain-ready .curtain-valance {
+      animation: valance-lift 3s ease-in-out 3.5s both;
     }
 
     .js body.page-intro-active .hero h1 {
       text-shadow:
-        0 0 22px rgba(255, 248, 228, 0.34),
-        0 0 52px rgba(255, 248, 228, 0.14);
+        0 0 28px rgba(255, 248, 228, 0.38),
+        0 0 68px rgba(255, 248, 228, 0.12);
     }
 
+    /* Heavy curtain open — slight gather at start, then sweep */
     @keyframes curtain-left-open {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-106%); }
+      0% { transform: translateX(0) scaleX(1); }
+      4% { transform: translateX(0.4%) scaleX(1.008); }
+      100% { transform: translateX(-106%) scaleX(0.92); }
     }
 
     @keyframes curtain-right-open {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(106%); }
+      0% { transform: translateX(0) scaleX(1); }
+      4% { transform: translateX(-0.4%) scaleX(1.008); }
+      100% { transform: translateX(106%) scaleX(0.92); }
     }
 
+    /* Glow builds from a sliver to full warmth */
     @keyframes curtain-glow-on {
-      0%, 32% { opacity: 0; transform: scaleX(0.18); }
+      0% { opacity: 0; transform: scaleX(0.08); }
+      20% { opacity: 0.3; transform: scaleX(0.2); }
+      60% { opacity: 0.8; transform: scaleX(0.6); }
       100% { opacity: 1; transform: scaleX(1); }
+    }
+
+    /* Projector beam cone expands */
+    @keyframes beam-widen {
+      0% { width: 0; opacity: 0; }
+      15% { width: 4%; opacity: 0.6; }
+      50% { width: 40%; opacity: 0.8; }
+      100% { width: 100%; opacity: 1; }
+    }
+
+    /* Dust particles become visible */
+    @keyframes dust-appear {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    /* Valance lifts slightly as it fades */
+    @keyframes valance-lift {
+      0% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(-12%); }
     }
 
     .light-section {
@@ -1521,6 +1577,10 @@
         width: 58%;
       }
 
+      .curtain-valance {
+        height: 7vh;
+      }
+
       .story-grid,
       .feature-grid,
       .programme-showcase,
@@ -1568,10 +1628,21 @@
 
       .js .curtain-panel--left,
       .js .curtain-panel--right,
-      .js .curtain-glow {
+      .js .curtain-glow,
+      .js .curtain-beam,
+      .js .curtain-dust,
+      .js .curtain-valance {
         animation: none !important;
         opacity: 1;
         transform: none;
+      }
+
+      .js .curtain-valance {
+        opacity: 0 !important;
+      }
+
+      .curtain-dust span {
+        animation: none !important;
       }
 
       .next-screening-badge::before {
@@ -1584,8 +1655,18 @@
   <div class="intro-screen" aria-hidden="true">
     <div class="curtain-stage">
       <div class="curtain-glow"></div>
-      <div class="curtain-panel curtain-panel--left"></div>
-      <div class="curtain-panel curtain-panel--right"></div>
+      <div class="curtain-beam"></div>
+      <div class="curtain-dust">
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+      </div>
+      <div class="curtain-panel curtain-panel--left">
+        <div class="curtain-fringe"></div>
+      </div>
+      <div class="curtain-panel curtain-panel--right">
+        <div class="curtain-fringe"></div>
+      </div>
+      <div class="curtain-valance"></div>
     </div>
   </div>
 
@@ -2038,7 +2119,7 @@
     const emailText = document.getElementById('email-text');
     const email = ['filmklubbstavanger', 'gmail.com'].join('@');
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const introLeadTimeMs = prefersReducedMotion ? 0 : 5500;
+    const introLeadTimeMs = prefersReducedMotion ? 0 : 6200;
     let introStarted = false;
 
     const finishIntro = () => {
