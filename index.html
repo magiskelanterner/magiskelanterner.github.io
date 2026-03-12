@@ -155,8 +155,8 @@
       top: 0;
       bottom: 0;
       width: 7px;
-      background: linear-gradient(180deg, #d6a14f 0%, #8f6228 100%);
-      box-shadow: 0 0 18px rgba(214, 161, 79, 0.25);
+      background: linear-gradient(180deg, #18314d 0%, #0b182a 100%);
+      box-shadow: 0 0 18px rgba(16, 33, 57, 0.22);
     }
 
     .curtain-panel--left {
@@ -601,15 +601,15 @@
     }
 
     .js.curtain-ready .curtain-panel--left {
-      animation: curtain-left-open 4s cubic-bezier(0.23, 0.78, 0.16, 1) both;
+      animation: curtain-left-open 4s cubic-bezier(0.23, 0.78, 0.16, 1) 1.5s both;
     }
 
     .js.curtain-ready .curtain-panel--right {
-      animation: curtain-right-open 4s cubic-bezier(0.23, 0.78, 0.16, 1) both;
+      animation: curtain-right-open 4s cubic-bezier(0.23, 0.78, 0.16, 1) 1.5s both;
     }
 
     .js.curtain-ready .curtain-glow {
-      animation: curtain-glow-on 4s ease-out 0.12s both;
+      animation: curtain-glow-on 4s ease-out 1.62s both;
     }
 
     .js body.page-intro-active .hero h1 {
@@ -1617,7 +1617,7 @@
     const emailText = document.getElementById('email-text');
     const email = ['filmklubbstavanger', 'gmail.com'].join('@');
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const introLeadTimeMs = prefersReducedMotion ? 0 : 4000;
+    const introLeadTimeMs = prefersReducedMotion ? 0 : 5500;
     let introStarted = false;
 
     const finishIntro = () => {
