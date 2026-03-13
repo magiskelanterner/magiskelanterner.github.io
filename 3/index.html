@@ -8,7 +8,7 @@
     name="description"
     content="Magiske Lanterner is Stavanger's film club for curated screenings at Folken: classics, discoveries, contemporary film art, free popcorn, and a welcoming film community."
   >
-  <meta name="theme-color" content="#1a1209">
+  <meta name="theme-color" content="#0a0a08">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Magiske Lanterner | Stavanger Film Club">
@@ -28,15 +28,15 @@
   <style>
     /* ═══════════════════════════════════════════
        CELLULOID FILM STRIP — Magiske Lanterner
+       Modelled on Kodak 5017 EPR reference
        ═══════════════════════════════════════════ */
 
     :root {
-      /* Film stock colours */
-      --film-base: #1a1209;
-      --film-edge: #2e2012;
-      --film-border: #0d0906;
-      --sprocket-bg: #020101;
-      --frame-gap: #0d0906;
+      /* Film stock — true black like reference photo */
+      --film-black: #0c0c0a;
+      --film-edge: #111110;
+      --sprocket-hole: #d8d4c8;          /* Bright cutout — light shining through */
+      --frame-gap: #0a0a08;
       --emulsion: #f5efe4;
 
       /* Content palette */
@@ -49,28 +49,31 @@
       --paper-strong: #fcf8f2;
       --night: #07121f;
 
-      /* Geometry */
-      --strip-max: 1000px;
-      --sprocket-track: 54px;
-      --sprocket-w: 30px;
-      --sprocket-h: 20px;
-      --sprocket-r: 4px;
-      --sprocket-gap: 24px;
-      --frame-border: 6px;
-      --frame-radius: 3px;
+      /* Geometry — proportioned to reference photo */
+      --strip-max: 960px;
+      --sprocket-track: 62px;
+      --sprocket-w: 34px;
+      --sprocket-h: 24px;
+      --sprocket-r: 5px;
+      --sprocket-gap: 14px;        /* Gap between holes — tighter like real film */
+      --frame-border: 4px;
+      --frame-radius: 2px;
+
+      /* Edge text colour — amber/orange like Kodak markings */
+      --edge-text: #d4921a;
     }
 
     * { box-sizing: border-box; margin: 0; }
 
     html {
       scroll-behavior: smooth;
-      background: #050302;
+      background: #050504;
     }
 
     body {
       font-family: "Space Grotesk", sans-serif;
       color: var(--emulsion);
-      background: #050302;
+      background: #050504;
       line-height: 1.6;
       overflow-x: hidden;
     }
@@ -82,13 +85,13 @@
       inset: 0;
       z-index: 1000;
       pointer-events: none;
-      opacity: 0.06;
+      opacity: 0.05;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
       background-size: 256px 256px;
       mix-blend-mode: overlay;
     }
 
-    /* ── Projector flicker — very subtle ── */
+    /* ── Projector flicker ── */
     @keyframes flicker {
       0%, 100% { opacity: 1; }
       4% { opacity: 0.97; }
@@ -99,924 +102,9 @@
       80% { opacity: 1; }
     }
 
-    /* ── Film strip container ── */
-    .film-strip {
-      position: relative;
-      width: min(calc(100vw - 16px), calc(var(--strip-max) + var(--sprocket-track) * 2));
-      margin: 0 auto;
-      animation: flicker 3s ease-in-out infinite;
-    }
-
-    /* The film edge strips with sprocket holes punched through via CSS mask */
-    .film-edge {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: var(--sprocket-track);
-      z-index: 3;
-      background:
-        linear-gradient(90deg, rgba(60, 42, 18, 0.4) 0%, rgba(50, 35, 15, 0.1) 30%, rgba(60, 42, 18, 0.25) 100%),
-        var(--film-edge);
-      border: 1px solid rgba(70, 50, 25, 0.35);
-      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    }
-
-    .film-edge--left {
-      left: 0;
-      border-right: 2px solid rgba(30, 20, 8, 0.8);
-    }
-
-    .film-edge--right {
-      right: 0;
-      border-left: 2px solid rgba(30, 20, 8, 0.8);
-    }
-
-    /* Punch the sprocket holes through the edge strips */
-    .film-edge--left,
-    .film-edge--right {
-      /* SVG mask for rounded-rect sprocket holes: 54×44, hole 30×20 centered horizontally */
-      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='54' height='44'%3E%3Crect width='54' height='44' fill='white'/%3E%3Crect x='12' y='24' width='30' height='20' rx='4' fill='black'/%3E%3C/svg%3E");
-      -webkit-mask-size: var(--sprocket-track) calc(var(--sprocket-gap) + var(--sprocket-h));
-      -webkit-mask-repeat: repeat-y;
-      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='54' height='44'%3E%3Crect width='54' height='44' fill='white'/%3E%3Crect x='12' y='24' width='30' height='20' rx='4' fill='black'/%3E%3C/svg%3E");
-      mask-size: var(--sprocket-track) calc(var(--sprocket-gap) + var(--sprocket-h));
-      mask-repeat: repeat-y;
-    }
-
-    /* Thin edge lines along the sprocket tracks */
-    .film-edge::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 1px;
-      background: rgba(80, 55, 25, 0.4);
-    }
-
-    .film-edge--left::after { right: 10px; }
-    .film-edge--right::after { left: 10px; }
-
-    /* Frame number text along the edge */
-    .film-edge-numbers {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: var(--sprocket-track);
-      z-index: 4;
-      pointer-events: none;
-      overflow: hidden;
-    }
-
-    .film-edge-numbers--left { left: 0; }
-    .film-edge-numbers--right { right: 0; }
-
-    /* ── Frame content area ── */
-    .film-content {
-      position: relative;
-      z-index: 1;
-      margin: 0 var(--sprocket-track);
-      background: var(--film-base);
-    }
-
-    /* ── Individual film frames ── */
-    .film-frame {
-      position: relative;
-      border-top: var(--frame-border) solid var(--frame-gap);
-      border-bottom: var(--frame-border) solid var(--frame-gap);
-      overflow: hidden;
-    }
-
-    .film-frame + .film-frame {
-      border-top: none;
-    }
-
-    /* The frame gate — the visible image area */
-    .film-frame-gate {
-      position: relative;
-      aspect-ratio: 16 / 9;
-      overflow: hidden;
-      background: var(--night);
-      border-left: 3px solid var(--frame-gap);
-      border-right: 3px solid var(--frame-gap);
-    }
-
-    /* Vignette effect on each frame (projector gate shadow) */
-    .film-frame-gate::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 5;
-      pointer-events: none;
-      box-shadow:
-        inset 0 0 80px rgba(0, 0, 0, 0.45),
-        inset 0 0 180px rgba(0, 0, 0, 0.15);
-      border-radius: var(--frame-radius);
-    }
-
-    /* Slight warmth to emulate projection light */
-    .film-frame-gate::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 4;
-      pointer-events: none;
-      background: radial-gradient(
-        ellipse at 50% 45%,
-        rgba(255, 240, 200, 0.04),
-        transparent 70%
-      );
-    }
-
-    /* ── Frame content layouts ── */
-    .frame-content {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: clamp(24px, 5vw, 64px);
-    }
-
-    /* ── Typography ── */
-    .frame-eyebrow {
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      font-size: clamp(0.62rem, 1.2vw, 0.78rem);
-      color: var(--gold);
-      margin-bottom: 0.6rem;
-      font-weight: 500;
-    }
-
-    .frame-heading {
-      font-family: "Cormorant Garamond", serif;
-      font-size: clamp(2.2rem, 5.5vw, 5.2rem);
-      font-weight: 600;
-      line-height: 0.95;
-      letter-spacing: -0.03em;
-      color: var(--paper-strong);
-      max-width: 16ch;
-    }
-
-    .frame-sub {
-      margin-top: 0.8rem;
-      font-size: clamp(0.88rem, 1.6vw, 1.1rem);
-      color: rgba(245, 239, 228, 0.78);
-      max-width: 52ch;
-      line-height: 1.6;
-    }
-
-    /* ── Specific frame styles ── */
-
-    /* Hero frame */
-    .frame--hero .film-frame-gate {
-      background:
-        radial-gradient(circle at 15% 25%, rgba(240, 181, 90, 0.22), transparent 35%),
-        radial-gradient(circle at 80% 20%, rgba(215, 106, 82, 0.18), transparent 30%),
-        linear-gradient(135deg, #07121f 0%, #102139 58%, #13243a 100%);
-    }
-
-    .frame--hero .frame-content {
-      justify-content: flex-end;
-      padding-bottom: clamp(28px, 6vw, 72px);
-    }
-
-    .hero-cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      margin-top: 1.4rem;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.15rem;
-      border: 1px solid transparent;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 0.9rem;
-      text-decoration: none;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      cursor: pointer;
-    }
-
-    .button:hover { transform: translateY(-2px); }
-
-    .button-primary {
-      background: linear-gradient(135deg, var(--gold), #ffc978);
-      color: var(--night);
-      box-shadow: 0 12px 28px rgba(240, 181, 90, 0.2);
-    }
-
-    .button-ghost {
-      color: var(--paper-strong);
-      border-color: rgba(245, 239, 228, 0.25);
-      background: rgba(245, 239, 228, 0.06);
-    }
-
-    .hero-note {
-      margin-top: 0.9rem;
-      font-size: clamp(0.78rem, 1.2vw, 0.9rem);
-      color: rgba(245, 239, 228, 0.55);
-      max-width: 38ch;
-    }
-
-    /* Brand bar at top of hero */
-    .brand-bar {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 6;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: clamp(12px, 2.5vw, 24px) clamp(20px, 4vw, 56px);
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      text-decoration: none;
-      color: var(--paper-strong);
-    }
-
-    .brand-mark {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid rgba(245, 239, 228, 0.2);
-      flex-shrink: 0;
-    }
-
-    .brand-mark img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .brand strong { font-size: 0.92rem; display: block; }
-    .brand small {
-      display: block;
-      font-size: 0.68rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: rgba(245, 239, 228, 0.6);
-    }
-
-    /* Next Screening banner */
-    .next-screening-frame {
-      position: relative;
-      z-index: 3;
-      margin: clamp(12px, 2vw, 20px) clamp(20px, 4vw, 56px) 0;
-      padding: 0.9rem 1.2rem;
-      border-radius: 14px;
-      border: 1px solid rgba(240, 181, 90, 0.3);
-      background: rgba(240, 181, 90, 0.1);
-      backdrop-filter: blur(8px);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.8rem;
-      flex-wrap: wrap;
-    }
-
-    .next-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.3rem 0.65rem;
-      border-radius: 999px;
-      background: var(--gold);
-      color: var(--night);
-      font-size: 0.68rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      white-space: nowrap;
-    }
-
-    .next-badge::before {
-      content: "";
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--night);
-      animation: pulse-dot 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
-
-    .next-details {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .next-title {
-      font-family: "Cormorant Garamond", serif;
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: var(--paper-strong);
-    }
-
-    .next-meta {
-      font-size: 0.8rem;
-      color: rgba(245, 239, 228, 0.65);
-    }
-
-    /* ── About frame ── */
-    .frame--about .film-frame-gate {
-      background:
-        radial-gradient(circle at top right, rgba(240, 181, 90, 0.1), transparent 40%),
-        linear-gradient(135deg, var(--paper) 0%, #efe6d7 100%);
-    }
-
-    .frame--about .frame-content {
-      color: var(--ink);
-    }
-
-    .frame--about .frame-heading {
-      color: var(--ink);
-    }
-
-    .frame--about .frame-sub {
-      color: var(--ink-soft);
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.8rem;
-      margin-top: 1.4rem;
-    }
-
-    .about-card {
-      padding: 1rem;
-      border-radius: 14px;
-      border: 1px solid rgba(17, 32, 50, 0.08);
-      background: rgba(255, 255, 255, 0.6);
-    }
-
-    .about-card h3 {
-      font-size: 0.95rem;
-      margin: 0.5rem 0 0;
-      color: var(--ink);
-    }
-
-    .about-card p {
-      margin: 0.4rem 0 0;
-      font-size: 0.84rem;
-      color: var(--ink-soft);
-      line-height: 1.5;
-    }
-
-    .about-card-kicker {
-      font-size: 0.68rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--ruby);
-      font-weight: 500;
-    }
-
-    /* ── Bilingual frame ── */
-    .frame--bilingual .film-frame-gate {
-      background: linear-gradient(135deg, #0a1625 0%, #10233c 100%);
-    }
-
-    .bilingual-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
-      margin-top: 1.2rem;
-    }
-
-    .bilingual-card {
-      padding: 1.2rem;
-      border-radius: 14px;
-      border: 1px solid rgba(245, 239, 228, 0.1);
-      background: rgba(245, 239, 228, 0.04);
-    }
-
-    .bilingual-label {
-      font-size: 0.68rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--gold);
-      font-weight: 500;
-    }
-
-    .bilingual-card p {
-      margin: 0.6rem 0 0;
-      font-size: clamp(0.88rem, 1.4vw, 1.02rem);
-      color: rgba(245, 239, 228, 0.85);
-      line-height: 1.6;
-    }
-
-    /* ── Screenings / Venue ── */
-    .frame--venue .film-frame-gate {
-      background:
-        linear-gradient(180deg, rgba(7, 18, 31, 0.82), rgba(7, 18, 31, 0.92)),
-        url('../assets/folken1930.jpg') center / cover no-repeat;
-    }
-
-    .venue-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 1rem;
-      margin-top: 1.4rem;
-    }
-
-    .venue-info {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .venue-info h3 {
-      font-family: "Cormorant Garamond", serif;
-      font-size: clamp(1.6rem, 3.5vw, 2.6rem);
-      font-weight: 600;
-      line-height: 1;
-      color: var(--paper-strong);
-    }
-
-    .venue-list {
-      list-style: none;
-      padding: 0;
-      margin: 0.6rem 0 0;
-      display: grid;
-      gap: 0.5rem;
-    }
-
-    .venue-list li {
-      position: relative;
-      padding-left: 1rem;
-      font-size: clamp(0.78rem, 1.2vw, 0.92rem);
-      color: rgba(245, 239, 228, 0.8);
-    }
-
-    .venue-list li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0.55em;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--gold);
-    }
-
-    .venue-stats {
-      display: grid;
-      gap: 0.6rem;
-    }
-
-    .venue-stat {
-      padding: 0.8rem;
-      border-radius: 12px;
-      border: 1px solid rgba(245, 239, 228, 0.08);
-      background: rgba(245, 239, 228, 0.04);
-    }
-
-    .venue-stat-label {
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: rgba(245, 239, 228, 0.5);
-    }
-
-    .venue-stat strong {
-      display: block;
-      font-size: clamp(1rem, 2vw, 1.4rem);
-      color: var(--gold-soft);
-      margin-top: 0.25rem;
-    }
-
-    .venue-stat p {
-      margin: 0.2rem 0 0;
-      font-size: 0.78rem;
-      color: rgba(245, 239, 228, 0.65);
-    }
-
-    /* ── Film programme frames ── */
-    .frame--programme .film-frame-gate {
-      background:
-        radial-gradient(circle at top right, rgba(240, 181, 90, 0.1), transparent 40%),
-        linear-gradient(135deg, var(--paper) 0%, #efe6d7 100%);
-    }
-
-    .frame--programme .frame-content {
-      color: var(--ink);
-    }
-
-    .frame--programme .frame-heading {
-      color: var(--ink);
-    }
-
-    .frame--programme .frame-sub {
-      color: var(--ink-soft);
-    }
-
-    .film-pair {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.9rem;
-      margin-top: 1.2rem;
-    }
-
-    .filmcard {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 0.8rem;
-      padding: 0.9rem;
-      border-radius: 14px;
-      border: 1px solid rgba(17, 32, 50, 0.08);
-      background: rgba(255, 255, 255, 0.65);
-      align-items: start;
-    }
-
-    .filmcard-poster {
-      width: clamp(64px, 8vw, 90px);
-      aspect-ratio: 2 / 3;
-      border-radius: 8px;
-      background:
-        radial-gradient(circle at 30% 40%, rgba(240, 181, 90, 0.14), transparent 60%),
-        linear-gradient(135deg, #0a1625 0%, #152844 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: "Cormorant Garamond", serif;
-      font-size: 1.6rem;
-      font-weight: 600;
-      color: rgba(245, 239, 228, 0.2);
-      position: relative;
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-
-    .filmcard-date {
-      position: absolute;
-      bottom: 4px;
-      left: 4px;
-      right: 4px;
-      text-align: center;
-      padding: 0.15rem 0.3rem;
-      border-radius: 6px;
-      background: rgba(7, 18, 31, 0.85);
-      color: var(--gold);
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 0.62rem;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-    }
-
-    .filmcard-body h3 {
-      font-family: "Cormorant Garamond", serif;
-      font-size: clamp(1rem, 1.8vw, 1.2rem);
-      font-weight: 600;
-      line-height: 1.15;
-      color: var(--ink);
-      margin: 0;
-    }
-
-    .filmcard-body .filmcard-meta {
-      font-size: 0.72rem;
-      color: var(--ink-soft);
-      margin-top: 0.15rem;
-    }
-
-    .filmcard-body .filmcard-note {
-      font-size: 0.78rem;
-      color: var(--ink-soft);
-      margin-top: 0.35rem;
-      line-height: 1.45;
-    }
-
-    .filmcard-note::before {
-      content: "";
-      display: block;
-      width: 16px;
-      height: 2px;
-      background: var(--gold);
-      margin-bottom: 0.3rem;
-      border-radius: 1px;
-    }
-
-    /* ── Membership frame ── */
-    .frame--membership .film-frame-gate {
-      background:
-        radial-gradient(circle at 20% 30%, rgba(240, 181, 90, 0.15), transparent 40%),
-        linear-gradient(135deg, var(--paper) 0%, #efe6d7 100%);
-    }
-
-    .frame--membership .frame-content {
-      color: var(--ink);
-    }
-
-    .frame--membership .frame-heading {
-      color: var(--ink);
-    }
-
-    .pricing-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.8rem;
-      margin-top: 1.2rem;
-    }
-
-    .price-card {
-      padding: 1rem;
-      border-radius: 14px;
-      border: 1px solid rgba(17, 32, 50, 0.08);
-      background: rgba(255, 255, 255, 0.6);
-    }
-
-    .price-card--accent {
-      background: linear-gradient(165deg, rgba(240, 181, 90, 0.15), rgba(255, 255, 255, 0.75));
-      border-color: rgba(240, 181, 90, 0.3);
-    }
-
-    .price-kicker {
-      font-size: 0.68rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--ruby);
-      font-weight: 500;
-    }
-
-    .price-card h3 {
-      font-size: 0.92rem;
-      margin: 0.3rem 0 0;
-      color: var(--ink);
-    }
-
-    .price-amount {
-      display: block;
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      font-weight: 700;
-      line-height: 1;
-      letter-spacing: -0.04em;
-      color: var(--night);
-      margin-top: 0.4rem;
-    }
-
-    .price-card p {
-      margin: 0.4rem 0 0;
-      font-size: 0.82rem;
-      color: var(--ink-soft);
-    }
-
-    .steps-list {
-      list-style: none;
-      padding: 0;
-      margin: 0.5rem 0 0;
-      display: grid;
-      gap: 0.5rem;
-    }
-
-    .steps-list li {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 0.5rem;
-      align-items: start;
-      font-size: 0.82rem;
-      color: var(--ink-soft);
-    }
-
-    .step-num {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 1.5rem;
-      height: 1.5rem;
-      border-radius: 50%;
-      background: var(--night);
-      color: var(--paper-strong);
-      font-size: 0.72rem;
-      font-weight: 700;
-    }
-
-    /* ── Community frame ── */
-    .frame--community .film-frame-gate {
-      background: linear-gradient(135deg, #0a1625 0%, #10233c 100%);
-    }
-
-    .community-row {
-      display: grid;
-      grid-template-columns: 1.15fr 1fr 1fr;
-      gap: 0.8rem;
-      margin-top: 1.2rem;
-    }
-
-    .community-card {
-      padding: 1rem;
-      border-radius: 14px;
-      border: 1px solid rgba(245, 239, 228, 0.08);
-      background: rgba(245, 239, 228, 0.04);
-    }
-
-    .community-card--accent {
-      background: linear-gradient(180deg, rgba(240, 181, 90, 0.12), rgba(245, 239, 228, 0.04));
-    }
-
-    .community-kicker {
-      font-size: 0.68rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--gold-soft);
-      font-weight: 500;
-    }
-
-    .community-card h3 {
-      font-size: 0.95rem;
-      margin: 0.3rem 0 0;
-      color: var(--paper-strong);
-    }
-
-    .community-card p {
-      margin: 0.4rem 0 0;
-      font-size: 0.82rem;
-      color: rgba(245, 239, 228, 0.75);
-      line-height: 1.5;
-    }
-
-    .community-card a {
-      color: var(--gold-soft);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(255, 225, 162, 0.3);
-    }
-
-    /* ── Contact frame ── */
-    .frame--contact .film-frame-gate {
-      background:
-        radial-gradient(circle at top right, rgba(240, 181, 90, 0.15), transparent 35%),
-        linear-gradient(135deg, #091623 0%, #0f2138 100%);
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.8rem;
-      margin-top: 1.4rem;
-    }
-
-    .contact-block {
-      padding-top: 0.7rem;
-      border-top: 1px solid rgba(245, 239, 228, 0.12);
-    }
-
-    .contact-block h3 {
-      font-size: 0.68rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: rgba(245, 239, 228, 0.5);
-    }
-
-    .contact-block p,
-    .contact-block a {
-      display: block;
-      margin-top: 0.35rem;
-      font-size: 0.9rem;
-      color: var(--paper-strong);
-      text-decoration: none;
-    }
-
-    .contact-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      margin-top: 1.2rem;
-    }
-
-    .fine-print {
-      margin-top: 1rem;
-      font-size: 0.78rem;
-      color: rgba(245, 239, 228, 0.5);
-    }
-
-    /* ── Leader / tail frames ── */
-    .film-leader {
-      position: relative;
-      height: 60px;
-      background:
-        repeating-linear-gradient(
-          0deg,
-          var(--film-base) 0px,
-          var(--film-base) 4px,
-          rgba(80, 55, 25, 0.15) 4px,
-          rgba(80, 55, 25, 0.15) 5px
-        );
-      border-bottom: var(--frame-border) solid var(--frame-gap);
-    }
-
-    .film-tail {
-      position: relative;
-      height: 120px;
-      background: var(--film-base);
-      border-top: var(--frame-border) solid var(--frame-gap);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-    }
-
-    .film-tail-text {
-      text-align: center;
-      font-size: 0.78rem;
-      color: rgba(245, 239, 228, 0.35);
-    }
-
-    .film-tail-text a {
-      color: rgba(245, 239, 228, 0.5);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(245, 239, 228, 0.2);
-    }
-
-    /* ── Frame counter overlays ── */
-    .frame-counter {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      z-index: 6;
-      font-size: 0.6rem;
-      font-family: "Courier New", monospace;
-      color: rgba(245, 239, 228, 0.2);
-      letter-spacing: 0.15em;
-      pointer-events: none;
-    }
-
-    /* ── Scroll reveal ── */
-    .film-frame {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .film-frame.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ── Responsive ── */
-    @media (max-width: 900px) {
-      :root {
-        --sprocket-track: 36px;
-        --sprocket-w: 20px;
-        --sprocket-h: 13px;
-        --sprocket-gap: 20px;
-      }
-
-      .film-edge--left,
-      .film-edge--right {
-        -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='33'%3E%3Crect width='36' height='33' fill='white'/%3E%3Crect x='8' y='20' width='20' height='13' rx='3' fill='black'/%3E%3C/svg%3E");
-        -webkit-mask-size: var(--sprocket-track) calc(var(--sprocket-gap) + var(--sprocket-h));
-        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='33'%3E%3Crect width='36' height='33' fill='white'/%3E%3Crect x='8' y='20' width='20' height='13' rx='3' fill='black'/%3E%3C/svg%3E");
-        mask-size: var(--sprocket-track) calc(var(--sprocket-gap) + var(--sprocket-h));
-      }
-
-      .about-grid { grid-template-columns: 1fr; }
-      .venue-grid { grid-template-columns: 1fr; }
-      .film-pair { grid-template-columns: 1fr; }
-      .pricing-row { grid-template-columns: 1fr; }
-      .community-row { grid-template-columns: 1fr; }
-      .contact-grid { grid-template-columns: 1fr; }
-      .bilingual-grid { grid-template-columns: 1fr; }
-
-      .film-frame-gate {
-        aspect-ratio: auto;
-        min-height: max(65vh, 420px);
-      }
-    }
-
-    @media (max-width: 520px) {
-      :root {
-        --sprocket-track: 24px;
-        --sprocket-h: 10px;
-        --sprocket-gap: 14px;
-      }
-
-      .film-edge--left,
-      .film-edge--right {
-        -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Crect width='24' height='24' fill='white'/%3E%3Crect x='5' y='14' width='14' height='10' rx='2' fill='black'/%3E%3C/svg%3E");
-        -webkit-mask-size: var(--sprocket-track) calc(var(--sprocket-gap) + var(--sprocket-h));
-        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Crect width='24' height='24' fill='white'/%3E%3Crect x='5' y='14' width='14' height='10' rx='2' fill='black'/%3E%3C/svg%3E");
-        mask-size: var(--sprocket-track) calc(var(--sprocket-gap) + var(--sprocket-h));
-      }
-
-      .brand small { display: none; }
-    }
-
-    /* ── Sticky navigation ── */
+    /* ══════════════════════════════════════
+       STICKY NAVIGATION — always visible
+       ══════════════════════════════════════ */
     .site-nav {
       position: fixed;
       top: 0;
@@ -1027,23 +115,17 @@
       align-items: center;
       justify-content: center;
       gap: clamp(0.5rem, 2vw, 1.8rem);
-      padding: 0.5rem 1rem;
-      background: rgba(5, 3, 2, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      padding: 0.45rem 1rem;
+      background: rgba(10, 10, 8, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid rgba(245, 239, 228, 0.08);
-      transform: translateY(-100%);
-      transition: transform 0.35s ease;
-    }
-
-    .site-nav.is-visible {
-      transform: translateY(0);
     }
 
     .site-nav a {
-      color: rgba(245, 239, 228, 0.65);
+      color: rgba(245, 239, 228, 0.6);
       text-decoration: none;
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 500;
       text-transform: uppercase;
       letter-spacing: 0.12em;
@@ -1073,16 +155,1027 @@
     }
 
     .site-nav .nav-brand img {
-      width: 26px;
-      height: 26px;
-      border-radius: 6px;
+      width: 24px;
+      height: 24px;
+      border-radius: 5px;
+    }
+
+    /* ══════════════════════════════════════
+       FILM STRIP CONTAINER
+       ══════════════════════════════════════ */
+    .film-strip {
+      position: relative;
+      width: min(calc(100vw - 8px), calc(var(--strip-max) + var(--sprocket-track) * 2));
+      margin: 0 auto;
+      padding-top: 44px; /* space for fixed nav */
+      animation: flicker 3s ease-in-out infinite;
+    }
+
+    /* ══════════════════════════════════════
+       FILM EDGES — black strips with bright
+       sprocket holes punched through
+       ══════════════════════════════════════ */
+    .film-edge {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: var(--sprocket-track);
+      z-index: 3;
+      background: var(--film-black);
+      /* Subtle grain on the edge strip */
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 128 128' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.04'/%3E%3C/svg%3E");
+    }
+
+    .film-edge--left { left: 0; }
+    .film-edge--right { right: 0; }
+
+    /*
+     * Sprocket holes: rendered as bright repeating rectangles.
+     * We use a pseudo-element to paint bright rounded-rect holes
+     * on top of the black edge strip (additive approach instead of mask).
+     */
+    .film-edge::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: var(--sprocket-w);
+      /* Repeating bright rectangles for sprocket holes */
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          transparent 0px,
+          transparent var(--sprocket-gap),
+          var(--sprocket-hole) var(--sprocket-gap),
+          var(--sprocket-hole) calc(var(--sprocket-gap) + var(--sprocket-h)),
+          transparent calc(var(--sprocket-gap) + var(--sprocket-h)),
+          transparent calc(var(--sprocket-gap) * 2 + var(--sprocket-h))
+        );
+      border-radius: 1px;
+      /* SVG mask to give rounded corners to each hole */
+      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='38'%3E%3Crect width='34' height='38' fill='black'/%3E%3Crect x='0' y='14' width='34' height='24' rx='5' fill='white'/%3E%3C/svg%3E");
+      -webkit-mask-size: var(--sprocket-w) calc(var(--sprocket-gap) + var(--sprocket-h));
+      -webkit-mask-repeat: repeat-y;
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='38'%3E%3Crect width='34' height='38' fill='black'/%3E%3Crect x='0' y='14' width='34' height='24' rx='5' fill='white'/%3E%3C/svg%3E");
+      mask-size: var(--sprocket-w) calc(var(--sprocket-gap) + var(--sprocket-h));
+      mask-repeat: repeat-y;
+    }
+
+    /* Inner border lines beside the sprocket tracks (like real film) */
+    .film-edge::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: rgba(180, 165, 130, 0.18);
+    }
+
+    .film-edge--left::after { right: 4px; }
+    .film-edge--right::after { left: 4px; }
+
+    /* ── Edge text / frame numbers (Kodak-style markings) ── */
+    .edge-text {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: var(--sprocket-track);
+      z-index: 4;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .edge-text--left { left: 0; }
+    .edge-text--right { right: 0; }
+
+    .edge-marking {
+      position: absolute;
+      font-family: "Courier New", monospace;
+      font-size: 0.52rem;
+      font-weight: 700;
+      color: var(--edge-text);
+      white-space: nowrap;
+      letter-spacing: 0.05em;
+      opacity: 0.7;
+    }
+
+    .edge-text--right .edge-marking {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      right: 3px;
+    }
+
+    .edge-text--left .edge-marking {
+      left: 3px;
+    }
+
+    /* ── Frame content area ── */
+    .film-content {
+      position: relative;
+      z-index: 1;
+      margin: 0 var(--sprocket-track);
+      background: var(--film-black);
+    }
+
+    /* ── Individual film frames ── */
+    .film-frame {
+      position: relative;
+      border-top: var(--frame-border) solid var(--frame-gap);
+      border-bottom: var(--frame-border) solid var(--frame-gap);
+      overflow: hidden;
+    }
+
+    .film-frame + .film-frame {
+      border-top: none;
+    }
+
+    /* The frame gate — the visible image area */
+    .film-frame-gate {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: var(--night);
+      border-left: 2px solid var(--frame-gap);
+      border-right: 2px solid var(--frame-gap);
+    }
+
+    /* Vignette */
+    .film-frame-gate::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      pointer-events: none;
+      box-shadow:
+        inset 0 0 60px rgba(0, 0, 0, 0.4),
+        inset 0 0 140px rgba(0, 0, 0, 0.12);
+      border-radius: var(--frame-radius);
+    }
+
+    /* Slight warmth — projection light */
+    .film-frame-gate::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      pointer-events: none;
+      background: radial-gradient(
+        ellipse at 50% 45%,
+        rgba(255, 240, 200, 0.04),
+        transparent 70%
+      );
+    }
+
+    /* ── Frame content layouts ── */
+    .frame-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(20px, 4.5vw, 56px);
+    }
+
+    /* ── Typography ── */
+    .frame-eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: clamp(0.6rem, 1.1vw, 0.75rem);
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .frame-heading {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 5vw, 4.8rem);
+      font-weight: 600;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: var(--paper-strong);
+      max-width: 16ch;
+    }
+
+    .frame-sub {
+      margin-top: 0.7rem;
+      font-size: clamp(0.85rem, 1.5vw, 1.05rem);
+      color: rgba(245, 239, 228, 0.78);
+      max-width: 52ch;
+      line-height: 1.6;
+    }
+
+    /* ── Frame counter (like real film frame numbers) ── */
+    .frame-counter {
+      position: absolute;
+      top: 6px;
+      right: 8px;
+      z-index: 6;
+      font-size: 0.55rem;
+      font-family: "Courier New", monospace;
+      color: rgba(245, 239, 228, 0.18);
+      letter-spacing: 0.15em;
+      pointer-events: none;
+    }
+
+    /* ══════════════════════════════════════
+       HERO FRAME
+       ══════════════════════════════════════ */
+    .frame--hero .film-frame-gate {
+      background:
+        radial-gradient(circle at 15% 25%, rgba(240, 181, 90, 0.22), transparent 35%),
+        radial-gradient(circle at 80% 20%, rgba(215, 106, 82, 0.18), transparent 30%),
+        linear-gradient(135deg, #07121f 0%, #102139 58%, #13243a 100%);
+    }
+
+    .frame--hero .frame-content {
+      justify-content: flex-end;
+      padding-bottom: clamp(24px, 5vw, 64px);
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1.2rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.1rem;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+    }
+
+    .button:hover { transform: translateY(-2px); }
+
+    .button-primary {
+      background: linear-gradient(135deg, var(--gold), #ffc978);
+      color: var(--night);
+      box-shadow: 0 10px 24px rgba(240, 181, 90, 0.2);
+    }
+
+    .button-ghost {
+      color: var(--paper-strong);
+      border-color: rgba(245, 239, 228, 0.25);
+      background: rgba(245, 239, 228, 0.06);
+    }
+
+    .hero-note {
+      margin-top: 0.8rem;
+      font-size: clamp(0.75rem, 1.1vw, 0.88rem);
+      color: rgba(245, 239, 228, 0.5);
+      max-width: 38ch;
+    }
+
+    /* Brand bar at top of hero */
+    .brand-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 6;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: clamp(10px, 2vw, 20px) clamp(20px, 4vw, 56px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--paper-strong);
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(245, 239, 228, 0.2);
+      flex-shrink: 0;
+    }
+
+    .brand-mark img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand strong { font-size: 0.88rem; display: block; }
+    .brand small {
+      display: block;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(245, 239, 228, 0.6);
+    }
+
+    /* ══════════════════════════════════════
+       NEXT SCREENING — cinematic banner
+       ══════════════════════════════════════ */
+    .frame--next .film-frame-gate {
+      aspect-ratio: 16 / 5;
+      background:
+        radial-gradient(ellipse at 50% 50%, rgba(240, 181, 90, 0.15), transparent 60%),
+        linear-gradient(135deg, #0c1928 0%, #142a4a 100%);
+    }
+
+    .next-banner {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(1.5rem, 4vw, 3rem);
+      padding: clamp(16px, 3vw, 40px);
+    }
+
+    .next-poster-frame {
+      flex-shrink: 0;
+      width: clamp(100px, 14vw, 180px);
+      aspect-ratio: 2 / 3;
+      border-radius: 10px;
+      border: 2px solid rgba(240, 181, 90, 0.3);
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 30% 40%, rgba(240, 181, 90, 0.2), transparent 60%),
+        linear-gradient(135deg, #0a1625 0%, #1a3050 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .next-poster-text {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 600;
+      color: rgba(245, 239, 228, 0.15);
+    }
+
+    .next-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .next-badge {
+      display: inline-flex;
+      align-self: flex-start;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      background: var(--gold);
+      color: var(--night);
+      font-size: 0.62rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      white-space: nowrap;
+      margin-bottom: 0.3rem;
+    }
+
+    .next-badge::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--night);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .next-film-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      font-weight: 600;
+      line-height: 0.95;
+      color: var(--paper-strong);
+      letter-spacing: -0.03em;
+    }
+
+    .next-meta {
+      font-size: clamp(0.78rem, 1.2vw, 0.95rem);
+      color: rgba(245, 239, 228, 0.6);
+      margin-top: 0.2rem;
+    }
+
+    .next-cta {
+      margin-top: 0.8rem;
+    }
+
+    /* ── About frame ── */
+    .frame--about .film-frame-gate {
+      background:
+        radial-gradient(circle at top right, rgba(240, 181, 90, 0.1), transparent 40%),
+        linear-gradient(135deg, var(--paper) 0%, #efe6d7 100%);
+    }
+
+    .frame--about .frame-content { color: var(--ink); }
+    .frame--about .frame-heading { color: var(--ink); }
+    .frame--about .frame-sub { color: var(--ink-soft); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.7rem;
+      margin-top: 1.2rem;
+    }
+
+    .about-card {
+      padding: 0.9rem;
+      border-radius: 12px;
+      border: 1px solid rgba(17, 32, 50, 0.08);
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    .about-card h3 {
+      font-size: 0.9rem;
+      margin: 0.4rem 0 0;
+      color: var(--ink);
+    }
+
+    .about-card p {
+      margin: 0.35rem 0 0;
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+
+    .about-card-kicker {
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--ruby);
+      font-weight: 500;
+    }
+
+    /* ── Bilingual frame ── */
+    .frame--bilingual .film-frame-gate {
+      background: linear-gradient(135deg, #0a1625 0%, #10233c 100%);
+    }
+
+    .bilingual-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .bilingual-card {
+      padding: 1rem;
+      border-radius: 12px;
+      border: 1px solid rgba(245, 239, 228, 0.1);
+      background: rgba(245, 239, 228, 0.04);
+    }
+
+    .bilingual-label {
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    .bilingual-card p {
+      margin: 0.5rem 0 0;
+      font-size: clamp(0.85rem, 1.3vw, 1rem);
+      color: rgba(245, 239, 228, 0.85);
+      line-height: 1.6;
+    }
+
+    /* ── Screenings / Venue ── */
+    .frame--venue .film-frame-gate {
+      background:
+        linear-gradient(180deg, rgba(7, 18, 31, 0.82), rgba(7, 18, 31, 0.92)),
+        url('../assets/folken1930.jpg') center / cover no-repeat;
+    }
+
+    .venue-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 0.9rem;
+      margin-top: 1.2rem;
+    }
+
+    .venue-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .venue-info h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-weight: 600;
+      line-height: 1;
+      color: var(--paper-strong);
+    }
+
+    .venue-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.4rem 0 0;
+      display: grid;
+      gap: 0.4rem;
+    }
+
+    .venue-list li {
+      position: relative;
+      padding-left: 0.9rem;
+      font-size: clamp(0.75rem, 1.1vw, 0.88rem);
+      color: rgba(245, 239, 228, 0.8);
+    }
+
+    .venue-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    .venue-stats {
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    .venue-stat {
+      padding: 0.7rem;
+      border-radius: 10px;
+      border: 1px solid rgba(245, 239, 228, 0.08);
+      background: rgba(245, 239, 228, 0.04);
+    }
+
+    .venue-stat-label {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: rgba(245, 239, 228, 0.5);
+    }
+
+    .venue-stat strong {
+      display: block;
+      font-size: clamp(0.9rem, 1.8vw, 1.25rem);
+      color: var(--gold-soft);
+      margin-top: 0.2rem;
+    }
+
+    .venue-stat p {
+      margin: 0.15rem 0 0;
+      font-size: 0.75rem;
+      color: rgba(245, 239, 228, 0.65);
+    }
+
+    /* ══════════════════════════════════════
+       PROGRAMME FRAMES — films fill the gate
+       ══════════════════════════════════════ */
+    .frame--programme .film-frame-gate {
+      background:
+        radial-gradient(circle at top right, rgba(240, 181, 90, 0.1), transparent 40%),
+        linear-gradient(135deg, var(--paper) 0%, #efe6d7 100%);
+    }
+
+    .frame--programme .frame-content { color: var(--ink); }
+    .frame--programme .frame-heading { color: var(--ink); }
+    .frame--programme .frame-sub { color: var(--ink-soft); }
+
+    .film-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+      flex: 1;
+    }
+
+    .filmcard {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      padding: clamp(0.7rem, 1.5vw, 1.1rem);
+      border-radius: 14px;
+      border: 1px solid rgba(17, 32, 50, 0.08);
+      background: rgba(255, 255, 255, 0.65);
+      min-height: 0;
+    }
+
+    .filmcard-top {
+      display: flex;
+      gap: 0.7rem;
+      align-items: start;
+    }
+
+    .filmcard-poster {
+      width: clamp(56px, 7vw, 80px);
+      aspect-ratio: 2 / 3;
+      border-radius: 7px;
+      background:
+        radial-gradient(circle at 30% 40%, rgba(240, 181, 90, 0.14), transparent 60%),
+        linear-gradient(135deg, #0a1625 0%, #152844 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: rgba(245, 239, 228, 0.2);
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .filmcard-date {
+      position: absolute;
+      bottom: 3px;
+      left: 3px;
+      right: 3px;
+      text-align: center;
+      padding: 0.12rem 0.25rem;
+      border-radius: 5px;
+      background: rgba(7, 18, 31, 0.85);
+      color: var(--gold);
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .filmcard-body h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(1rem, 1.8vw, 1.25rem);
+      font-weight: 600;
+      line-height: 1.15;
+      color: var(--ink);
+      margin: 0;
+    }
+
+    .filmcard-body .filmcard-meta {
+      font-size: 0.68rem;
+      color: var(--ink-soft);
+      margin-top: 0.1rem;
+    }
+
+    .filmcard-body .filmcard-note {
+      font-size: 0.75rem;
+      color: var(--ink-soft);
+      margin-top: 0.3rem;
+      line-height: 1.45;
+    }
+
+    .filmcard-note::before {
+      content: "";
+      display: block;
+      width: 14px;
+      height: 2px;
+      background: var(--gold);
+      margin-bottom: 0.25rem;
+      border-radius: 1px;
+    }
+
+    /* Programme frame: content fills the entire gate */
+    .frame--programme .frame-content {
+      justify-content: stretch;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .frame--programme .film-pair {
+      flex: 1;
+      align-items: stretch;
+    }
+
+    .frame--programme .filmcard {
+      justify-content: center;
+    }
+
+    /* ── Membership frame ── */
+    .frame--membership .film-frame-gate {
+      background:
+        radial-gradient(circle at 20% 30%, rgba(240, 181, 90, 0.15), transparent 40%),
+        linear-gradient(135deg, var(--paper) 0%, #efe6d7 100%);
+    }
+
+    .frame--membership .frame-content { color: var(--ink); }
+    .frame--membership .frame-heading { color: var(--ink); }
+
+    .pricing-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.7rem;
+      margin-top: 1rem;
+    }
+
+    .price-card {
+      padding: 0.9rem;
+      border-radius: 12px;
+      border: 1px solid rgba(17, 32, 50, 0.08);
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    .price-card--accent {
+      background: linear-gradient(165deg, rgba(240, 181, 90, 0.15), rgba(255, 255, 255, 0.75));
+      border-color: rgba(240, 181, 90, 0.3);
+    }
+
+    .price-kicker {
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--ruby);
+      font-weight: 500;
+    }
+
+    .price-card h3 {
+      font-size: 0.88rem;
+      margin: 0.25rem 0 0;
+      color: var(--ink);
+    }
+
+    .price-amount {
+      display: block;
+      font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: var(--night);
+      margin-top: 0.3rem;
+    }
+
+    .price-card p {
+      margin: 0.3rem 0 0;
+      font-size: 0.78rem;
+      color: var(--ink-soft);
+    }
+
+    .steps-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.4rem 0 0;
+      display: grid;
+      gap: 0.4rem;
+    }
+
+    .steps-list li {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.4rem;
+      align-items: start;
+      font-size: 0.78rem;
+      color: var(--ink-soft);
+    }
+
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.4rem;
+      height: 1.4rem;
+      border-radius: 50%;
+      background: var(--night);
+      color: var(--paper-strong);
+      font-size: 0.68rem;
+      font-weight: 700;
+    }
+
+    /* ── Community frame ── */
+    .frame--community .film-frame-gate {
+      background: linear-gradient(135deg, #0a1625 0%, #10233c 100%);
+    }
+
+    .community-row {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr 1fr;
+      gap: 0.7rem;
+      margin-top: 1rem;
+    }
+
+    .community-card {
+      padding: 0.9rem;
+      border-radius: 12px;
+      border: 1px solid rgba(245, 239, 228, 0.08);
+      background: rgba(245, 239, 228, 0.04);
+    }
+
+    .community-card--accent {
+      background: linear-gradient(180deg, rgba(240, 181, 90, 0.12), rgba(245, 239, 228, 0.04));
+    }
+
+    .community-kicker {
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--gold-soft);
+      font-weight: 500;
+    }
+
+    .community-card h3 {
+      font-size: 0.9rem;
+      margin: 0.25rem 0 0;
+      color: var(--paper-strong);
+    }
+
+    .community-card p {
+      margin: 0.35rem 0 0;
+      font-size: 0.78rem;
+      color: rgba(245, 239, 228, 0.75);
+      line-height: 1.5;
+    }
+
+    .community-card a {
+      color: var(--gold-soft);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255, 225, 162, 0.3);
+    }
+
+    /* ── Contact frame ── */
+    .frame--contact .film-frame-gate {
+      background:
+        radial-gradient(circle at top right, rgba(240, 181, 90, 0.15), transparent 35%),
+        linear-gradient(135deg, #091623 0%, #0f2138 100%);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.7rem;
+      margin-top: 1.2rem;
+    }
+
+    .contact-block {
+      padding-top: 0.6rem;
+      border-top: 1px solid rgba(245, 239, 228, 0.12);
+    }
+
+    .contact-block h3 {
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: rgba(245, 239, 228, 0.5);
+    }
+
+    .contact-block p,
+    .contact-block a {
+      display: block;
+      margin-top: 0.3rem;
+      font-size: 0.85rem;
+      color: var(--paper-strong);
+      text-decoration: none;
+    }
+
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-top: 1rem;
+    }
+
+    .fine-print {
+      margin-top: 0.8rem;
+      font-size: 0.72rem;
+      color: rgba(245, 239, 228, 0.45);
+    }
+
+    /* ── Leader / tail ── */
+    .film-leader {
+      position: relative;
+      height: 50px;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          var(--film-black) 0px,
+          var(--film-black) 4px,
+          rgba(80, 55, 25, 0.1) 4px,
+          rgba(80, 55, 25, 0.1) 5px
+        );
+      border-bottom: var(--frame-border) solid var(--frame-gap);
+    }
+
+    .film-tail {
+      position: relative;
+      height: 100px;
+      background: var(--film-black);
+      border-top: var(--frame-border) solid var(--frame-gap);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .film-tail-text {
+      text-align: center;
+      font-size: 0.72rem;
+      color: rgba(245, 239, 228, 0.3);
+    }
+
+    .film-tail-text a {
+      color: rgba(245, 239, 228, 0.45);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(245, 239, 228, 0.18);
+    }
+
+    /* ── Scroll reveal ── */
+    .film-frame {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .film-frame.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ══════════════════════════════════════
+       RESPONSIVE
+       ══════════════════════════════════════ */
+    @media (max-width: 900px) {
+      :root {
+        --sprocket-track: 42px;
+        --sprocket-w: 24px;
+        --sprocket-h: 17px;
+        --sprocket-gap: 12px;
+      }
+
+      .film-edge::before {
+        -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='29'%3E%3Crect width='24' height='29' fill='black'/%3E%3Crect x='0' y='12' width='24' height='17' rx='4' fill='white'/%3E%3C/svg%3E");
+        -webkit-mask-size: var(--sprocket-w) calc(var(--sprocket-gap) + var(--sprocket-h));
+        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='29'%3E%3Crect width='24' height='29' fill='black'/%3E%3Crect x='0' y='12' width='24' height='17' rx='4' fill='white'/%3E%3C/svg%3E");
+        mask-size: var(--sprocket-w) calc(var(--sprocket-gap) + var(--sprocket-h));
+      }
+
+      .about-grid { grid-template-columns: 1fr; }
+      .venue-grid { grid-template-columns: 1fr; }
+      .film-pair { grid-template-columns: 1fr; }
+      .pricing-row { grid-template-columns: 1fr; }
+      .community-row { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .bilingual-grid { grid-template-columns: 1fr; }
+
+      .film-frame-gate {
+        aspect-ratio: auto;
+        min-height: max(60vh, 400px);
+      }
+
+      .frame--next .film-frame-gate {
+        aspect-ratio: auto;
+        min-height: max(35vh, 240px);
+      }
+
+      .next-banner { flex-direction: column; text-align: center; }
+      .next-badge { align-self: center; }
+      .next-info { align-items: center; }
+      .next-poster-frame { width: 90px; }
+
+      .edge-marking { display: none; }
+    }
+
+    @media (max-width: 520px) {
+      :root {
+        --sprocket-track: 28px;
+        --sprocket-w: 16px;
+        --sprocket-h: 12px;
+        --sprocket-gap: 10px;
+      }
+
+      .film-edge::before {
+        -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='22'%3E%3Crect width='16' height='22' fill='black'/%3E%3Crect x='0' y='10' width='16' height='12' rx='3' fill='white'/%3E%3C/svg%3E");
+        -webkit-mask-size: var(--sprocket-w) calc(var(--sprocket-gap) + var(--sprocket-h));
+        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='22'%3E%3Crect width='16' height='22' fill='black'/%3E%3Crect x='0' y='10' width='16' height='12' rx='3' fill='white'/%3E%3C/svg%3E");
+        mask-size: var(--sprocket-w) calc(var(--sprocket-gap) + var(--sprocket-h));
+      }
+
+      .brand small { display: none; }
     }
 
     @media (max-width: 600px) {
-      .site-nav { gap: 0.4rem; padding: 0.4rem 0.6rem; }
-      .site-nav a { font-size: 0.62rem; letter-spacing: 0.06em; }
+      .site-nav { gap: 0.35rem; padding: 0.35rem 0.5rem; }
+      .site-nav a { font-size: 0.58rem; letter-spacing: 0.06em; }
       .site-nav .nav-brand { font-size: 0; gap: 0; }
-      .site-nav .nav-brand img { width: 22px; height: 22px; }
+      .site-nav .nav-brand img { width: 20px; height: 20px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1092,13 +1185,13 @@
       .film-frame { opacity: 1; transform: none; transition: none; }
       .next-badge::before { animation: none; }
       .button { transition: none; }
-      .site-nav { transition: none; }
+      .site-nav a { transition: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Sticky navigation — appears after scrolling past the hero -->
+  <!-- Sticky navigation — always visible from page load -->
   <nav class="site-nav" aria-label="Main navigation">
     <a class="nav-brand" href="#top"><img src="../assets/LogoMLFK.jpg" alt="ML"></a>
     <a href="#about">About</a>
@@ -1110,9 +1203,46 @@
   </nav>
 
   <div class="film-strip" id="top">
-    <!-- Sprocket edge strips with punched-out holes -->
+    <!-- Black edge strips with bright sprocket holes -->
     <div class="film-edge film-edge--left"></div>
     <div class="film-edge film-edge--right"></div>
+
+    <!-- Edge text — Kodak-style markings -->
+    <div class="edge-text edge-text--left">
+      <span class="edge-marking" style="top: 180px;">8</span>
+      <span class="edge-marking" style="top: 680px;">&#9661; 8A</span>
+      <span class="edge-marking" style="top: 1200px;">9</span>
+      <span class="edge-marking" style="top: 1700px;">&#9661; 9A</span>
+      <span class="edge-marking" style="top: 2200px;">10</span>
+      <span class="edge-marking" style="top: 2700px;">&#9661; 10A</span>
+      <span class="edge-marking" style="top: 3200px;">11</span>
+      <span class="edge-marking" style="top: 3700px;">&#9661; 11A</span>
+      <span class="edge-marking" style="top: 4200px;">12</span>
+      <span class="edge-marking" style="top: 4700px;">&#9661; 12A</span>
+      <span class="edge-marking" style="top: 5200px;">13</span>
+      <span class="edge-marking" style="top: 5700px;">&#9661; 13A</span>
+      <span class="edge-marking" style="top: 6200px;">14</span>
+      <span class="edge-marking" style="top: 6700px;">&#9661; 14A</span>
+      <span class="edge-marking" style="top: 7200px;">15</span>
+      <span class="edge-marking" style="top: 7700px;">&#9661; 15A</span>
+      <span class="edge-marking" style="top: 8200px;">16</span>
+    </div>
+    <div class="edge-text edge-text--right">
+      <span class="edge-marking" style="top: 100px;">KODAK 5017 EPR</span>
+      <span class="edge-marking" style="top: 800px;">8</span>
+      <span class="edge-marking" style="top: 1400px;">KODAK 5017 EPR</span>
+      <span class="edge-marking" style="top: 2000px;">9</span>
+      <span class="edge-marking" style="top: 2600px;">KODAK 5017 EPR</span>
+      <span class="edge-marking" style="top: 3400px;">10</span>
+      <span class="edge-marking" style="top: 4000px;">KODAK 5017 EPR</span>
+      <span class="edge-marking" style="top: 4600px;">11</span>
+      <span class="edge-marking" style="top: 5200px;">KODAK 5017 EPR</span>
+      <span class="edge-marking" style="top: 5800px;">12</span>
+      <span class="edge-marking" style="top: 6400px;">KODAK 5017 EPR</span>
+      <span class="edge-marking" style="top: 7000px;">13</span>
+      <span class="edge-marking" style="top: 7600px;">KODAK 5017 EPR</span>
+      <span class="edge-marking" style="top: 8200px;">14</span>
+    </div>
 
     <!-- Film content between the sprocket tracks -->
     <div class="film-content">
@@ -1150,15 +1280,20 @@
         </div>
       </div>
 
-      <!-- ═══ FRAME 2: Next Screening ═══ -->
+      <!-- ═══ FRAME 2: Next Screening — cinematic banner ═══ -->
       <div class="film-frame frame--next">
-        <div class="film-frame-gate" style="background: radial-gradient(circle at 60% 40%, rgba(240,181,90,0.12), transparent 50%), linear-gradient(135deg, #0c1928 0%, #142a4a 100%); aspect-ratio: 16/5;">
-          <div class="frame-content" style="justify-content: center; align-items: center; text-align: center;">
-            <span class="next-badge" style="margin-bottom: 0.8rem;">Next screening</span>
-            <h2 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 7vw, 5rem); font-weight: 600; line-height: 0.95; color: var(--paper-strong); letter-spacing: -0.03em;">Tampopo</h2>
-            <p style="margin-top: 0.6rem; color: rgba(245,239,228,0.7); font-size: clamp(0.85rem, 1.4vw, 1rem);">Thursday 27 March, 19:00 at Folken &middot; Comedy / Drama &middot; Japan 1985</p>
-            <div class="hero-cta-row" style="justify-content: center; margin-top: 1rem;">
-              <a class="button button-primary" href="https://www.filmklubbmedlem.no/registrer/86" target="_blank" rel="noreferrer">Get tickets</a>
+        <div class="film-frame-gate">
+          <div class="next-banner">
+            <div class="next-poster-frame">
+              <span class="next-poster-text">Ta</span>
+            </div>
+            <div class="next-info">
+              <span class="next-badge">Next screening</span>
+              <h2 class="next-film-title">Tampopo</h2>
+              <p class="next-meta">Thursday 27 March, 19:00 at Folken &middot; Comedy / Drama &middot; Japan 1985</p>
+              <div class="next-cta">
+                <a class="button button-primary" href="https://www.filmklubbmedlem.no/registrer/86" target="_blank" rel="noreferrer">Get tickets</a>
+              </div>
             </div>
           </div>
           <div class="frame-counter">02</div>
@@ -1264,7 +1399,7 @@
             <p class="frame-eyebrow" style="color: var(--ruby);">Programme &middot; Spring 2026</p>
             <h2 class="frame-heading" style="max-width: 20ch;">Curated for discovery.</h2>
             <p class="frame-sub" style="max-width: 48ch;">Eight films from January to April — cult touchstones, contemporary discoveries, comedy, drama and international cinema.</p>
-            <div style="margin-top: 1.4rem; display: flex; flex-wrap: wrap; gap: 0.7rem; justify-content: center;">
+            <div style="margin-top: 1.2rem; display: flex; flex-wrap: wrap; gap: 0.7rem; justify-content: center;">
               <a class="button" style="background: var(--night); color: var(--paper-strong); font-size: 0.82rem; padding: 0.55rem 0.9rem;" href="../assets/2026%20Spring.png" target="_blank" rel="noreferrer">View full season poster</a>
             </div>
           </div>
@@ -1275,24 +1410,28 @@
       <!-- ═══ FRAME 7: Sin City + Totem ═══ -->
       <div class="film-frame frame--programme">
         <div class="film-frame-gate">
-          <div class="frame-content" style="justify-content: center;">
+          <div class="frame-content">
             <p class="frame-eyebrow" style="color: var(--ruby);">January</p>
             <div class="film-pair">
               <div class="filmcard">
-                <div class="filmcard-poster">SC<span class="filmcard-date">16 Jan</span></div>
-                <div class="filmcard-body">
-                  <h3>Sin City</h3>
-                  <p class="filmcard-meta">Rodriguez &amp; Miller &middot; 2005 &middot; USA</p>
-                  <p class="filmcard-note">A hyper-stylised neo-noir that turned a graphic novel into a new kind of cinema.</p>
+                <div class="filmcard-top">
+                  <div class="filmcard-poster">SC<span class="filmcard-date">16 Jan</span></div>
+                  <div class="filmcard-body">
+                    <h3>Sin City</h3>
+                    <p class="filmcard-meta">Rodriguez &amp; Miller &middot; 2005 &middot; USA</p>
+                  </div>
                 </div>
+                <p class="filmcard-note">A hyper-stylised neo-noir that turned a graphic novel into a new kind of cinema.</p>
               </div>
               <div class="filmcard">
-                <div class="filmcard-poster">To<span class="filmcard-date">30 Jan</span></div>
-                <div class="filmcard-body">
-                  <h3>Totem</h3>
-                  <p class="filmcard-meta">Lila Avil&eacute;s &middot; 2023 &middot; Mexico</p>
-                  <p class="filmcard-note">A quietly devastating family portrait seen through a child's eyes.</p>
+                <div class="filmcard-top">
+                  <div class="filmcard-poster">To<span class="filmcard-date">30 Jan</span></div>
+                  <div class="filmcard-body">
+                    <h3>Totem</h3>
+                    <p class="filmcard-meta">Lila Avil&eacute;s &middot; 2023 &middot; Mexico</p>
+                  </div>
                 </div>
+                <p class="filmcard-note">A quietly devastating family portrait seen through a child's eyes.</p>
               </div>
             </div>
           </div>
@@ -1303,24 +1442,28 @@
       <!-- ═══ FRAME 8: Fallen Leaves + Memoir ═══ -->
       <div class="film-frame frame--programme">
         <div class="film-frame-gate">
-          <div class="frame-content" style="justify-content: center;">
+          <div class="frame-content">
             <p class="frame-eyebrow" style="color: var(--ruby);">February</p>
             <div class="film-pair">
               <div class="filmcard">
-                <div class="filmcard-poster">FL<span class="filmcard-date">13 Feb</span></div>
-                <div class="filmcard-body">
-                  <h3>Fallen Leaves</h3>
-                  <p class="filmcard-meta">Aki Kaurism&auml;ki &middot; 2023 &middot; Finland</p>
-                  <p class="filmcard-note">Deadpan Helsinki romance where two lonely workers try to find each other.</p>
+                <div class="filmcard-top">
+                  <div class="filmcard-poster">FL<span class="filmcard-date">13 Feb</span></div>
+                  <div class="filmcard-body">
+                    <h3>Fallen Leaves</h3>
+                    <p class="filmcard-meta">Aki Kaurism&auml;ki &middot; 2023 &middot; Finland</p>
+                  </div>
                 </div>
+                <p class="filmcard-note">Deadpan Helsinki romance where two lonely workers try to find each other.</p>
               </div>
               <div class="filmcard">
-                <div class="filmcard-poster">MS<span class="filmcard-date">27 Feb</span></div>
-                <div class="filmcard-body">
-                  <h3>Memoir of a Snail</h3>
-                  <p class="filmcard-meta">Adam Elliot &middot; 2024 &middot; Australia</p>
-                  <p class="filmcard-note">Animated tale of hoarding, heartbreak and finding your people.</p>
+                <div class="filmcard-top">
+                  <div class="filmcard-poster">MS<span class="filmcard-date">27 Feb</span></div>
+                  <div class="filmcard-body">
+                    <h3>Memoir of a Snail</h3>
+                    <p class="filmcard-meta">Adam Elliot &middot; 2024 &middot; Australia</p>
+                  </div>
                 </div>
+                <p class="filmcard-note">Animated tale of hoarding, heartbreak and finding your people.</p>
               </div>
             </div>
           </div>
@@ -1331,24 +1474,28 @@
       <!-- ═══ FRAME 9: The Hunt + Graduation ═══ -->
       <div class="film-frame frame--programme">
         <div class="film-frame-gate">
-          <div class="frame-content" style="justify-content: center;">
+          <div class="frame-content">
             <p class="frame-eyebrow" style="color: var(--ruby);">March</p>
             <div class="film-pair">
               <div class="filmcard">
-                <div class="filmcard-poster">TH<span class="filmcard-date">13 Mar</span></div>
-                <div class="filmcard-body">
-                  <h3>The Hunt</h3>
-                  <p class="filmcard-meta">Thomas Vinterberg &middot; 2012 &middot; Denmark</p>
-                  <p class="filmcard-note">Mads Mikkelsen destroyed by a false accusation. Nerve-shredding mob mentality.</p>
+                <div class="filmcard-top">
+                  <div class="filmcard-poster">TH<span class="filmcard-date">13 Mar</span></div>
+                  <div class="filmcard-body">
+                    <h3>The Hunt</h3>
+                    <p class="filmcard-meta">Thomas Vinterberg &middot; 2012 &middot; Denmark</p>
+                  </div>
                 </div>
+                <p class="filmcard-note">Mads Mikkelsen destroyed by a false accusation. Nerve-shredding mob mentality.</p>
               </div>
               <div class="filmcard">
-                <div class="filmcard-poster">Gr<span class="filmcard-date">27 Mar</span></div>
-                <div class="filmcard-body">
-                  <h3>Graduation</h3>
-                  <p class="filmcard-meta">Cristian Mungiu &middot; 2016 &middot; Romania</p>
-                  <p class="filmcard-note">A father's moral compromise spirals in this slow-burn thriller.</p>
+                <div class="filmcard-top">
+                  <div class="filmcard-poster">Gr<span class="filmcard-date">27 Mar</span></div>
+                  <div class="filmcard-body">
+                    <h3>Graduation</h3>
+                    <p class="filmcard-meta">Cristian Mungiu &middot; 2016 &middot; Romania</p>
+                  </div>
                 </div>
+                <p class="filmcard-note">A father's moral compromise spirals in this slow-burn thriller.</p>
               </div>
             </div>
           </div>
@@ -1359,24 +1506,28 @@
       <!-- ═══ FRAME 10: Kneecap + Tampopo ═══ -->
       <div class="film-frame frame--programme">
         <div class="film-frame-gate">
-          <div class="frame-content" style="justify-content: center;">
+          <div class="frame-content">
             <p class="frame-eyebrow" style="color: var(--ruby);">April</p>
             <div class="film-pair">
               <div class="filmcard">
-                <div class="filmcard-poster">Kn<span class="filmcard-date">10 Apr</span></div>
-                <div class="filmcard-body">
-                  <h3>Kneecap</h3>
-                  <p class="filmcard-meta">Rich Peppiatt &middot; 2024 &middot; Ireland / UK</p>
-                  <p class="filmcard-note">Belfast hip-hop trio play themselves in a wild, politically charged film about language and identity.</p>
+                <div class="filmcard-top">
+                  <div class="filmcard-poster">Kn<span class="filmcard-date">10 Apr</span></div>
+                  <div class="filmcard-body">
+                    <h3>Kneecap</h3>
+                    <p class="filmcard-meta">Rich Peppiatt &middot; 2024 &middot; Ireland / UK</p>
+                  </div>
                 </div>
+                <p class="filmcard-note">Belfast hip-hop trio play themselves in a wild, politically charged film about language and identity.</p>
               </div>
               <div class="filmcard">
-                <div class="filmcard-poster">Ta<span class="filmcard-date">24 Apr</span></div>
-                <div class="filmcard-body">
-                  <h3>Tampopo</h3>
-                  <p class="filmcard-meta">Juzo Itami &middot; 1985 &middot; Japan</p>
-                  <p class="filmcard-note">A "ramen western" that playfully mixes food, desire and genre conventions.</p>
+                <div class="filmcard-top">
+                  <div class="filmcard-poster">Ta<span class="filmcard-date">24 Apr</span></div>
+                  <div class="filmcard-body">
+                    <h3>Tampopo</h3>
+                    <p class="filmcard-meta">Juzo Itami &middot; 1985 &middot; Japan</p>
+                  </div>
                 </div>
+                <p class="filmcard-note">A "ramen western" that playfully mixes food, desire and genre conventions.</p>
               </div>
             </div>
           </div>
@@ -1411,8 +1562,8 @@
                   <li><span class="step-num">2</span><p>Show up at Folken, pay 40 NOK.</p></li>
                   <li><span class="step-num">3</span><p>Grab popcorn, watch the film, stay to talk.</p></li>
                 </ol>
-                <div style="margin-top: 0.8rem;">
-                  <a class="button" style="background: var(--night); color: var(--paper-strong); font-size: 0.82rem; padding: 0.55rem 0.9rem;" href="https://www.filmklubbmedlem.no/registrer/86" target="_blank" rel="noreferrer">Register now</a>
+                <div style="margin-top: 0.6rem;">
+                  <a class="button" style="background: var(--night); color: var(--paper-strong); font-size: 0.78rem; padding: 0.5rem 0.8rem;" href="https://www.filmklubbmedlem.no/registrer/86" target="_blank" rel="noreferrer">Register now</a>
                 </div>
               </div>
             </div>
@@ -1433,7 +1584,7 @@
                 <p class="community-kicker">Recognition</p>
                 <h3>Film Club of the Year 2023.</h3>
                 <p>NFK highlighted the club for its range, mixed audience and the people behind the screenings.</p>
-                <p style="margin-top: 0.5rem;"><a href="https://filmklubb.no/aktuelt/prisvinnerne-pa-filmklubbenes-husstyremote-2023/" target="_blank" rel="noreferrer">Read the NFK award note</a></p>
+                <p style="margin-top: 0.4rem;"><a href="https://filmklubb.no/aktuelt/prisvinnerne-pa-filmklubbenes-husstyremote-2023/" target="_blank" rel="noreferrer">Read the NFK award note</a></p>
               </div>
               <div class="community-card">
                 <p class="community-kicker">People</p>
@@ -1505,21 +1656,11 @@
             observer.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.12 });
+      }, { threshold: 0.1 });
 
       frames.forEach((f) => observer.observe(f));
     } else {
       frames.forEach((f) => f.classList.add('is-visible'));
-    }
-
-    /* Show nav after scrolling past the hero */
-    const siteNav = document.querySelector('.site-nav');
-    const heroFrame = document.querySelector('.frame--hero');
-    if (siteNav && heroFrame) {
-      const navObserver = new IntersectionObserver(([entry]) => {
-        siteNav.classList.toggle('is-visible', !entry.isIntersecting);
-      }, { threshold: 0 });
-      navObserver.observe(heroFrame);
     }
 
     /* Email copy */
