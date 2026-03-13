@@ -69,6 +69,113 @@
       mix-blend-mode: multiply;
     }
 
+    .intro-screen {
+      display: none;
+    }
+
+    .js body.page-intro-active {
+      overflow: hidden;
+    }
+
+    .js .intro-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      display: block;
+      overflow: hidden;
+      pointer-events: none;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.55s ease, visibility 0s linear 0.55s;
+    }
+
+    .js body.page-intro-complete .intro-screen {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .curtain-stage {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .curtain-stage::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 16vh;
+      background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.32)),
+        radial-gradient(circle at center, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0) 65%);
+      z-index: 1;
+    }
+
+    .curtain-glow {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 30% 34%, rgba(255, 248, 228, 0.34), rgba(255, 248, 228, 0.1) 18%, rgba(255, 248, 228, 0) 36%),
+        radial-gradient(circle at center, rgba(255, 249, 235, 0.12), rgba(255, 249, 235, 0) 24%);
+      z-index: 0;
+    }
+
+    .curtain-panel {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 54%;
+      background:
+        linear-gradient(180deg, rgba(255, 231, 206, 0.16), rgba(255, 231, 206, 0.04) 14%, rgba(0, 0, 0, 0.18) 100%),
+        repeating-linear-gradient(
+          90deg,
+          rgba(74, 9, 17, 0.82) 0,
+          rgba(125, 18, 34, 0.78) 6%,
+          rgba(90, 11, 23, 0.84) 12%,
+          rgba(159, 39, 64, 0.76) 18%,
+          rgba(79, 9, 19, 0.84) 24%
+        );
+      box-shadow: inset -22px 0 38px rgba(0, 0, 0, 0.2), 0 16px 40px rgba(0, 0, 0, 0.24);
+      backdrop-filter: blur(4px) saturate(1.1);
+      z-index: 2;
+    }
+
+    .curtain-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(255, 243, 220, 0.14), transparent 14%, rgba(0, 0, 0, 0.14) 42%, transparent 62%, rgba(0, 0, 0, 0.2));
+      opacity: 0.82;
+    }
+
+    .curtain-panel::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 7px;
+      background: linear-gradient(180deg, #18314d 0%, #0b182a 100%);
+      box-shadow: 0 0 18px rgba(16, 33, 57, 0.22);
+    }
+
+    .curtain-panel--left {
+      left: -4%;
+      border-radius: 0 0 44px 0;
+    }
+
+    .curtain-panel--left::after {
+      right: 0;
+    }
+
+    .curtain-panel--right {
+      right: -4%;
+      border-radius: 0 0 0 44px;
+    }
+
+    .curtain-panel--right::after {
+      left: 0;
+    }
 
     a {
       color: inherit;
@@ -276,6 +383,13 @@
       max-width: 12ch;
     }
 
+    .lead {
+      margin: 1.3rem 0 0;
+      max-width: 44rem;
+      color: rgba(243, 234, 220, 0.84);
+      font-size: clamp(1.05rem, 1.8vw, 1.22rem);
+    }
+
     .cta-row,
     .link-row,
     .contact-actions {
@@ -314,6 +428,13 @@
       color: var(--paper-strong);
       border-color: rgba(243, 234, 220, 0.2);
       background: rgba(243, 234, 220, 0.08);
+    }
+
+    .hero-note {
+      margin: 1.1rem 0 0;
+      color: rgba(243, 234, 220, 0.72);
+      font-size: 0.95rem;
+      max-width: 33rem;
     }
 
     .poster-label,
@@ -390,6 +511,66 @@
       font-size: 0.86rem;
     }
 
+    .js .curtain-panel--left,
+    .js .curtain-panel--right {
+      transform: translateX(0);
+    }
+
+    .js .curtain-glow {
+      opacity: 0;
+      transform: scaleX(0.18);
+    }
+
+    .js.curtain-ready .curtain-panel--left {
+      animation: curtain-left-open 4s cubic-bezier(0.23, 0.78, 0.16, 1) 1.5s both;
+    }
+
+    .js.curtain-ready .curtain-panel--right {
+      animation: curtain-right-open 4s cubic-bezier(0.23, 0.78, 0.16, 1) 1.5s both;
+    }
+
+    .js.curtain-ready .curtain-glow {
+      animation: curtain-glow-on 4s ease-out 1.62s both;
+    }
+
+    .js body.page-intro-active .hero h1 {
+      text-shadow:
+        0 0 22px rgba(255, 248, 228, 0.34),
+        0 0 52px rgba(255, 248, 228, 0.14);
+    }
+
+    @keyframes curtain-left-open {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-106%);
+      }
+    }
+
+    @keyframes curtain-right-open {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(106%);
+      }
+    }
+
+    @keyframes curtain-glow-on {
+      0%,
+      32% {
+        opacity: 0;
+        transform: scaleX(0.18);
+      }
+
+      100% {
+        opacity: 1;
+        transform: scaleX(1);
+      }
+    }
 
     .light-section {
       border: 1px solid rgba(17, 32, 50, 0.08);
@@ -885,6 +1066,10 @@
         font-size: clamp(3.4rem, 15vw, 5.2rem);
       }
 
+      .curtain-panel {
+        width: 58%;
+      }
+
       .story-grid,
       .feature-grid,
       .programme-showcase,
@@ -913,10 +1098,24 @@
         transition: none;
       }
 
+      .js .curtain-panel--left,
+      .js .curtain-panel--right,
+      .js .curtain-glow {
+        animation: none !important;
+        opacity: 1;
+        transform: none;
+      }
     }
   </style>
 </head>
-<body>
+<body class="page-intro-active">
+  <div class="intro-screen" aria-hidden="true">
+    <div class="curtain-stage">
+      <div class="curtain-glow"></div>
+      <div class="curtain-panel curtain-panel--left"></div>
+      <div class="curtain-panel curtain-panel--right"></div>
+    </div>
+  </div>
 
   <a class="skip-link" href="#content">Skip to content</a>
 
@@ -949,12 +1148,20 @@
   <main id="content">
     <section class="section-shell hero" id="top">
       <div class="hero-copy">
+        <p class="eyebrow">Stavanger filmklubb / screenings at Folken</p>
         <h1>Film gems on a real big screen.</h1>
+        <p class="lead">
+          Magiske Lanterner brings carefully selected classics, contemporary discoveries and international film culture to Stavanger. It is cinema for people who want more than an ordinary night at the movies.
+        </p>
 
         <div class="cta-row">
           <a class="button button-primary" href="https://www.filmklubbmedlem.no/registrer/86" target="_blank" rel="noreferrer">Become a member</a>
           <a class="button button-secondary" href="https://www.facebook.com/filmklubbstavanger/" target="_blank" rel="noreferrer">Latest programme</a>
         </div>
+
+        <p class="hero-note">
+          Mandatory membership is 80 NOK per season. Screenings are 40 NOK each, payable at the door by card or Vipps.
+        </p>
       </div>
     </section>
 
@@ -1272,6 +1479,28 @@
     const emailCopyButton = document.querySelector('[data-email-copy]');
     const emailText = document.getElementById('email-text');
     const email = ['filmklubbstavanger', 'gmail.com'].join('@');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const introLeadTimeMs = prefersReducedMotion ? 0 : 5500;
+    let introStarted = false;
+
+    const finishIntro = () => {
+      body.classList.remove('page-intro-active');
+      body.classList.add('page-intro-complete');
+    };
+
+    const startIntroSequence = () => {
+      if (introStarted) {
+        return;
+      }
+
+      introStarted = true;
+      root.classList.add('curtain-ready');
+      window.setTimeout(finishIntro, introLeadTimeMs);
+    };
+
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(startIntroSequence);
+    });
 
     if (menuToggle && siteNav) {
       menuToggle.addEventListener('click', () => {
