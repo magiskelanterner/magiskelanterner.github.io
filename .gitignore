@@ -9,7 +9,5 @@ playwright/.cache/
 
 # Ignore macOS system files
 .DS_Store
-.DS_Store
-.DS_Store
-.DS_Store
+
 /.playwright-mcp
