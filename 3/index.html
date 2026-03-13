@@ -511,107 +511,6 @@
       color: rgba(245, 239, 228, 0.6);
     }
 
-    /* ══════════════════════════════════════
-       NEXT SCREENING — cinematic banner
-       ══════════════════════════════════════ */
-    .frame--next .film-frame-gate {
-      aspect-ratio: 16 / 5;
-      background:
-        radial-gradient(ellipse at 50% 50%, rgba(240, 181, 90, 0.15), transparent 60%),
-        linear-gradient(135deg, #0c1928 0%, #142a4a 100%);
-    }
-
-    .next-banner {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: clamp(1.5rem, 4vw, 3rem);
-      padding: clamp(16px, 3vw, 40px);
-    }
-
-    .next-poster-frame {
-      flex-shrink: 0;
-      width: clamp(100px, 14vw, 180px);
-      aspect-ratio: 2 / 3;
-      border-radius: 10px;
-      border: 2px solid rgba(240, 181, 90, 0.3);
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 30% 40%, rgba(240, 181, 90, 0.2), transparent 60%),
-        linear-gradient(135deg, #0a1625 0%, #1a3050 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-    }
-
-    .next-poster-text {
-      font-family: "Cormorant Garamond", serif;
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      font-weight: 600;
-      color: rgba(245, 239, 228, 0.15);
-    }
-
-    .next-info {
-      display: flex;
-      flex-direction: column;
-      gap: 0.3rem;
-    }
-
-    .next-badge {
-      display: inline-flex;
-      align-self: flex-start;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.25rem 0.6rem;
-      border-radius: 999px;
-      background: var(--gold);
-      color: var(--night);
-      font-size: 0.62rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      white-space: nowrap;
-      margin-bottom: 0.3rem;
-    }
-
-    .next-badge::before {
-      content: "";
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--night);
-      animation: pulse-dot 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
-
-    .next-film-title {
-      font-family: "Cormorant Garamond", serif;
-      font-size: clamp(2.4rem, 6vw, 4.5rem);
-      font-weight: 600;
-      line-height: 0.95;
-      color: var(--paper-strong);
-      letter-spacing: -0.03em;
-    }
-
-    .next-meta {
-      font-size: clamp(0.78rem, 1.2vw, 0.95rem);
-      color: rgba(245, 239, 228, 0.6);
-      margin-top: 0.2rem;
-    }
-
-    .next-cta {
-      margin-top: 0.8rem;
-    }
-
     /* ── About frame ── */
     .frame--about .film-frame-gate {
       background:
@@ -1044,52 +943,73 @@
       border-bottom: 1px solid rgba(255, 225, 162, 0.3);
     }
 
-    /* ── Contact frame ── */
-    .frame--contact .film-frame-gate {
+    /* ── Poster 3D frame ── */
+    .frame--poster .film-frame-gate {
       background:
         radial-gradient(circle at top right, rgba(240, 181, 90, 0.15), transparent 35%),
         linear-gradient(135deg, #091623 0%, #0f2138 100%);
     }
 
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.7rem;
-      margin-top: 1.2rem;
-    }
-
-    .contact-block {
-      padding-top: 0.6rem;
-      border-top: 1px solid rgba(245, 239, 228, 0.12);
-    }
-
-    .contact-block h3 {
-      font-size: 0.62rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: rgba(245, 239, 228, 0.5);
-    }
-
-    .contact-block p,
-    .contact-block a {
-      display: block;
-      margin-top: 0.3rem;
-      font-size: 0.85rem;
-      color: var(--paper-strong);
-      text-decoration: none;
-    }
-
-    .contact-actions {
+    .poster-3d-wrapper {
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-      margin-top: 1rem;
+      justify-content: center;
+      padding: 2rem 0;
     }
 
-    .fine-print {
-      margin-top: 0.8rem;
-      font-size: 0.72rem;
-      color: rgba(245, 239, 228, 0.45);
+    .poster-3d-container {
+      perspective: 1000px;
+      width: 100%;
+      max-width: 700px;
+    }
+
+    .poster-3d-card {
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.15s ease-out;
+      cursor: pointer;
+    }
+
+    .poster-3d-shadow {
+      position: absolute;
+      inset: 5% 5% -5px 5%;
+      background: rgba(0, 0, 0, 0.4);
+      filter: blur(30px);
+      border-radius: 12px;
+      transform: translateZ(-60px);
+      transition: transform 0.15s ease-out, filter 0.15s ease-out;
+    }
+
+    .poster-3d-img {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      transform: translateZ(40px);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .poster-3d-img img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .poster-3d-shine {
+      position: absolute;
+      inset: 0;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, transparent 50%);
+      transform: translateZ(50px);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .poster-3d-card:hover .poster-3d-shine {
+      opacity: 1;
+    }
+
+    .poster-3d-card:hover .poster-3d-shadow {
+      filter: blur(40px);
     }
 
     /* ── Leader / tail ── */
@@ -1165,7 +1085,7 @@
       .film-pair { grid-template-columns: 1fr; }
       .pricing-row { grid-template-columns: 1fr; }
       .community-row { grid-template-columns: 1fr; }
-      .contact-grid { grid-template-columns: 1fr; }
+      .poster-3d-container { max-width: 100%; }
       .bilingual-grid { grid-template-columns: 1fr; }
 
       .film-frame-gate {
@@ -1241,7 +1161,7 @@
     <a href="#programme">Programme</a>
     <a href="#membership">Membership</a>
     <a href="#community">Community</a>
-    <a href="#contact">Contact</a>
+    <a href="#poster">Poster</a>
   </nav>
 
   <div class="film-strip" id="top">
@@ -1306,27 +1226,7 @@
         </div>
       </div>
 
-      <!-- ═══ FRAME 2: Next Screening — cinematic banner ═══ -->
-      <div class="film-frame frame--next frame--dark">
-        <div class="film-frame-gate">
-          <div class="next-banner">
-            <div class="next-poster-frame">
-              <span class="next-poster-text">Ta</span>
-            </div>
-            <div class="next-info">
-              <span class="next-badge">Next screening</span>
-              <h2 class="next-film-title">Tampopo</h2>
-              <p class="next-meta">Thursday 27 March, 19:00 at Folken &middot; Comedy / Drama &middot; Japan 1985</p>
-              <div class="next-cta">
-                <a class="button button-primary" href="https://www.filmklubbmedlem.no/registrer/86" target="_blank" rel="noreferrer">Get tickets</a>
-              </div>
-            </div>
-          </div>
-          <div class="frame-counter">02</div>
-        </div>
-      </div>
-
-      <!-- ═══ FRAME 3: About ═══ -->
+      <!-- ═══ FRAME 2: About ═══ -->
       <div class="film-frame frame--about" id="about">
         <div class="film-frame-gate">
           <div class="frame-content">
@@ -1636,32 +1536,29 @@
         </div>
       </div>
 
-      <!-- ═══ FRAME 13: Contact ═══ -->
-      <div class="film-frame frame--contact frame--dark" id="contact">
+      <!-- ═══ FRAME 13: Poster ═══ -->
+      <div class="film-frame frame--poster frame--dark" id="poster">
         <div class="film-frame-gate">
           <div class="frame-content">
-            <p class="frame-eyebrow">Contact</p>
-            <h2 class="frame-heading">Join the next screening.</h2>
-            <p class="frame-sub">Follow on Facebook for updates. Use the club email for direct questions.</p>
-            <div class="contact-actions">
-              <a class="button button-primary" href="https://www.facebook.com/filmklubbstavanger/" target="_blank" rel="noreferrer">Follow on Facebook</a>
-              <button class="button button-ghost" type="button" id="email-copy-btn">Copy email</button>
-            </div>
-            <div class="contact-grid">
-              <div class="contact-block">
-                <h3>Email</h3>
-                <p id="email-text">filmklubbstavanger [at] gmail.com</p>
-              </div>
-              <div class="contact-block">
-                <h3>Venue</h3>
-                <p>Folken, Stavanger</p>
-              </div>
-              <div class="contact-block">
-                <h3>Archive</h3>
-                <a href="https://magiskelanterner.wordpress.com/" target="_blank" rel="noreferrer">magiskelanterner.wordpress.com</a>
+            <p class="frame-eyebrow">Current Season</p>
+            <h2 class="frame-heading">Spring 2026</h2>
+          </div>
+          <div class="poster-3d-wrapper">
+            <div class="poster-3d-container" id="poster3d">
+              <div class="poster-3d-card">
+                <div class="poster-3d-shadow"></div>
+                <div class="poster-3d-img">
+                  <img
+                    src="../assets/2026%20Spring.png"
+                    alt="Magiske Lanterner 2026 Spring programme poster with the season line-up."
+                    loading="lazy"
+                    fetchpriority="low"
+                    decoding="async"
+                  >
+                </div>
+                <div class="poster-3d-shine"></div>
               </div>
             </div>
-            <p class="fine-print">Membership registration through Filmklubbmedlem. Screening rights via Norsk Filmklubbforbund.</p>
           </div>
           <div class="frame-counter">13</div>
         </div>
@@ -1697,24 +1594,33 @@
       frames.forEach((f) => f.classList.add('is-visible'));
     }
 
-    /* Email copy */
-    const emailBtn = document.getElementById('email-copy-btn');
-    const emailText = document.getElementById('email-text');
-    const email = ['filmklubbstavanger', 'gmail.com'].join('@');
+    /* 3D poster hover effect */
+    const poster3dContainer = document.getElementById('poster3d');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    if (emailBtn) {
-      emailBtn.addEventListener('click', async () => {
-        try {
-          await navigator.clipboard.writeText(email);
-          emailBtn.textContent = 'Copied!';
-          emailText.textContent = email;
-          setTimeout(() => {
-            emailBtn.textContent = 'Copy email';
-            emailText.textContent = 'filmklubbstavanger [at] gmail.com';
-          }, 1800);
-        } catch (e) {
-          window.location.href = 'mailto:' + email;
-        }
+    if (poster3dContainer && !prefersReducedMotion) {
+      const card = poster3dContainer.querySelector('.poster-3d-card');
+      const shine = poster3dContainer.querySelector('.poster-3d-shine');
+
+      poster3dContainer.addEventListener('mousemove', (e) => {
+        const rect = poster3dContainer.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateY = ((x - centerX) / centerX) * 15;
+        const rotateX = ((centerY - y) / centerY) * 15;
+
+        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+
+        const shineX = (x / rect.width) * 100;
+        const shineY = (y / rect.height) * 100;
+        shine.style.background = `radial-gradient(circle at ${shineX}% ${shineY}%, rgba(255,255,255,0.3) 0%, transparent 60%)`;
+      });
+
+      poster3dContainer.addEventListener('mouseleave', () => {
+        card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+        shine.style.background = '';
       });
     }
 
