@@ -12,3 +12,4 @@ playwright/.cache/
 .DS_Store
 .DS_Store
 .DS_Store
+/.playwright-mcp
