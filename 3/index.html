@@ -147,6 +147,14 @@
       color: #111;
     }
 
+    .site-nav .nav-cta {
+      margin-left: auto;
+      background: linear-gradient(135deg, var(--gold), #ffc978);
+      color: var(--night);
+      font-weight: 700;
+      padding: 0.35rem 0.9rem;
+    }
+
     .site-nav .nav-brand {
       display: flex;
       align-items: center;
@@ -460,27 +468,11 @@
       z-index: 1;
     }
 
-    /* Date badge — top-left */
-    .hero-poster-date {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      padding: 0.25rem 0.6rem;
-      border-radius: 6px;
-      background: rgba(7, 18, 31, 0.8);
-      color: var(--gold);
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      z-index: 3;
-    }
-
-    /* "Next screening" eyebrow badge — top-right */
+    /* "Next screening" badge — top */
     .hero-poster-badge {
       position: absolute;
       top: 10px;
-      right: 10px;
+      left: 10px;
       padding: 0.25rem 0.6rem;
       border-radius: 6px;
       background: var(--gold);
@@ -1308,11 +1300,11 @@
   <nav class="site-nav" aria-label="Main navigation">
     <a class="nav-brand" href="#top"><img src="../assets/LogoMLFK.jpg" alt="ML"></a>
     <a href="#about">About</a>
-    <a href="#screenings">Screenings</a>
+    <a href="#screenings">Location</a>
     <a href="#programme">Programme</a>
     <a href="#membership">Membership</a>
     <a href="#community">Community</a>
-    <a href="#poster">Poster</a>
+    <a class="nav-cta" href="https://www.filmklubbmedlem.no/registrer/86" target="_blank" rel="noreferrer">Become a member</a>
   </nav>
 
   <div class="film-strip" id="top">
@@ -1369,16 +1361,12 @@
           <div class="frame-content">
             <div class="hero-text">
               <h1 class="frame-heading">Film gems on a real big screen.</h1>
-              <div class="hero-cta-row">
-                <a class="button button-primary" href="https://www.filmklubbmedlem.no/registrer/86" target="_blank" rel="noreferrer">Become a member</a>
-                <a class="button button-ghost" href="#programme">See the programme</a>
-              </div>
+              <p class="hero-note">A film club in Trondheim screening cult classics, hidden gems and contemporary discoveries — on 35 mm whenever we can.</p>
             </div>
             <div class="hero-poster">
               <div class="hero-poster-img">
                 <img src="../assets/PosterTampopo%20Background.png" alt="Tampopo poster" loading="eager">
-                <span class="hero-poster-date">24 Apr</span>
-                <span class="hero-poster-badge">Next screening</span>
+                <span class="hero-poster-badge">Next screening &middot; Apr 24</span>
               </div>
               <div class="hero-poster-body">
                 <h3>Tampopo</h3>
