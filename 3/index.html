@@ -423,25 +423,22 @@
       position: relative;
       border-radius: 12px;
       overflow: hidden;
-      aspect-ratio: 2 / 3;
       box-shadow:
         0 12px 40px rgba(0, 0, 0, 0.18),
         0 4px 12px rgba(0, 0, 0, 0.1);
       animation: hero-poster-float 6s ease-in-out infinite;
     }
 
-    /* Poster image fills entire card */
+    /* Poster image — flows naturally, no gap */
     .hero-poster-img {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
+      position: relative;
+      line-height: 0;
     }
 
     .hero-poster-img img {
       display: block;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
     }
 
     /* Dark gradient overlay for text readability */
@@ -495,14 +492,12 @@
 
     /* Text overlay at bottom */
     .hero-poster-body {
-      position: relative;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
       z-index: 2;
-      margin-top: auto;
       padding: 0 0.9rem 0.9rem;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      justify-content: flex-end;
     }
 
     .hero-poster-body h3 {
