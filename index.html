@@ -55,13 +55,17 @@
       --paper-strong: #fcf8f2;
       --night: #07121f;
 
-      /* Geometry — proportioned to reference photo */
-      --strip-max: 960px;
-      --sprocket-track: 62px;
-      --sprocket-w: 34px;
-      --sprocket-h: 24px;
-      --sprocket-r: 5px;
-      --sprocket-gap: 14px;
+      /* Geometry — proportioned to real 35mm film (scale: 30px/mm)
+         Total film width 35mm = 1050px
+         Image area 24mm × 36mm = 720px × 1080px (2:3 portrait)
+         Sprocket hole 2.79mm × 1.85mm, pitch 4.75mm
+         8 holes per frame */
+      --strip-max: 720px;
+      --sprocket-track: 165px;
+      --sprocket-w: 84px;
+      --sprocket-h: 56px;
+      --sprocket-r: 15px;
+      --sprocket-gap: 87px;
       /* Gap between holes — tighter like real film */
       --frame-border: 14px;
       --frame-radius: 2px;
@@ -265,10 +269,10 @@
           transparent calc(var(--sprocket-gap) * 2 + var(--sprocket-h)));
       border-radius: 1px;
       /* SVG mask to give rounded corners to each hole */
-      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='38'%3E%3Crect width='34' height='38' fill='black'/%3E%3Crect x='0' y='14' width='34' height='24' rx='5' fill='white'/%3E%3C/svg%3E");
+      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='143'%3E%3Crect width='84' height='143' fill='black'/%3E%3Crect x='0' y='87' width='84' height='56' rx='15' fill='white'/%3E%3C/svg%3E");
       -webkit-mask-size: var(--sprocket-w) calc(var(--sprocket-gap) + var(--sprocket-h));
       -webkit-mask-repeat: repeat-y;
-      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='38'%3E%3Crect width='34' height='38' fill='black'/%3E%3Crect x='0' y='14' width='34' height='24' rx='5' fill='white'/%3E%3C/svg%3E");
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='143'%3E%3Crect width='84' height='143' fill='black'/%3E%3Crect x='0' y='87' width='84' height='56' rx='15' fill='white'/%3E%3C/svg%3E");
       mask-size: var(--sprocket-w) calc(var(--sprocket-gap) + var(--sprocket-h));
       mask-repeat: repeat-y;
     }
@@ -355,7 +359,7 @@
     /* The frame gate — the visible image area */
     .film-frame-gate {
       position: relative;
-      aspect-ratio: 16 / 9;
+      aspect-ratio: 2 / 3;
       overflow: hidden;
       background: var(--paper);
       border: 1px solid rgba(0, 0, 0, 0.08);
@@ -752,6 +756,47 @@
     }
 
     /* ── About frame ── */
+    .frame--about .film-frame-gate {
+      background:
+        radial-gradient(circle at top right, rgba(216, 145, 50, 0.08), transparent 40%),
+        var(--paper);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.7rem;
+      margin-top: 1.2rem;
+    }
+
+    .about-card {
+      padding: 0.9rem;
+      border-radius: 12px;
+      border: 1px solid rgba(17, 32, 50, 0.08);
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    .about-card h3 {
+      font-size: 0.9rem;
+      margin: 0.4rem 0 0;
+      color: var(--ink);
+    }
+
+    .about-card p {
+      margin: 0.35rem 0 0;
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+
+    .about-card-kicker {
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--ruby);
+      font-weight: 500;
+    }
+
     /* ── Screenings / Venue ── */
     .frame--venue .film-frame-gate {
       background:
@@ -1238,21 +1283,23 @@
        ══════════════════════════════════════ */
     @media (max-width: 900px) {
       :root {
-        --sprocket-track: 42px;
-        --sprocket-w: 24px;
-        --sprocket-h: 17px;
-        --sprocket-gap: 12px;
+        --sprocket-track: 66px;
+        --sprocket-w: 34px;
+        --sprocket-h: 22px;
+        --sprocket-r: 6px;
+        --sprocket-gap: 35px;
       }
 
       .film-edge::before {
-        -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='29'%3E%3Crect width='24' height='29' fill='black'/%3E%3Crect x='0' y='12' width='24' height='17' rx='4' fill='white'/%3E%3C/svg%3E");
+        -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='57'%3E%3Crect width='34' height='57' fill='black'/%3E%3Crect x='0' y='35' width='34' height='22' rx='6' fill='white'/%3E%3C/svg%3E");
         -webkit-mask-size: var(--sprocket-w) calc(var(--sprocket-gap) + var(--sprocket-h));
-        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='29'%3E%3Crect width='24' height='29' fill='black'/%3E%3Crect x='0' y='12' width='24' height='17' rx='4' fill='white'/%3E%3C/svg%3E");
+        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='57'%3E%3Crect width='34' height='57' fill='black'/%3E%3Crect x='0' y='35' width='34' height='22' rx='6' fill='white'/%3E%3C/svg%3E");
         mask-size: var(--sprocket-w) calc(var(--sprocket-gap) + var(--sprocket-h));
       }
 
 
-      .venue-grid {
+      .venue-grid,
+      .about-grid {
         grid-template-columns: 1fr;
       }
 
@@ -1318,16 +1365,17 @@
 
     @media (max-width: 520px) {
       :root {
-        --sprocket-track: 28px;
-        --sprocket-w: 16px;
-        --sprocket-h: 12px;
-        --sprocket-gap: 10px;
+        --sprocket-track: 42px;
+        --sprocket-w: 21px;
+        --sprocket-h: 14px;
+        --sprocket-r: 4px;
+        --sprocket-gap: 22px;
       }
 
       .film-edge::before {
-        -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='22'%3E%3Crect width='16' height='22' fill='black'/%3E%3Crect x='0' y='10' width='16' height='12' rx='3' fill='white'/%3E%3C/svg%3E");
+        -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='21' height='36'%3E%3Crect width='21' height='36' fill='black'/%3E%3Crect x='0' y='22' width='21' height='14' rx='4' fill='white'/%3E%3C/svg%3E");
         -webkit-mask-size: var(--sprocket-w) calc(var(--sprocket-gap) + var(--sprocket-h));
-        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='22'%3E%3Crect width='16' height='22' fill='black'/%3E%3Crect x='0' y='10' width='16' height='12' rx='3' fill='white'/%3E%3C/svg%3E");
+        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='21' height='36'%3E%3Crect width='21' height='36' fill='black'/%3E%3Crect x='0' y='22' width='21' height='14' rx='4' fill='white'/%3E%3C/svg%3E");
         mask-size: var(--sprocket-w) calc(var(--sprocket-gap) + var(--sprocket-h));
       }
 
@@ -1443,6 +1491,7 @@
   <!-- Sticky navigation — always visible from page load -->
   <nav class="site-nav" aria-label="Main navigation">
     <a class="nav-brand" href="#top"><img src="./assets/LogoMLFK.jpg" alt="ML"></a>
+    <a href="#about">About</a>
     <a href="#screenings">Location</a>
     <a href="#programme">Programme</a>
     <a class="nav-cta" href="https://www.filmklubbmedlem.no/registrer/86" target="_blank" rel="noreferrer">Become a
@@ -1744,7 +1793,41 @@
         </div>
       </div>
 
-      <!-- ═══ FRAME 9: Membership ═══ -->
+      <!-- ═══ FRAME 9: About ═══ -->
+      <div class="film-frame frame--about" id="about">
+        <div class="film-frame-gate">
+          <div class="frame-content">
+            <p class="frame-eyebrow" style="color: var(--ruby);">About the club</p>
+            <h2 class="frame-heading">Named after the magic lantern.</h2>
+            <p class="frame-sub">
+              The club takes its name from the early projection device that made moving images feel uncanny, shared and
+              alive.<sup><a href="https://www.youtube.com/watch?v=w1XkqtzLfKo" target="_blank" rel="noreferrer" style="color: var(--ruby); text-decoration: none; font-size: 0.7em; margin-left: 1px;" title="Watch: What is a magic lantern? (YouTube)">1</a></sup>
+            </p>
+            <div class="about-grid">
+              <div class="about-card">
+                <p class="about-card-kicker">Programming</p>
+                <h3>Classics, discoveries, newer film art.</h3>
+                <p>The club mixes beloved landmarks with lesser-known works and contemporary films beyond a standard
+                  cinema schedule.</p>
+              </div>
+              <div class="about-card">
+                <p class="about-card-kicker">Atmosphere</p>
+                <h3>A social screening night.</h3>
+                <p>Free popcorn, open bar, and evenings designed to feel like a meeting point for film lovers.</p>
+              </div>
+              <div class="about-card">
+                <p class="about-card-kicker">Audience</p>
+                <h3>International, local, curious.</h3>
+                <p>NFK has highlighted the club's warm, international community. A place for newcomers and regulars
+                  alike.</p>
+              </div>
+            </div>
+          </div>
+          <div class="frame-counter">09</div>
+        </div>
+      </div>
+
+      <!-- ═══ FRAME 10: Membership ═══ -->
       <div class="film-frame frame--membership" id="membership">
         <div class="film-frame-gate">
           <div class="frame-content">
@@ -1782,7 +1865,7 @@
               </div>
             </div>
           </div>
-          <div class="frame-counter">09</div>
+          <div class="frame-counter">10</div>
         </div>
       </div>
 
