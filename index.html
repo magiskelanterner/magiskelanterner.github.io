@@ -55,18 +55,16 @@
       --paper-strong: #fcf8f2;
       --night: #07121f;
 
-      /* Geometry — proportioned to real 35mm film (scale: 30px/mm)
-         Total film width 35mm = 1050px
-         Image area 24mm × 36mm = 720px × 1080px (2:3 portrait)
-         Sprocket hole 2.79mm × 1.85mm, pitch 4.75mm
-         8 holes per frame */
-      --strip-max: 720px;
-      --sprocket-track: 165px;
-      --sprocket-w: 84px;
-      --sprocket-h: 56px;
-      --sprocket-r: 15px;
-      --sprocket-gap: 87px;
-      /* Gap between holes — tighter like real film */
+      /* Geometry — proportioned to real 35mm film (from dimensions diagram)
+         Total: 35mm, image area: 25.375mm (72.5%), each track: 4.8125mm (13.75%)
+         Perf (KS): 2.794mm × 1.981mm, pitch: 4.7498mm, gap: 2.769mm
+         Perf is 58% of track width, 41.7% of pitch height */
+      --sprocket-track: calc((100vw - 8px) * 0.1375);
+      --strip-max: calc(100vw - 8px - var(--sprocket-track) * 2);
+      --sprocket-w: calc((100vw - 8px) * 0.0798);
+      --sprocket-h: calc((100vw - 8px) * 0.0566);
+      --sprocket-r: calc((100vw - 8px) * 0.008);
+      --sprocket-gap: calc((100vw - 8px) * 0.0791);
       --frame-border: 14px;
       --frame-radius: 2px;
 
@@ -156,7 +154,7 @@
       justify-content: center;
       gap: clamp(0.5rem, 2vw, 1.8rem);
       padding: 0.45rem 1.4rem;
-      background: rgba(5, 5, 5, 0.94);
+      background: rgba(5, 5, 5, 0.72);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border-radius: 999px;
@@ -164,7 +162,7 @@
     }
 
     .site-nav a {
-      color: rgba(245, 239, 228, 0.6);
+      color: rgba(245, 239, 228, 0.92);
       text-decoration: none;
       font-size: 0.7rem;
       font-weight: 500;
@@ -269,10 +267,10 @@
           transparent calc(var(--sprocket-gap) * 2 + var(--sprocket-h)));
       border-radius: 1px;
       /* SVG mask to give rounded corners to each hole */
-      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='143'%3E%3Crect width='84' height='143' fill='black'/%3E%3Crect x='0' y='87' width='84' height='56' rx='15' fill='white'/%3E%3C/svg%3E");
+      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect width='100' height='100' fill='black'/%3E%3Crect x='0' y='58' width='100' height='42' rx='14' fill='white'/%3E%3C/svg%3E");
       -webkit-mask-size: var(--sprocket-w) calc(var(--sprocket-gap) + var(--sprocket-h));
       -webkit-mask-repeat: repeat-y;
-      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='143'%3E%3Crect width='84' height='143' fill='black'/%3E%3Crect x='0' y='87' width='84' height='56' rx='15' fill='white'/%3E%3C/svg%3E");
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect width='100' height='100' fill='black'/%3E%3Crect x='0' y='58' width='100' height='42' rx='14' fill='white'/%3E%3C/svg%3E");
       mask-size: var(--sprocket-w) calc(var(--sprocket-gap) + var(--sprocket-h));
       mask-repeat: repeat-y;
     }
@@ -359,7 +357,6 @@
     /* The frame gate — the visible image area */
     .film-frame-gate {
       position: relative;
-      aspect-ratio: 2 / 3;
       overflow: hidden;
       background: var(--paper);
       border: 1px solid rgba(0, 0, 0, 0.08);
@@ -617,7 +614,6 @@
       .hero-poster {
         flex: 0 0 auto;
         max-width: 220px;
-        order: -1;
       }
     }
 
@@ -905,8 +901,8 @@
       position: relative;
       border-radius: 10px;
       overflow: hidden;
-      min-height: 0;
-      height: 100%;
+      aspect-ratio: 2 / 3;
+      min-height: 360px;
       display: flex;
       flex-direction: column;
     }
@@ -1282,22 +1278,6 @@
        RESPONSIVE
        ══════════════════════════════════════ */
     @media (max-width: 900px) {
-      :root {
-        --sprocket-track: 66px;
-        --sprocket-w: 34px;
-        --sprocket-h: 22px;
-        --sprocket-r: 6px;
-        --sprocket-gap: 35px;
-      }
-
-      .film-edge::before {
-        -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='57'%3E%3Crect width='34' height='57' fill='black'/%3E%3Crect x='0' y='35' width='34' height='22' rx='6' fill='white'/%3E%3C/svg%3E");
-        -webkit-mask-size: var(--sprocket-w) calc(var(--sprocket-gap) + var(--sprocket-h));
-        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='57'%3E%3Crect width='34' height='57' fill='black'/%3E%3Crect x='0' y='35' width='34' height='22' rx='6' fill='white'/%3E%3C/svg%3E");
-        mask-size: var(--sprocket-w) calc(var(--sprocket-gap) + var(--sprocket-h));
-      }
-
-
       .venue-grid,
       .about-grid {
         grid-template-columns: 1fr;
@@ -1364,21 +1344,6 @@
     }
 
     @media (max-width: 520px) {
-      :root {
-        --sprocket-track: 42px;
-        --sprocket-w: 21px;
-        --sprocket-h: 14px;
-        --sprocket-r: 4px;
-        --sprocket-gap: 22px;
-      }
-
-      .film-edge::before {
-        -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='21' height='36'%3E%3Crect width='21' height='36' fill='black'/%3E%3Crect x='0' y='22' width='21' height='14' rx='4' fill='white'/%3E%3C/svg%3E");
-        -webkit-mask-size: var(--sprocket-w) calc(var(--sprocket-gap) + var(--sprocket-h));
-        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='21' height='36'%3E%3Crect width='21' height='36' fill='black'/%3E%3Crect x='0' y='22' width='21' height='14' rx='4' fill='white'/%3E%3C/svg%3E");
-        mask-size: var(--sprocket-w) calc(var(--sprocket-gap) + var(--sprocket-h));
-      }
-
       .brand small {
         display: none;
       }
