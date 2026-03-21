@@ -8,20 +8,21 @@
   <meta name="description"
     content="Magiske Lanterner is Stavanger's film club for curated screenings at Folken: classics, contemporary film art, free popcorn, and a welcoming film community.">
   <meta name="theme-color" content="#0a0a08">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://magiskelanterner.github.io/">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Magiske Lanterner | Stavanger Film Club">
   <meta property="og:description"
     content="Curated screenings at Folken: classics, discoveries, contemporary film art, free popcorn, and a welcoming film community in Stavanger.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://magiskelanterner.github.io">
+  <meta property="og:url" content="https://magiskelanterner.github.io/">
   <meta property="og:image" content="https://magiskelanterner.github.io/assets/2026%20Spring.png">
   <meta property="og:locale" content="en_GB">
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- Favicon -->
-  <link rel="icon"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%231a1209'/><text x='50' y='68' text-anchor='middle' font-family='serif' font-size='48' font-weight='bold' fill='%23f0b55a'>ML</text></svg>">
+  <link rel="icon" type="image/jpeg" href="./assets/LogoMLFK.jpg">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -751,86 +752,11 @@
     }
 
     /* ── About frame ── */
-    .frame--about .film-frame-gate {
-      background:
-        radial-gradient(circle at top right, rgba(216, 145, 50, 0.08), transparent 40%),
-        var(--paper);
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.7rem;
-      margin-top: 1.2rem;
-    }
-
-    .about-card {
-      padding: 0.9rem;
-      border-radius: 12px;
-      border: 1px solid rgba(17, 32, 50, 0.08);
-      background: rgba(255, 255, 255, 0.6);
-    }
-
-    .about-card h3 {
-      font-size: 0.9rem;
-      margin: 0.4rem 0 0;
-      color: var(--ink);
-    }
-
-    .about-card p {
-      margin: 0.35rem 0 0;
-      font-size: 0.8rem;
-      color: var(--ink-soft);
-      line-height: 1.5;
-    }
-
-    .about-card-kicker {
-      font-size: 0.62rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--ruby);
-      font-weight: 500;
-    }
-
-    /* ── Bilingual frame ── */
-    .frame--bilingual .film-frame-gate {
-      background: linear-gradient(135deg, #0a1625 0%, #10233c 100%);
-    }
-
-    .bilingual-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-
-    .bilingual-card {
-      padding: 1rem;
-      border-radius: 12px;
-      border: 1px solid rgba(245, 239, 228, 0.1);
-      background: rgba(245, 239, 228, 0.04);
-    }
-
-    .bilingual-label {
-      font-size: 0.62rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--gold);
-      font-weight: 500;
-    }
-
-    .bilingual-card p {
-      margin: 0.5rem 0 0;
-      font-size: clamp(0.85rem, 1.3vw, 1rem);
-      color: rgba(245, 239, 228, 0.85);
-      line-height: 1.6;
-    }
-
     /* ── Screenings / Venue ── */
     .frame--venue .film-frame-gate {
       background:
         linear-gradient(180deg, rgba(7, 18, 31, 0.82), rgba(7, 18, 31, 0.92)),
-        url('../assets/folken1930.jpg') center / cover no-repeat;
+        url('./assets/folken1930.jpg') center / cover no-repeat;
     }
 
     .venue-grid {
@@ -1038,9 +964,19 @@
       gap: 0.25rem;
     }
 
-    .frame--programme .film-pair {
+    .frame--programme .film-pair,
+    .frame--programme .film-trio {
       flex: 1;
       align-items: stretch;
+      min-height: 0;
+    }
+
+    .film-trio {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr;
+      gap: 0.8rem;
+      flex: 1;
       min-height: 0;
     }
 
@@ -1315,15 +1251,13 @@
         mask-size: var(--sprocket-w) calc(var(--sprocket-gap) + var(--sprocket-h));
       }
 
-      .about-grid {
-        grid-template-columns: 1fr;
-      }
 
       .venue-grid {
         grid-template-columns: 1fr;
       }
 
-      .film-pair {
+      .film-pair,
+      .film-trio {
         grid-template-columns: 1fr;
       }
 
@@ -1339,9 +1273,6 @@
         max-width: 100%;
       }
 
-      .bilingual-grid {
-        grid-template-columns: 1fr;
-      }
 
       .film-frame-gate {
         aspect-ratio: auto;
@@ -1407,12 +1338,12 @@
 
     @media (max-width: 600px) {
       .site-nav {
-        gap: 0.35rem;
-        padding: 0.35rem 0.5rem;
+        gap: 0.4rem;
+        padding: 0.35rem 0.6rem;
       }
 
       .site-nav a {
-        font-size: 0.58rem;
+        font-size: 0.6rem;
         letter-spacing: 0.06em;
       }
 
@@ -1422,8 +1353,13 @@
       }
 
       .site-nav .nav-brand img {
-        width: 20px;
-        height: 20px;
+        width: 24px;
+        height: 24px;
+      }
+
+      .site-nav .nav-cta {
+        font-size: 0.55rem;
+        padding: 0.3rem 0.55rem;
       }
     }
 
@@ -1459,16 +1395,56 @@
       }
     }
   </style>
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Magiske Lanterner",
+    "alternateName": "Stavanger Magiske Lanterner Filmklubb",
+    "url": "https://magiskelanterner.github.io/",
+    "description": "Stavanger's film club for curated screenings at Folken: classics, contemporary film art, free popcorn, and a welcoming film community.",
+    "logo": "https://magiskelanterner.github.io/assets/LogoMLFK.jpg"
+  }
+  </script>
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Graduation — Magiske Lanterner Screening",
+    "startDate": "2026-04-08",
+    "location": {"@type": "Place", "name": "Folken", "address": {"@type": "PostalAddress", "addressLocality": "Stavanger", "addressCountry": "NO"}},
+    "organizer": {"@type": "Organization", "name": "Magiske Lanterner"},
+    "image": "https://magiskelanterner.github.io/assets/2026SpringSeason/graduation.jpg"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Kneecap — Magiske Lanterner Screening",
+    "startDate": "2026-04-22",
+    "location": {"@type": "Place", "name": "Folken", "address": {"@type": "PostalAddress", "addressLocality": "Stavanger", "addressCountry": "NO"}},
+    "organizer": {"@type": "Organization", "name": "Magiske Lanterner"},
+    "image": "https://magiskelanterner.github.io/assets/2026SpringSeason/kneecap.jpg"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Tampopo — Magiske Lanterner Screening",
+    "startDate": "2026-04-29",
+    "location": {"@type": "Place", "name": "Folken", "address": {"@type": "PostalAddress", "addressLocality": "Stavanger", "addressCountry": "NO"}},
+    "organizer": {"@type": "Organization", "name": "Magiske Lanterner"},
+    "image": "https://magiskelanterner.github.io/assets/2026SpringSeason/tampopo.jpg"
+  }]
+  </script>
 </head>
 
 <body>
 
   <!-- Sticky navigation — always visible from page load -->
   <nav class="site-nav" aria-label="Main navigation">
-    <a class="nav-brand" href="#top"><img src="../assets/LogoMLFK.jpg" alt="ML"></a>
+    <a class="nav-brand" href="#top"><img src="./assets/LogoMLFK.jpg" alt="ML"></a>
     <a href="#screenings">Location</a>
     <a href="#programme">Programme</a>
-    <a href="#about">About</a>
     <a class="nav-cta" href="https://www.filmklubbmedlem.no/registrer/86" target="_blank" rel="noreferrer">Become a
       member</a>
   </nav>
@@ -1494,9 +1470,6 @@
       <span class="edge-marking" style="top: 5700px;">&#9661; 13A</span>
       <span class="edge-marking" style="top: 6200px;">14</span>
       <span class="edge-marking" style="top: 6700px;">&#9661; 14A</span>
-      <span class="edge-marking" style="top: 7200px;">15</span>
-      <span class="edge-marking" style="top: 7700px;">&#9661; 15A</span>
-      <span class="edge-marking" style="top: 8200px;">16</span>
     </div>
     <div class="edge-text edge-text--right">
       <span class="edge-marking" style="top: 100px;">Stavanger Magiske Lanterner KODAK 5017 EPR</span>
@@ -1511,8 +1484,6 @@
       <span class="edge-marking" style="top: 5800px;">12</span>
       <span class="edge-marking" style="top: 6400px;">Stavanger Magiske Lanterner KODAK 5017 EPR</span>
       <span class="edge-marking" style="top: 7000px;">13</span>
-      <span class="edge-marking" style="top: 7600px;">Stavanger Magiske Lanterner KODAK 5017 EPR</span>
-      <span class="edge-marking" style="top: 8200px;">14</span>
     </div>
 
     <!-- Film content between the sprocket tracks -->
@@ -1532,8 +1503,8 @@
             </div>
             <div class="hero-poster">
               <div class="hero-poster-img">
-                <img src="../assets/PosterTampopo%20Background.png" alt="Tampopo poster" loading="eager">
-                <span class="hero-poster-badge">Next screening &middot; Apr 29</span>
+                <img src="./assets/PosterTampopoBackground.jpg" alt="Tampopo poster" loading="eager">
+                <span class="hero-poster-badge">Next screening &middot; 29 Apr</span>
               </div>
               <div class="hero-poster-body">
                 <h3>Tampopo</h3>
@@ -1547,78 +1518,20 @@
         </div>
       </div>
 
-      <!-- ═══ FRAME 2: About ═══ -->
-      <div class="film-frame frame--about" id="about">
-        <div class="film-frame-gate">
-          <div class="frame-content">
-            <p class="frame-eyebrow" style="color: var(--ruby);">About the club</p>
-            <h2 class="frame-heading">Named after the magic lantern.</h2>
-            <p class="frame-sub">
-              The club takes its name from the early projection device that made moving images feel uncanny, shared and
-              alive.
-            </p>
-            <div class="about-grid">
-              <div class="about-card">
-                <p class="about-card-kicker">Programming</p>
-                <h3>Classics, discoveries, newer film art.</h3>
-                <p>The club mixes beloved landmarks with lesser-known works and contemporary films beyond a standard
-                  cinema schedule.</p>
-              </div>
-              <div class="about-card">
-                <p class="about-card-kicker">Atmosphere</p>
-                <h3>A social screening night.</h3>
-                <p>Free popcorn, open bar, and evenings designed to feel like a meeting point for film lovers.</p>
-              </div>
-              <div class="about-card">
-                <p class="about-card-kicker">Audience</p>
-                <h3>International, local, curious.</h3>
-                <p>NFK has highlighted the club's warm, international community. A place for newcomers and regulars
-                  alike.</p>
-              </div>
-            </div>
-          </div>
-          <div class="frame-counter">03</div>
-        </div>
-      </div>
-
-      <!-- ═══ FRAME 4: Bilingual ═══ -->
-      <div class="film-frame frame--bilingual frame--dark">
-        <div class="film-frame-gate">
-          <div class="frame-content">
-            <p class="frame-eyebrow">In two languages</p>
-            <h2 class="frame-heading">What we do.</h2>
-            <div class="bilingual-grid">
-              <div class="bilingual-card">
-                <p class="bilingual-label">NO</p>
-                <p lang="nb">Vi viser filmperler som underholder, engasjerer og inspirerer, og bygger et sosialt
-                  m&oslash;tested for filminteresserte i Stavanger.</p>
-              </div>
-              <div class="bilingual-card">
-                <p class="bilingual-label">EN</p>
-                <p>Expect carefully curated films that reward curiosity, plus a welcoming room for people who actually
-                  want to talk about what they watched.</p>
-              </div>
-            </div>
-          </div>
-          <div class="frame-counter">04</div>
-        </div>
-      </div>
-
-      <!-- ═══ FRAME 5: Venue ═══ -->
+      <!-- ═══ FRAME 2: Screenings ═══ -->
       <div class="film-frame frame--venue frame--dark" id="screenings">
         <div class="film-frame-gate">
           <div class="frame-content">
-            <p class="frame-eyebrow">Screenings</p>
-            <h2 class="frame-heading">At Folken's historic main hall.</h2>
+            <p class="frame-eyebrow">Our program</p>
+            <h2 class="frame-heading">Social screenings at Folken's historic main hall.</h2>
             <div class="venue-grid">
               <div class="venue-info">
                 <h3>Big-screen cinema with club-night warmth.</h3>
                 <ul class="venue-list">
-                  <li>Main hall at Folken in central Stavanger.</li>
-                  <li>Projection for digital, 35mm and 16mm.</li>
-                  <li>A screen roughly 7 by 4 metres.</li>
+                  <li>Our club mixes beloved classics with lesser-known works and contemporary films beyond a standard cinema schedule.</li>
                   <li>Free popcorn at every screening.</li>
-                  <li>Open bar, BYO snacks welcome.</li>
+                  <li>The bar at Folken offers a selection of beer, wine, coffee and soda.</li>
+                  <li>BYO snacks if desired!</li>
                 </ul>
               </div>
               <div class="venue-stats">
@@ -1640,11 +1553,11 @@
               </div>
             </div>
           </div>
-          <div class="frame-counter">05</div>
+          <div class="frame-counter">02</div>
         </div>
       </div>
 
-      <!-- ═══ FRAME 6: Programme intro ═══ -->
+      <!-- ═══ FRAME 3: Programme intro ═══ -->
       <div class="film-frame frame--programme" id="programme">
         <div class="film-frame-gate">
           <div class="frame-content" style="justify-content: center; align-items: center; text-align: center;">
@@ -1655,14 +1568,14 @@
             <div style="margin-top: 1.2rem; display: flex; flex-wrap: wrap; gap: 0.7rem; justify-content: center;">
               <a class="button"
                 style="background: var(--night); color: var(--paper-strong); font-size: 0.82rem; padding: 0.55rem 0.9rem;"
-                href="../assets/2026%20Spring.png" target="_blank" rel="noreferrer">View full season poster</a>
+                href="./assets/2026%20Spring.png" target="_blank" rel="noreferrer">View full season poster</a>
             </div>
           </div>
-          <div class="frame-counter">06</div>
+          <div class="frame-counter">03</div>
         </div>
       </div>
 
-      <!-- ═══ FRAME 7: Sin City + Totem ═══ -->
+      <!-- ═══ FRAME 4: January — Sin City ═══ -->
       <div class="film-frame frame--programme">
         <div class="film-frame-gate">
           <div class="frame-content">
@@ -1670,36 +1583,22 @@
             <div class="film-pair">
               <div class="filmcard">
                 <div class="filmcard-poster">
-                  <img src="https://image.tmdb.org/t/p/w500/yRJ4QGe7d43XiGMSP0rujgp1yra.jpg" alt="Sin City poster"
-                    loading="lazy">
-                  <span class="filmcard-date">16 Jan</span>
+                  <img src="./assets/2026SpringSeason/sin-city.jpg" alt="Sin City poster" loading="lazy">
+                  <span class="filmcard-date">21 Jan</span>
                 </div>
                 <div class="filmcard-body">
                   <h3>Sin City</h3>
                   <p class="filmcard-meta">Rodriguez &amp; Miller &middot; 2005 &middot; USA</p>
                 </div>
-                <p class="filmcard-note">A hyper-stylised neo-noir that turned a graphic novel into a new kind of
-                  cinema.</p>
-              </div>
-              <div class="filmcard">
-                <div class="filmcard-poster">
-                  <img src="https://image.tmdb.org/t/p/w500/gBIQrOpneWqOYA1ZBIvaClm8zuH.jpg" alt="Totem poster"
-                    loading="lazy">
-                  <span class="filmcard-date">30 Jan</span>
-                </div>
-                <div class="filmcard-body">
-                  <h3>Totem</h3>
-                  <p class="filmcard-meta">Lila Avil&eacute;s &middot; 2023 &middot; Mexico</p>
-                </div>
-                <p class="filmcard-note">A quietly devastating family portrait seen through a child's eyes.</p>
+                <p class="filmcard-note">A hyper-stylised neo-noir that turned a graphic novel into a new kind of cinema.</p>
               </div>
             </div>
           </div>
-          <div class="frame-counter">07</div>
+          <div class="frame-counter">04</div>
         </div>
       </div>
 
-      <!-- ═══ FRAME 8: Fallen Leaves + Memoir ═══ -->
+      <!-- ═══ FRAME 5: February — Totem + Fallen Leaves ═══ -->
       <div class="film-frame frame--programme">
         <div class="film-frame-gate">
           <div class="frame-content">
@@ -1707,9 +1606,19 @@
             <div class="film-pair">
               <div class="filmcard">
                 <div class="filmcard-poster">
-                  <img src="https://image.tmdb.org/t/p/w500/grSe4cvWEepaUas8m9AaJoM6s2P.jpg" alt="Fallen Leaves poster"
-                    loading="lazy">
-                  <span class="filmcard-date">13 Feb</span>
+                  <img src="./assets/2026SpringSeason/totem.jpg" alt="Totem poster" loading="lazy">
+                  <span class="filmcard-date">04 Feb</span>
+                </div>
+                <div class="filmcard-body">
+                  <h3>Totem</h3>
+                  <p class="filmcard-meta">Lila Avil&eacute;s &middot; 2023 &middot; Mexico</p>
+                </div>
+                <p class="filmcard-note">A quietly devastating family portrait seen through a child's eyes.</p>
+              </div>
+              <div class="filmcard">
+                <div class="filmcard-poster">
+                  <img src="./assets/2026SpringSeason/fallen-leaves.jpg" alt="Fallen Leaves poster" loading="lazy">
+                  <span class="filmcard-date">18 Feb</span>
                 </div>
                 <div class="filmcard-body">
                   <h3>Fallen Leaves</h3>
@@ -1717,25 +1626,13 @@
                 </div>
                 <p class="filmcard-note">Deadpan Helsinki romance where two lonely workers try to find each other.</p>
               </div>
-              <div class="filmcard">
-                <div class="filmcard-poster">
-                  <img src="https://image.tmdb.org/t/p/w500/w012qOZZMPXVfIvBPix9hHuBeVu.jpg"
-                    alt="Memoir of a Snail poster" loading="lazy">
-                  <span class="filmcard-date">27 Feb</span>
-                </div>
-                <div class="filmcard-body">
-                  <h3>Memoir of a Snail</h3>
-                  <p class="filmcard-meta">Adam Elliot &middot; 2024 &middot; Australia</p>
-                </div>
-                <p class="filmcard-note">Animated tale of hoarding, heartbreak and finding your people.</p>
-              </div>
             </div>
           </div>
-          <div class="frame-counter">08</div>
+          <div class="frame-counter">05</div>
         </div>
       </div>
 
-      <!-- ═══ FRAME 9: The Hunt + Graduation ═══ -->
+      <!-- ═══ FRAME 6: March — Memoir of a Snail + The Hunt ═══ -->
       <div class="film-frame frame--programme">
         <div class="film-frame-gate">
           <div class="frame-content">
@@ -1743,22 +1640,42 @@
             <div class="film-pair">
               <div class="filmcard">
                 <div class="filmcard-poster">
-                  <img src="https://image.tmdb.org/t/p/w500/vsQVwWJBzcyvH2e4vuaj5ZkZw2x.jpg" alt="The Hunt poster"
-                    loading="lazy">
-                  <span class="filmcard-date">13 Mar</span>
+                  <img src="./assets/2026SpringSeason/memoir-of-a-snail.jpg" alt="Memoir of a Snail poster" loading="lazy">
+                  <span class="filmcard-date">04 Mar</span>
+                </div>
+                <div class="filmcard-body">
+                  <h3>Memoir of a Snail</h3>
+                  <p class="filmcard-meta">Adam Elliot &middot; 2024 &middot; Australia</p>
+                </div>
+                <p class="filmcard-note">Animated tale of hoarding, heartbreak and finding your people.</p>
+              </div>
+              <div class="filmcard">
+                <div class="filmcard-poster">
+                  <img src="./assets/2026SpringSeason/the-hunt.jpg" alt="The Hunt poster" loading="lazy">
+                  <span class="filmcard-date">18 Mar</span>
                 </div>
                 <div class="filmcard-body">
                   <h3>The Hunt</h3>
                   <p class="filmcard-meta">Thomas Vinterberg &middot; 2012 &middot; Denmark</p>
                 </div>
-                <p class="filmcard-note">Mads Mikkelsen destroyed by a false accusation. Nerve-shredding mob mentality.
-                </p>
+                <p class="filmcard-note">Mads Mikkelsen destroyed by a false accusation. Nerve-shredding mob mentality.</p>
               </div>
+            </div>
+          </div>
+          <div class="frame-counter">06</div>
+        </div>
+      </div>
+
+      <!-- ═══ FRAME 7: April — Graduation + Kneecap + Tampopo ═══ -->
+      <div class="film-frame frame--programme">
+        <div class="film-frame-gate">
+          <div class="frame-content">
+            <p class="frame-eyebrow" style="color: var(--ruby);">April</p>
+            <div class="film-trio">
               <div class="filmcard">
                 <div class="filmcard-poster">
-                  <img src="https://image.tmdb.org/t/p/w500/FLocEtNx189qFvqRpaYArNK8w2.jpg" alt="Graduation poster"
-                    loading="lazy">
-                  <span class="filmcard-date">27 Mar</span>
+                  <img src="./assets/2026SpringSeason/graduation.jpg" alt="Graduation poster" loading="lazy">
+                  <span class="filmcard-date">08 Apr</span>
                 </div>
                 <div class="filmcard-body">
                   <h3>Graduation</h3>
@@ -1766,50 +1683,35 @@
                 </div>
                 <p class="filmcard-note">A father's moral compromise spirals in this slow-burn thriller.</p>
               </div>
-            </div>
-          </div>
-          <div class="frame-counter">09</div>
-        </div>
-      </div>
-
-      <!-- ═══ FRAME 10: Kneecap + Tampopo ═══ -->
-      <div class="film-frame frame--programme">
-        <div class="film-frame-gate">
-          <div class="frame-content">
-            <p class="frame-eyebrow" style="color: var(--ruby);">April</p>
-            <div class="film-pair">
               <div class="filmcard">
                 <div class="filmcard-poster">
-                  <img src="https://image.tmdb.org/t/p/w500/1nBMkpMRrnZJbEwMHPHsIntWoKe.jpg" alt="Kneecap poster"
-                    loading="lazy">
-                  <span class="filmcard-date">10 Apr</span>
+                  <img src="./assets/2026SpringSeason/kneecap.jpg" alt="Kneecap poster" loading="lazy">
+                  <span class="filmcard-date">22 Apr</span>
                 </div>
                 <div class="filmcard-body">
                   <h3>Kneecap</h3>
                   <p class="filmcard-meta">Rich Peppiatt &middot; 2024 &middot; Ireland / UK</p>
                 </div>
-                <p class="filmcard-note">Belfast hip-hop trio play themselves in a wild, politically charged film about
-                  language and identity.</p>
+                <p class="filmcard-note">Belfast hip-hop trio play themselves in a wild, politically charged film about language and identity.</p>
               </div>
               <div class="filmcard">
                 <div class="filmcard-poster">
-                  <img src="https://image.tmdb.org/t/p/w500/6hmRzCfd3daOVXWBHNavnbS4ywW.jpg" alt="Tampopo poster"
-                    loading="lazy">
-                  <span class="filmcard-date">24 Apr</span>
+                  <img src="./assets/2026SpringSeason/tampopo.jpg" alt="Tampopo poster" loading="lazy">
+                  <span class="filmcard-date">29 Apr</span>
                 </div>
                 <div class="filmcard-body">
                   <h3>Tampopo</h3>
                   <p class="filmcard-meta">Juzo Itami &middot; 1985 &middot; Japan</p>
                 </div>
-                <p class="filmcard-note">A "ramen western" that playfully mixes food, desire and genre conventions.</p>
+                <p class="filmcard-note">A &ldquo;ramen western&rdquo; that playfully mixes food, desire and genre conventions.</p>
               </div>
             </div>
           </div>
-          <div class="frame-counter">10</div>
+          <div class="frame-counter">07</div>
         </div>
       </div>
 
-      <!-- ═══ FRAME 11: Community ═══ -->
+      <!-- ═══ FRAME 8: Community ═══ -->
       <div class="film-frame frame--community frame--dark" id="community">
         <div class="film-frame-gate">
           <div class="frame-content">
@@ -1838,11 +1740,11 @@
               </div>
             </div>
           </div>
-          <div class="frame-counter">11</div>
+          <div class="frame-counter">08</div>
         </div>
       </div>
 
-      <!-- ═══ FRAME 12: Membership ═══ -->
+      <!-- ═══ FRAME 9: Membership ═══ -->
       <div class="film-frame frame--membership" id="membership">
         <div class="film-frame-gate">
           <div class="frame-content">
@@ -1863,16 +1765,13 @@
               </div>
               <div class="price-card">
                 <p class="price-kicker">How it works</p>
-                <h3>Three steps</h3>
+                <h3>Two simple steps</h3>
                 <ol class="steps-list">
                   <li><span class="step-num">1</span>
-                    <p>Register as a member for the current season.</p>
+                    <p>Register once per season (80 NOK membership via Filmklubbmedlem).</p>
                   </li>
                   <li><span class="step-num">2</span>
-                    <p>Show up at Folken, pay 40 NOK.</p>
-                  </li>
-                  <li><span class="step-num">3</span>
-                    <p>Grab popcorn, watch the film, stay to talk.</p>
+                    <p>Pay 40 NOK at the door for each screening you attend.</p>
                   </li>
                 </ol>
                 <div style="margin-top: 0.6rem;">
@@ -1883,7 +1782,7 @@
               </div>
             </div>
           </div>
-          <div class="frame-counter">12</div>
+          <div class="frame-counter">09</div>
         </div>
       </div>
 
