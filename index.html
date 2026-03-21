@@ -55,13 +55,12 @@
       --paper-strong: #fcf8f2;
       --night: #07121f;
 
-      /* Geometry — proportioned to real 35mm film (scale: 30px/mm)
-         Total film width 35mm = 1050px
-         Image area 24mm × 36mm = 720px × 1080px (2:3 portrait)
+      /* Geometry — proportioned to real 35mm film
+         Total film width 35mm: content 24mm (68.6%), each track 5.5mm (15.7%)
          Sprocket hole 2.79mm × 1.85mm, pitch 4.75mm
          8 holes per frame */
-      --strip-max: 720px;
-      --sprocket-track: 165px;
+      --sprocket-track: calc((100vw - 8px) * 0.157);
+      --strip-max: calc(100vw - 8px - var(--sprocket-track) * 2);
       --sprocket-w: 84px;
       --sprocket-h: 56px;
       --sprocket-r: 15px;
@@ -359,7 +358,6 @@
     /* The frame gate — the visible image area */
     .film-frame-gate {
       position: relative;
-      aspect-ratio: 2 / 3;
       overflow: hidden;
       background: var(--paper);
       border: 1px solid rgba(0, 0, 0, 0.08);
@@ -904,8 +902,8 @@
       position: relative;
       border-radius: 10px;
       overflow: hidden;
-      min-height: 0;
-      height: 100%;
+      aspect-ratio: 2 / 3;
+      min-height: 360px;
       display: flex;
       flex-direction: column;
     }
@@ -1282,7 +1280,7 @@
        ══════════════════════════════════════ */
     @media (max-width: 900px) {
       :root {
-        --sprocket-track: 66px;
+        --sprocket-track: calc((100vw - 8px) * 0.157);
         --sprocket-w: 34px;
         --sprocket-h: 22px;
         --sprocket-r: 6px;
@@ -1364,7 +1362,7 @@
 
     @media (max-width: 520px) {
       :root {
-        --sprocket-track: 42px;
+        --sprocket-track: calc((100vw - 8px) * 0.157);
         --sprocket-w: 21px;
         --sprocket-h: 14px;
         --sprocket-r: 4px;
