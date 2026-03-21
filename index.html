@@ -756,6 +756,47 @@
     }
 
     /* ── About frame ── */
+    .frame--about .film-frame-gate {
+      background:
+        radial-gradient(circle at top right, rgba(216, 145, 50, 0.08), transparent 40%),
+        var(--paper);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.7rem;
+      margin-top: 1.2rem;
+    }
+
+    .about-card {
+      padding: 0.9rem;
+      border-radius: 12px;
+      border: 1px solid rgba(17, 32, 50, 0.08);
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    .about-card h3 {
+      font-size: 0.9rem;
+      margin: 0.4rem 0 0;
+      color: var(--ink);
+    }
+
+    .about-card p {
+      margin: 0.35rem 0 0;
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+
+    .about-card-kicker {
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--ruby);
+      font-weight: 500;
+    }
+
     /* ── Screenings / Venue ── */
     .frame--venue .film-frame-gate {
       background:
@@ -1257,7 +1298,8 @@
       }
 
 
-      .venue-grid {
+      .venue-grid,
+      .about-grid {
         grid-template-columns: 1fr;
       }
 
@@ -1449,6 +1491,7 @@
   <!-- Sticky navigation — always visible from page load -->
   <nav class="site-nav" aria-label="Main navigation">
     <a class="nav-brand" href="#top"><img src="./assets/LogoMLFK.jpg" alt="ML"></a>
+    <a href="#about">About</a>
     <a href="#screenings">Location</a>
     <a href="#programme">Programme</a>
     <a class="nav-cta" href="https://www.filmklubbmedlem.no/registrer/86" target="_blank" rel="noreferrer">Become a
@@ -1524,7 +1567,41 @@
         </div>
       </div>
 
-      <!-- ═══ FRAME 2: Screenings ═══ -->
+      <!-- ═══ FRAME 2: About ═══ -->
+      <div class="film-frame frame--about" id="about">
+        <div class="film-frame-gate">
+          <div class="frame-content">
+            <p class="frame-eyebrow" style="color: var(--ruby);">About the club</p>
+            <h2 class="frame-heading">Named after the magic lantern.</h2>
+            <p class="frame-sub">
+              The club takes its name from the early projection device that made moving images feel uncanny, shared and
+              alive.
+            </p>
+            <div class="about-grid">
+              <div class="about-card">
+                <p class="about-card-kicker">Programming</p>
+                <h3>Classics, discoveries, newer film art.</h3>
+                <p>The club mixes beloved landmarks with lesser-known works and contemporary films beyond a standard
+                  cinema schedule.</p>
+              </div>
+              <div class="about-card">
+                <p class="about-card-kicker">Atmosphere</p>
+                <h3>A social screening night.</h3>
+                <p>Free popcorn, open bar, and evenings designed to feel like a meeting point for film lovers.</p>
+              </div>
+              <div class="about-card">
+                <p class="about-card-kicker">Audience</p>
+                <h3>International, local, curious.</h3>
+                <p>NFK has highlighted the club's warm, international community. A place for newcomers and regulars
+                  alike.</p>
+              </div>
+            </div>
+          </div>
+          <div class="frame-counter">02</div>
+        </div>
+      </div>
+
+      <!-- ═══ FRAME 3: Screenings ═══ -->
       <div class="film-frame frame--venue frame--dark" id="screenings">
         <div class="film-frame-gate">
           <div class="frame-content">
@@ -1559,11 +1636,11 @@
               </div>
             </div>
           </div>
-          <div class="frame-counter">02</div>
+          <div class="frame-counter">03</div>
         </div>
       </div>
 
-      <!-- ═══ FRAME 3: Programme intro ═══ -->
+      <!-- ═══ FRAME 4: Programme intro ═══ -->
       <div class="film-frame frame--programme" id="programme">
         <div class="film-frame-gate">
           <div class="frame-content" style="justify-content: center; align-items: center; text-align: center;">
@@ -1577,11 +1654,11 @@
                 href="./assets/2026%20Spring.png" target="_blank" rel="noreferrer">View full season poster</a>
             </div>
           </div>
-          <div class="frame-counter">03</div>
+          <div class="frame-counter">04</div>
         </div>
       </div>
 
-      <!-- ═══ FRAME 4: January — Sin City ═══ -->
+      <!-- ═══ FRAME 5: January — Sin City ═══ -->
       <div class="film-frame frame--programme">
         <div class="film-frame-gate">
           <div class="frame-content">
@@ -1600,11 +1677,11 @@
               </div>
             </div>
           </div>
-          <div class="frame-counter">04</div>
+          <div class="frame-counter">05</div>
         </div>
       </div>
 
-      <!-- ═══ FRAME 5: February — Totem + Fallen Leaves ═══ -->
+      <!-- ═══ FRAME 6: February — Totem + Fallen Leaves ═══ -->
       <div class="film-frame frame--programme">
         <div class="film-frame-gate">
           <div class="frame-content">
@@ -1634,11 +1711,11 @@
               </div>
             </div>
           </div>
-          <div class="frame-counter">05</div>
+          <div class="frame-counter">06</div>
         </div>
       </div>
 
-      <!-- ═══ FRAME 6: March — Memoir of a Snail + The Hunt ═══ -->
+      <!-- ═══ FRAME 7: March — Memoir of a Snail + The Hunt ═══ -->
       <div class="film-frame frame--programme">
         <div class="film-frame-gate">
           <div class="frame-content">
@@ -1668,11 +1745,11 @@
               </div>
             </div>
           </div>
-          <div class="frame-counter">06</div>
+          <div class="frame-counter">07</div>
         </div>
       </div>
 
-      <!-- ═══ FRAME 7: April — Graduation + Kneecap + Tampopo ═══ -->
+      <!-- ═══ FRAME 8: April — Graduation + Kneecap + Tampopo ═══ -->
       <div class="film-frame frame--programme">
         <div class="film-frame-gate">
           <div class="frame-content">
@@ -1713,11 +1790,11 @@
               </div>
             </div>
           </div>
-          <div class="frame-counter">07</div>
+          <div class="frame-counter">08</div>
         </div>
       </div>
 
-      <!-- ═══ FRAME 8: Community ═══ -->
+      <!-- ═══ FRAME 9: Community ═══ -->
       <div class="film-frame frame--community frame--dark" id="community">
         <div class="film-frame-gate">
           <div class="frame-content">
@@ -1746,11 +1823,11 @@
               </div>
             </div>
           </div>
-          <div class="frame-counter">08</div>
+          <div class="frame-counter">09</div>
         </div>
       </div>
 
-      <!-- ═══ FRAME 9: Membership ═══ -->
+      <!-- ═══ FRAME 10: Membership ═══ -->
       <div class="film-frame frame--membership" id="membership">
         <div class="film-frame-gate">
           <div class="frame-content">
@@ -1788,7 +1865,7 @@
               </div>
             </div>
           </div>
-          <div class="frame-counter">09</div>
+          <div class="frame-counter">10</div>
         </div>
       </div>
 
