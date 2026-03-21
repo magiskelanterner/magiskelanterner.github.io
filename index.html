@@ -55,13 +55,17 @@
       --paper-strong: #fcf8f2;
       --night: #07121f;
 
-      /* Geometry — proportioned to reference photo */
-      --strip-max: 960px;
-      --sprocket-track: 62px;
-      --sprocket-w: 34px;
-      --sprocket-h: 24px;
-      --sprocket-r: 5px;
-      --sprocket-gap: 14px;
+      /* Geometry — proportioned to real 35mm film (scale: 30px/mm)
+         Total film width 35mm = 1050px
+         Image area 24mm × 36mm = 720px × 1080px (2:3 portrait)
+         Sprocket hole 2.79mm × 1.85mm, pitch 4.75mm
+         8 holes per frame */
+      --strip-max: 720px;
+      --sprocket-track: 165px;
+      --sprocket-w: 84px;
+      --sprocket-h: 56px;
+      --sprocket-r: 15px;
+      --sprocket-gap: 87px;
       /* Gap between holes — tighter like real film */
       --frame-border: 14px;
       --frame-radius: 2px;
@@ -265,10 +269,10 @@
           transparent calc(var(--sprocket-gap) * 2 + var(--sprocket-h)));
       border-radius: 1px;
       /* SVG mask to give rounded corners to each hole */
-      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='38'%3E%3Crect width='34' height='38' fill='black'/%3E%3Crect x='0' y='14' width='34' height='24' rx='5' fill='white'/%3E%3C/svg%3E");
+      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='143'%3E%3Crect width='84' height='143' fill='black'/%3E%3Crect x='0' y='87' width='84' height='56' rx='15' fill='white'/%3E%3C/svg%3E");
       -webkit-mask-size: var(--sprocket-w) calc(var(--sprocket-gap) + var(--sprocket-h));
       -webkit-mask-repeat: repeat-y;
-      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='38'%3E%3Crect width='34' height='38' fill='black'/%3E%3Crect x='0' y='14' width='34' height='24' rx='5' fill='white'/%3E%3C/svg%3E");
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='143'%3E%3Crect width='84' height='143' fill='black'/%3E%3Crect x='0' y='87' width='84' height='56' rx='15' fill='white'/%3E%3C/svg%3E");
       mask-size: var(--sprocket-w) calc(var(--sprocket-gap) + var(--sprocket-h));
       mask-repeat: repeat-y;
     }
@@ -355,7 +359,7 @@
     /* The frame gate — the visible image area */
     .film-frame-gate {
       position: relative;
-      aspect-ratio: 16 / 9;
+      aspect-ratio: 2 / 3;
       overflow: hidden;
       background: var(--paper);
       border: 1px solid rgba(0, 0, 0, 0.08);
@@ -1238,16 +1242,17 @@
        ══════════════════════════════════════ */
     @media (max-width: 900px) {
       :root {
-        --sprocket-track: 42px;
-        --sprocket-w: 24px;
-        --sprocket-h: 17px;
-        --sprocket-gap: 12px;
+        --sprocket-track: 66px;
+        --sprocket-w: 34px;
+        --sprocket-h: 22px;
+        --sprocket-r: 6px;
+        --sprocket-gap: 35px;
       }
 
       .film-edge::before {
-        -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='29'%3E%3Crect width='24' height='29' fill='black'/%3E%3Crect x='0' y='12' width='24' height='17' rx='4' fill='white'/%3E%3C/svg%3E");
+        -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='57'%3E%3Crect width='34' height='57' fill='black'/%3E%3Crect x='0' y='35' width='34' height='22' rx='6' fill='white'/%3E%3C/svg%3E");
         -webkit-mask-size: var(--sprocket-w) calc(var(--sprocket-gap) + var(--sprocket-h));
-        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='29'%3E%3Crect width='24' height='29' fill='black'/%3E%3Crect x='0' y='12' width='24' height='17' rx='4' fill='white'/%3E%3C/svg%3E");
+        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='57'%3E%3Crect width='34' height='57' fill='black'/%3E%3Crect x='0' y='35' width='34' height='22' rx='6' fill='white'/%3E%3C/svg%3E");
         mask-size: var(--sprocket-w) calc(var(--sprocket-gap) + var(--sprocket-h));
       }
 
@@ -1318,16 +1323,17 @@
 
     @media (max-width: 520px) {
       :root {
-        --sprocket-track: 28px;
-        --sprocket-w: 16px;
-        --sprocket-h: 12px;
-        --sprocket-gap: 10px;
+        --sprocket-track: 42px;
+        --sprocket-w: 21px;
+        --sprocket-h: 14px;
+        --sprocket-r: 4px;
+        --sprocket-gap: 22px;
       }
 
       .film-edge::before {
-        -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='22'%3E%3Crect width='16' height='22' fill='black'/%3E%3Crect x='0' y='10' width='16' height='12' rx='3' fill='white'/%3E%3C/svg%3E");
+        -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='21' height='36'%3E%3Crect width='21' height='36' fill='black'/%3E%3Crect x='0' y='22' width='21' height='14' rx='4' fill='white'/%3E%3C/svg%3E");
         -webkit-mask-size: var(--sprocket-w) calc(var(--sprocket-gap) + var(--sprocket-h));
-        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='22'%3E%3Crect width='16' height='22' fill='black'/%3E%3Crect x='0' y='10' width='16' height='12' rx='3' fill='white'/%3E%3C/svg%3E");
+        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='21' height='36'%3E%3Crect width='21' height='36' fill='black'/%3E%3Crect x='0' y='22' width='21' height='14' rx='4' fill='white'/%3E%3C/svg%3E");
         mask-size: var(--sprocket-w) calc(var(--sprocket-gap) + var(--sprocket-h));
       }
 
