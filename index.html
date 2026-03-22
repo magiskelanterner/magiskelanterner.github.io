@@ -499,145 +499,35 @@
     }
 
     .frame--hero .frame-content {
-      justify-content: center;
-      flex-direction: row;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
       align-items: center;
       gap: clamp(1.5rem, 4vw, 3rem);
     }
 
     .hero-text {
-      flex: 1 1 55%;
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
 
-    /* ── Hero poster card (filmcard style) ── */
-    .hero-poster {
-      flex: 0 0 38%;
-      max-width: 320px;
-      position: relative;
-      border-radius: 12px;
-      overflow: hidden;
-      aspect-ratio: 2 / 3;
-      box-shadow:
-        0 12px 40px rgba(0, 0, 0, 0.18),
-        0 4px 12px rgba(0, 0, 0, 0.1);
-      animation: hero-poster-float 6s ease-in-out infinite;
+    /* Centre the poster card within its grid column */
+    .frame--hero .filmcard {
+      justify-self: center;
+      animation: hero-card-in 0.8s ease both;
+      animation-delay: 2s;
     }
 
-    /* Poster image fills entire card */
-    .hero-poster-img {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-    }
-
-    .hero-poster-img img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    /* Dark gradient overlay for text readability */
-    .hero-poster-img::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top,
-          rgba(5, 5, 5, 0.92) 0%,
-          rgba(5, 5, 5, 0.75) 20%,
-          rgba(5, 5, 5, 0.35) 42%,
-          rgba(5, 5, 5, 0.08) 58%,
-          transparent 70%);
-      z-index: 1;
-    }
-
-    /* "Next screening" badge — top */
-    .hero-poster-badge {
-      position: absolute;
-      top: 20px;
-      right: 10px;
-      padding: 0.3rem 0.65rem;
-      border-radius: 6px;
-      background: var(--gold);
-      color: var(--night);
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 0.82rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      z-index: 3;
-    }
-
-    /* Text overlay at bottom */
-    .hero-poster-body {
-      position: relative;
-      z-index: 2;
-      margin-top: auto;
-      padding: 0 0.9rem 0.9rem;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      justify-content: flex-end;
-    }
-
-    .hero-poster-body h3 {
-      font-family: "Cormorant Garamond", serif;
-      font-size: clamp(1.5rem, 3vw, 2.2rem);
-      font-weight: 700;
-      line-height: 1.05;
-      color: #fff;
-      margin: 0;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-    }
-
-    .hero-poster-meta {
-      font-size: 0.7rem;
-      color: rgba(245, 239, 228, 0.7);
-      margin-top: 0.2rem;
-    }
-
-    .hero-poster-note {
-      font-size: 0.72rem;
-      color: rgba(245, 239, 228, 0.6);
-      line-height: 1.4;
-      margin-top: 0.35rem;
-    }
-
-    .hero-poster-note::before {
-      content: "";
-      display: block;
-      width: 14px;
-      height: 2px;
-      background: var(--gold);
-      margin-bottom: 0.25rem;
-      border-radius: 1px;
-    }
-
-    @keyframes hero-poster-float {
-
-      0%,
-      100% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(-6px);
-      }
+    @keyframes hero-card-in {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     /* Responsive: stack on small screens */
     @media (max-width: 640px) {
       .frame--hero .frame-content {
-        flex-direction: column;
+        grid-template-columns: 1fr;
         text-align: center;
-      }
-
-      .hero-poster {
-        flex: 0 0 auto;
-        max-width: 220px;
       }
     }
 
@@ -1176,6 +1066,11 @@
       .site-nav a {
         transition: none;
       }
+
+      .frame--hero .filmcard {
+        animation: none;
+        opacity: 1;
+      }
     }
   </style>
   <!-- Structured data -->
@@ -1285,17 +1180,16 @@
               <p class="hero-note">Magiske Lanterner brings carefully selected classics, contemporary discoveries and
                 international film culture to Stavanger.</p>
             </div>
-            <div class="hero-poster">
-              <div class="hero-poster-img">
-                <img src="./assets/PosterTampopoBackground.jpg" alt="Tampopo poster" loading="eager">
-                <span class="hero-poster-badge">Next screening &middot; 29 Apr</span>
+            <div class="filmcard">
+              <div class="filmcard-poster">
+                <img src="./assets/2026SpringSeason/tampopo.jpg" alt="Tampopo poster" loading="eager">
+                <span class="filmcard-date">Next screening &middot; 29 Apr</span>
               </div>
-              <div class="hero-poster-body">
+              <div class="filmcard-body">
                 <h3>Tampopo</h3>
-                <p class="hero-poster-meta">Juzo Itami &middot; 1985 &middot; Japan</p>
-                <p class="hero-poster-note">A "ramen western" that playfully mixes food, desire and genre conventions.
-                </p>
+                <p class="filmcard-meta">Juzo Itami &middot; 1985 &middot; Japan</p>
               </div>
+              <p class="filmcard-note">A &ldquo;ramen western&rdquo; that playfully mixes food, desire and genre conventions.</p>
             </div>
           </div>
           <div class="frame-counter" aria-hidden="true">01</div>
