@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Past Seasons | Magiske Lanterner</title>
+  <meta name="description"
+    content="Browse past seasons of Magiske Lanterner, Stavanger's film club at Folken — curated screenings of classics, contemporary discoveries and international cinema.">
+  <meta name="theme-color" content="#0a0a08">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://magiskelanterner.github.io/past-seasons.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Past Seasons | Magiske Lanterner">
+  <meta property="og:description"
+    content="Browse past seasons of curated screenings at Folken: classics, discoveries, contemporary film art, and a welcoming film community in Stavanger.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://magiskelanterner.github.io/past-seasons.html">
+  <meta property="og:image" content="https://magiskelanterner.github.io/assets/2025%20Autumn/2025%20Autumn%20Edition%20Poster.png">
+  <meta property="og:locale" content="en_GB">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="./assets/LogoMLFK.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&amp;family=Space+Grotesk:wght@400;500;700&amp;display=swap"
+    rel="stylesheet">
+  <style>
+    /* ═══════════════════════════════════════════
+       CELLULOID FILM STRIP — Magiske Lanterner
+       Past Seasons archive page
+       ═══════════════════════════════════════════ */
+
+    :root {
+      --film-black: #050505;
+      --film-edge: #111111;
+      --sprocket-hole: #f3f0e9;
+      --frame-gap: #0a0a08;
+      --emulsion: #f3f0e9;
+
+      --gold: #d89132;
+      --gold-soft: #f0b565;
+      --ruby: #d76a52;
+      --ink: #141312;
+      --ink-soft: rgba(20, 19, 18, 0.72);
+      --paper: #f3f0e9;
+      --paper-soft: #e8e1d4;
+      --paper-strong: #fcf8f2;
+      --night: #07121f;
+
+      --sprocket-track: calc((100vw - 8px) * 0.1375);
+      --strip-max: calc(100vw - 8px - var(--sprocket-track) * 2);
+      --sprocket-w: calc((100vw - 8px) * 0.0798);
+      --sprocket-h: calc((100vw - 8px) * 0.0566);
+      --sprocket-r: calc((100vw - 8px) * 0.01457);
+      --sprocket-gap: calc((100vw - 8px) * 0.0791);
+      --frame-border: 14px;
+      --frame-radius: 2px;
+
+      --edge-text: var(--gold);
+    }
+
+    * { box-sizing: border-box; margin: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      background: #e0ddd6;
+    }
+
+    body {
+      font-family: "Space Grotesk", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.82), transparent 36%),
+        linear-gradient(180deg, #e8e8e8 0%, #d8d8d8 100%);
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* Film grain overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      pointer-events: none;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 256px 256px;
+      mix-blend-mode: multiply;
+    }
+
+    /* Projector flicker */
+    @keyframes flicker {
+      0%, 100% { opacity: 1; }
+      4% { opacity: 0.97; }
+      8% { opacity: 1; }
+      42% { opacity: 0.985; }
+      44% { opacity: 1; }
+      78% { opacity: 0.99; }
+      80% { opacity: 1; }
+    }
+
+    /* ══════════════════════════════════════
+       STICKY NAVIGATION
+       ══════════════════════════════════════ */
+    .site-nav {
+      position: fixed;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: auto;
+      max-width: calc(100% - 28px);
+      z-index: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(0.4rem, 1.8vw, 1.6rem);
+      padding: 0.5rem 1.6rem;
+      background: transparent;
+      border: none;
+      border-radius: 999px;
+      isolation: isolate;
+      box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.18);
+    }
+
+    .site-nav::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      border-radius: inherit;
+      box-shadow: inset 0 0 20px -5px rgba(255, 255, 255, 0.4);
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      pointer-events: none;
+    }
+
+    .site-nav::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      border-radius: inherit;
+      background-color: rgba(10, 10, 8, 0.32);
+      backdrop-filter: blur(20px) saturate(1.4);
+      -webkit-backdrop-filter: blur(20px) saturate(1.4);
+    }
+
+    .site-nav a {
+      color: rgba(245, 239, 228, 0.95);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.10em;
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+      transition: color 0.2s, background 0.2s;
+      white-space: nowrap;
+    }
+
+    .site-nav a:hover,
+    .site-nav a:focus-visible {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+    }
+
+    .site-nav .nav-cta {
+      background: linear-gradient(135deg, var(--gold), #ffc978);
+      color: var(--night);
+      font-weight: 700;
+      padding: 0.4rem 1rem;
+    }
+
+    .site-nav .nav-cta:hover,
+    .site-nav .nav-cta:focus-visible {
+      background: linear-gradient(135deg, #f0b565, #d58922);
+      color: #111;
+    }
+
+    /* ══════════════════════════════════════
+       FILM STRIP CONTAINER
+       ══════════════════════════════════════ */
+    .film-strip {
+      position: relative;
+      width: min(calc(100vw - 8px), calc(var(--strip-max) + var(--sprocket-track) * 2));
+      margin: 0 auto;
+      padding-top: 96px;
+      animation: flicker 3s ease-in-out infinite;
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.28);
+    }
+
+    /* ══════════════════════════════════════
+       FILM EDGES — sprocket holes
+       ══════════════════════════════════════ */
+    .film-edge {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: var(--sprocket-track);
+      z-index: 3;
+      background: var(--film-black);
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 128 128' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.04'/%3E%3C/svg%3E");
+    }
+
+    .film-edge--left { left: 0; }
+    .film-edge--right { right: 0; }
+
+    .sprocket-logo-fixed {
+      position: fixed;
+      top: 0;
+      left: 4px;
+      width: var(--sprocket-track);
+      height: 200px;
+      z-index: 950;
+      pointer-events: none;
+      clip-path: inset(50%);
+    }
+
+    .sprocket-logo-link {
+      position: absolute;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: block;
+      width: var(--sprocket-w);
+      height: var(--sprocket-h);
+      pointer-events: auto;
+    }
+
+    .sprocket-logo-link img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .film-edge::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: var(--sprocket-w);
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Crect y='58' width='100' height='42' rx='18.2' ry='10.7' fill='%23f3f0e9'/%3E%3C/svg%3E") repeat-y center top;
+      background-size: var(--sprocket-w) calc(var(--sprocket-gap) + var(--sprocket-h));
+    }
+
+    .film-edge::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: rgba(180, 165, 130, 0.18);
+    }
+
+    .film-edge--left::after { right: 4px; }
+    .film-edge--right::after { left: 4px; }
+
+    /* ── Edge text / frame numbers ── */
+    .edge-text {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: var(--sprocket-track);
+      z-index: 4;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .edge-text--left { left: 0; }
+    .edge-text--right { right: 0; }
+
+    .edge-marking {
+      position: absolute;
+      font-family: "Courier New", monospace;
+      font-size: 1.56rem;
+      font-weight: 700;
+      color: var(--edge-text);
+      white-space: nowrap;
+      letter-spacing: 0.05em;
+      opacity: 0.7;
+    }
+
+    .edge-text--right .edge-marking {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      right: 3px;
+    }
+
+    .edge-text--left .edge-marking { left: 3px; }
+
+    /* ── Frame content area ── */
+    .film-content {
+      position: relative;
+      z-index: 1;
+      margin: 0 var(--sprocket-track);
+      background: var(--film-black);
+    }
+
+    /* ── Individual film frames ── */
+    .film-frame {
+      position: relative;
+      border-top: var(--frame-border) solid var(--frame-gap);
+      border-bottom: var(--frame-border) solid var(--frame-gap);
+      overflow: hidden;
+    }
+
+    .film-frame+.film-frame {
+      border-top: none;
+      margin-top: 6px;
+    }
+
+    .film-frame-gate {
+      position: relative;
+      overflow: hidden;
+      background: var(--paper);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+    }
+
+    .film-frame-gate::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .film-frame-gate::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      pointer-events: none;
+      box-shadow:
+        inset 0 0 40px rgba(0, 0, 0, 0.08),
+        inset 0 0 100px rgba(0, 0, 0, 0.04);
+      border-radius: var(--frame-radius);
+    }
+
+    /* ── Frame content layouts ── */
+    .frame-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(20px, 4.5vw, 56px);
+    }
+
+    /* ── Typography ── */
+    .frame-eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: clamp(0.6rem, 1.1vw, 0.75rem);
+      color: var(--ruby);
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .frame-heading {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 5vw, 4.8rem);
+      font-weight: 600;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      max-width: 16ch;
+    }
+
+    .frame-sub {
+      margin-top: 0.7rem;
+      font-size: clamp(0.85rem, 1.5vw, 1.05rem);
+      color: var(--ink-soft);
+      max-width: 52ch;
+      line-height: 1.6;
+    }
+
+    .frame-counter {
+      position: absolute;
+      top: 6px;
+      right: 8px;
+      z-index: 6;
+      font-size: 0.55rem;
+      font-family: "Courier New", monospace;
+      color: rgba(20, 19, 18, 0.18);
+      letter-spacing: 0.15em;
+      pointer-events: none;
+    }
+
+    .frame-content--centered {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.1rem;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+    }
+
+    .button:hover { transform: translateY(-2px); }
+
+    .button--dark {
+      background: var(--night);
+      color: var(--paper-strong);
+      font-size: 0.82rem;
+      padding: 0.55rem 0.9rem;
+    }
+
+    .mt-xs { margin-top: 0.3rem; }
+    .mt-sm { margin-top: 0.4rem; }
+    .mt-md { margin-top: 1.2rem; }
+
+    /* ══════════════════════════════════════
+       PROGRAMME FRAMES — films fill the gate
+       ══════════════════════════════════════ */
+    .frame--programme .film-frame-gate {
+      background:
+        radial-gradient(circle at top right, rgba(216, 145, 50, 0.06), transparent 40%),
+        var(--paper);
+    }
+
+    .film-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr;
+      gap: 0.8rem;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .filmcard {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      aspect-ratio: 2 / 3;
+      min-height: 360px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .filmcard-poster {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .filmcard-poster img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .filmcard-poster::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top,
+          rgba(5, 5, 5, 0.95) 0%,
+          rgba(5, 5, 5, 0.82) 22%,
+          rgba(5, 5, 5, 0.45) 45%,
+          rgba(5, 5, 5, 0.1) 60%,
+          transparent 72%);
+      z-index: 1;
+    }
+
+    .filmcard-date {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      padding: 0.3rem 0.65rem;
+      border-radius: 8px;
+      background: rgba(7, 18, 31, 0.8);
+      color: var(--gold);
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      z-index: 3;
+    }
+
+    .filmcard-body {
+      position: relative;
+      z-index: 2;
+      margin-top: auto;
+      padding: 0.6rem 0.75rem 0.15rem;
+    }
+
+    .filmcard-body h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(1.3rem, 2.8vw, 1.9rem);
+      font-weight: 700;
+      line-height: 1.05;
+      color: #fff;
+      margin: 0;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+      letter-spacing: 0.01em;
+    }
+
+    .filmcard-body .filmcard-meta {
+      font-size: 0.62rem;
+      color: rgba(245, 239, 228, 0.7);
+      margin-top: 0.15rem;
+    }
+
+    .filmcard-note {
+      position: relative;
+      z-index: 2;
+      font-size: 0.68rem;
+      color: rgba(245, 239, 228, 0.6);
+      line-height: 1.4;
+      padding: 0.25rem 0.75rem 0.6rem;
+    }
+
+    .filmcard-note::before {
+      content: "";
+      display: block;
+      width: 14px;
+      height: 2px;
+      background: var(--gold);
+      margin-bottom: 0.2rem;
+      border-radius: 1px;
+    }
+
+    .frame--programme .frame-content {
+      justify-content: stretch;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding: clamp(10px, 2vw, 20px);
+      gap: 0.25rem;
+    }
+
+    .frame--programme .film-pair,
+    .frame--programme .film-trio {
+      flex: 1;
+      align-items: stretch;
+      min-height: 0;
+    }
+
+    .film-trio {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr;
+      gap: 0.8rem;
+      flex: 1;
+      min-height: 0;
+    }
+
+    /* ── Leader / tail ── */
+    .film-leader {
+      position: relative;
+      height: 50px;
+      background:
+        repeating-linear-gradient(0deg,
+          var(--film-black) 0px,
+          var(--film-black) 4px,
+          rgba(80, 55, 25, 0.1) 4px,
+          rgba(80, 55, 25, 0.1) 5px);
+      border-bottom: var(--frame-border) solid var(--frame-gap);
+    }
+
+    .film-tail {
+      position: relative;
+      height: 100px;
+      background: var(--film-black);
+      border-top: var(--frame-border) solid var(--frame-gap);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .film-tail-text {
+      text-align: center;
+      font-size: 0.72rem;
+      color: rgba(245, 239, 228, 0.3);
+    }
+
+    .film-tail-text a {
+      color: rgba(245, 239, 228, 0.45);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(245, 239, 228, 0.18);
+    }
+
+    /* ── Scroll reveal ── */
+    .film-frame {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .film-frame.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ══════════════════════════════════════
+       RESPONSIVE
+       ══════════════════════════════════════ */
+    @media (max-width: 900px) {
+      .film-pair,
+      .film-trio {
+        grid-template-columns: 1fr;
+      }
+
+      .film-frame-gate {
+        aspect-ratio: auto;
+        min-height: max(60vh, 400px);
+      }
+
+      .edge-marking {
+        display: none;
+      }
+
+      .frame--programme .film-frame-gate {
+        min-height: auto;
+      }
+
+      .filmcard {
+        aspect-ratio: 2 / 3;
+        min-height: 320px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .site-nav {
+        gap: 0.3rem;
+        padding: 0.35rem 0.7rem;
+      }
+
+      .site-nav a {
+        font-size: 0.72rem;
+        letter-spacing: 0.06em;
+        padding: 0.25rem 0.5rem;
+      }
+
+      .site-nav .nav-cta {
+        font-size: 0.65rem;
+        padding: 0.3rem 0.6rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      body::before { display: none; }
+      .film-strip { animation: none; }
+      .film-frame { opacity: 1; transform: none; transition: none; }
+      .button { transition: none; }
+      .site-nav a { transition: none; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Sticky navigation — links back to main site -->
+  <nav class="site-nav" aria-label="Main navigation">
+    <a href="./index.html#screenings">Location</a>
+    <a href="./index.html#programme">Programme</a>
+    <a href="./index.html#about">About</a>
+    <a class="nav-cta" href="./index.html#membership">Take a seat</a>
+  </nav>
+
+  <div class="sprocket-logo-fixed">
+    <a href="./index.html" class="sprocket-logo-link" aria-label="Back to home">
+      <img src="./assets/LogoMLFK.jpg" alt="MLFK Logo">
+    </a>
+  </div>
+
+  <div class="film-strip" id="top">
+    <!-- Black edge strips with bright sprocket holes -->
+    <div class="film-edge film-edge--left"></div>
+    <div class="film-edge film-edge--right"></div>
+
+    <!-- Edge text — Kodak-style markings -->
+    <div class="edge-text edge-text--left" aria-hidden="true">
+      <span class="edge-marking" style="top: 180px;">8</span>
+      <span class="edge-marking" style="top: 680px;">&#9661; 8A</span>
+      <span class="edge-marking" style="top: 1200px;">9</span>
+      <span class="edge-marking" style="top: 1700px;">&#9661; 9A</span>
+      <span class="edge-marking" style="top: 2200px;">10</span>
+      <span class="edge-marking" style="top: 2700px;">&#9661; 10A</span>
+      <span class="edge-marking" style="top: 3200px;">11</span>
+      <span class="edge-marking" style="top: 3700px;">&#9661; 11A</span>
+    </div>
+    <div class="edge-text edge-text--right" aria-hidden="true">
+      <span class="edge-marking" style="top: 100px;">Stavanger Magiske Lanterner KODAK 5017 EPR</span>
+      <span class="edge-marking" style="top: 800px;">8</span>
+      <span class="edge-marking" style="top: 1400px;">Stavanger Magiske Lanterner KODAK 5017 EPR</span>
+      <span class="edge-marking" style="top: 2000px;">9</span>
+      <span class="edge-marking" style="top: 2600px;">Stavanger Magiske Lanterner KODAK 5017 EPR</span>
+      <span class="edge-marking" style="top: 3400px;">10</span>
+    </div>
+
+    <!-- Film content between the sprocket tracks -->
+    <main class="film-content">
+
+      <!-- Film leader -->
+      <div class="film-leader" aria-hidden="true"></div>
+
+      <!-- ═══ FRAME 1: Season intro ═══ -->
+      <div class="film-frame frame--programme" id="autumn-2025">
+        <div class="film-frame-gate">
+          <div class="frame-content frame-content--centered">
+            <p class="frame-eyebrow">Past seasons &middot; Autumn 2025</p>
+            <h2 class="frame-heading">Eight evenings at Folken.</h2>
+            <p class="frame-sub">The club's first full season &mdash; classics, discoveries and
+              international cinema from September to December 2025.</p>
+            <div class="mt-md">
+              <a class="button button--dark"
+                href="./assets/2025%20Autumn/2025%20Autumn%20Edition%20Poster.png"
+                target="_blank" rel="noreferrer">View season poster</a>
+            </div>
+          </div>
+          <div class="frame-counter" aria-hidden="true">01</div>
+        </div>
+      </div>
+
+      <!-- ═══ FRAME 2: September ═══ -->
+      <div class="film-frame frame--programme">
+        <div class="film-frame-gate">
+          <div class="frame-content">
+            <p class="frame-eyebrow">September</p>
+            <div class="film-pair">
+              <div class="filmcard">
+                <div class="filmcard-poster">
+                  <img src="./assets/2025%20Autumn/paprika2006.jpg" alt="Paprika poster" loading="lazy">
+                  <span class="filmcard-date">03 Sep</span>
+                </div>
+                <div class="filmcard-body">
+                  <h3>Paprika</h3>
+                  <p class="filmcard-meta">Satoshi Kon &middot; 2006 &middot; Japan</p>
+                </div>
+                <p class="filmcard-note">A device that lets therapists enter dreams is stolen. Reality and fantasy collapse in Kon's wildly inventive animated thriller.</p>
+              </div>
+              <div class="filmcard">
+                <div class="filmcard-poster">
+                  <img src="./assets/2025%20Autumn/On%20Body%20and%20Soul.jpg" alt="On Body and Soul poster" loading="lazy">
+                  <span class="filmcard-date">16 Sep</span>
+                </div>
+                <div class="filmcard-body">
+                  <h3>On Body and Soul</h3>
+                  <p class="filmcard-meta">Ildik&oacute; Enyedi &middot; 2017 &middot; Hungary</p>
+                </div>
+                <p class="filmcard-note">Two introverts at a slaughterhouse discover they share the same dream each night. A tender, strange love story.</p>
+              </div>
+            </div>
+          </div>
+          <div class="frame-counter" aria-hidden="true">02</div>
+        </div>
+      </div>
+
+      <!-- ═══ FRAME 3: October ═══ -->
+      <div class="film-frame frame--programme">
+        <div class="film-frame-gate">
+          <div class="frame-content">
+            <p class="frame-eyebrow">October</p>
+            <div class="film-trio">
+              <div class="filmcard">
+                <div class="filmcard-poster">
+                  <img src="./assets/2025%20Autumn/The%20Lunchbox.webp" alt="The Lunchbox poster" loading="lazy">
+                  <span class="filmcard-date">01 Oct</span>
+                </div>
+                <div class="filmcard-body">
+                  <h3>The Lunchbox</h3>
+                  <p class="filmcard-meta">Ritesh Batra &middot; 2013 &middot; India</p>
+                </div>
+                <p class="filmcard-note">A mistaken lunch delivery sparks an unlikely correspondence across Mumbai.</p>
+              </div>
+              <div class="filmcard">
+                <div class="filmcard-poster">
+                  <img src="./assets/2025%20Autumn/Phoenix.webp" alt="Phoenix poster" loading="lazy">
+                  <span class="filmcard-date">15 Oct</span>
+                </div>
+                <div class="filmcard-body">
+                  <h3>Phoenix</h3>
+                  <p class="filmcard-meta">Christian Petzold &middot; 2014 &middot; Germany</p>
+                </div>
+                <p class="filmcard-note">A Holocaust survivor, face reconstructed, returns to find her husband. A devastating identity thriller.</p>
+              </div>
+              <div class="filmcard">
+                <div class="filmcard-poster">
+                  <img src="./assets/2025%20Autumn/lighthouse-anatomy1-videoSixteenByNineJumbo1600.jpg" alt="The Lighthouse poster" loading="lazy">
+                  <span class="filmcard-date">29 Oct</span>
+                </div>
+                <div class="filmcard-body">
+                  <h3>The Lighthouse</h3>
+                  <p class="filmcard-meta">Robert Eggers &middot; 2019 &middot; USA / Canada</p>
+                </div>
+                <p class="filmcard-note">Two lighthouse keepers descend into madness on a remote island. Claustrophobic, mythic, unhinged.</p>
+              </div>
+            </div>
+          </div>
+          <div class="frame-counter" aria-hidden="true">03</div>
+        </div>
+      </div>
+
+      <!-- ═══ FRAME 4: November ═══ -->
+      <div class="film-frame frame--programme">
+        <div class="film-frame-gate">
+          <div class="frame-content">
+            <p class="frame-eyebrow">November</p>
+            <div class="film-pair">
+              <div class="filmcard">
+                <div class="filmcard-poster">
+                  <img src="./assets/2025%20Autumn/The%20Cemetery.webp" alt="The Cemetery of the Cinema poster" loading="lazy">
+                  <span class="filmcard-date">11 Nov</span>
+                </div>
+                <div class="filmcard-body">
+                  <h3>The Cemetery of the Cinema</h3>
+                  <p class="filmcard-meta">Thierno Souleymane Diallo &middot; 2023 &middot; Guinea</p>
+                </div>
+                <p class="filmcard-note">A love letter to cinema in West Africa, tracing the rise and fall of movie houses in Conakry.</p>
+              </div>
+              <div class="filmcard">
+                <div class="filmcard-poster">
+                  <img src="./assets/2025%20Autumn/Maria-Alvarez.Maria-Full-of-Grace.webp" alt="Maria Full of Grace poster" loading="lazy">
+                  <span class="filmcard-date">26 Nov</span>
+                </div>
+                <div class="filmcard-body">
+                  <h3>Maria Full of Grace</h3>
+                  <p class="filmcard-meta">Joshua Marston &middot; 2004 &middot; Colombia</p>
+                </div>
+                <p class="filmcard-note">A teenage flower worker becomes a drug mule. Raw, unsentimental, impossible to look away from.</p>
+              </div>
+            </div>
+          </div>
+          <div class="frame-counter" aria-hidden="true">04</div>
+        </div>
+      </div>
+
+      <!-- ═══ FRAME 5: December ═══ -->
+      <div class="film-frame frame--programme">
+        <div class="film-frame-gate">
+          <div class="frame-content">
+            <p class="frame-eyebrow">December</p>
+            <div class="film-pair">
+              <div class="filmcard">
+                <div class="filmcard-poster">
+                  <img src="./assets/2025%20Autumn/La%20Grande%20Vadrouille.jpg" alt="La Grande Vadrouille poster" loading="lazy">
+                  <span class="filmcard-date">10 Dec</span>
+                </div>
+                <div class="filmcard-body">
+                  <h3>La Grande Vadrouille</h3>
+                  <p class="filmcard-meta">G&eacute;rard Oury &middot; 1966 &middot; France</p>
+                </div>
+                <p class="filmcard-note">France's most beloved comedy: two bumbling civilians help downed RAF pilots escape across occupied Paris.</p>
+              </div>
+            </div>
+          </div>
+          <div class="frame-counter" aria-hidden="true">05</div>
+        </div>
+      </div>
+
+      <!-- Film tail -->
+      <div class="film-tail">
+        <p class="film-tail-text">
+          <a href="./index.html">&larr; Back to current season</a>
+        </p>
+      </div>
+
+    </main>
+  </div><!-- /.film-strip -->
+
+  <script>
+    (function () {
+      /* Scroll reveal for film frames */
+      var frames = [].slice.call(document.querySelectorAll('.film-frame'));
+
+      if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+
+        frames.forEach(function (f) { observer.observe(f); });
+      } else {
+        frames.forEach(function (f) { f.classList.add('is-visible'); });
+      }
+
+      /* Smooth scroll for internal links (skip logo — handled separately) */
+      document.querySelectorAll('a[href^="#"]:not(.sprocket-logo-link)').forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          var target = document.querySelector(link.getAttribute('href'));
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        });
+      });
+    })();
+  </script>
+  <script>
+    /* Reveal logo through sprocket holes as page scrolls */
+    (function() {
+      var strip = document.querySelector('.film-strip');
+      var el = document.querySelector('.sprocket-logo-fixed');
+      if (!strip || !el) return;
+
+      function sync() {
+        var base = window.innerWidth - 8;
+        var gap = base * 0.0791;
+        var holeH = base * 0.0566;
+        var holeW = base * 0.0798;
+        var pitch = gap + holeH;
+        var trackW = base * 0.1375;
+        var r = base * 0.01457;
+        var logoTop = 14, logoBottom = logoTop + holeH;
+        var firstHole = strip.getBoundingClientRect().top + gap;
+        var nMin = Math.ceil((logoTop - firstHole - holeH) / pitch);
+        var nMax = Math.floor((logoBottom - firstHole) / pitch);
+        var best = 0, ht = 0, hb = 0;
+        for (var n = nMin; n <= nMax; n++) {
+          var t = firstHole + n * pitch;
+          var b = t + holeH;
+          var o = Math.min(logoBottom, b) - Math.max(logoTop, t);
+          if (o > best) { best = o; ht = t; hb = b; }
+        }
+        if (best > 0) {
+          var ct = Math.max(0, ht);
+          var cb = Math.min(200, hb);
+          var cx = (trackW - holeW) / 2;
+          el.style.clipPath = 'inset(' + ct + 'px ' + cx + 'px ' + (200 - cb) + 'px ' + cx + 'px round ' + r + 'px)';
+        } else {
+          el.style.clipPath = 'inset(50%)';
+        }
+      }
+
+      sync();
+      var ticking = false;
+      window.addEventListener('scroll', function() {
+        if (!ticking) {
+          requestAnimationFrame(function() { sync(); ticking = false; });
+          ticking = true;
+        }
+      }, { passive: true });
+      window.addEventListener('resize', function() { sync(); }, { passive: true });
+
+      /* Logo click → navigate to main site */
+      var logoLink = document.querySelector('.sprocket-logo-link');
+      if (logoLink) {
+        logoLink.addEventListener('click', function(e) {
+          /* Default link behaviour navigates to ./index.html */
+        });
+      }
+    })();
+  </script>
+  <script>
+    /* Liquid glass specular highlights for nav bar */
+    (function() {
+      function makeSpecularMap(w, h, radius, bezel, angle) {
+        angle = angle != null ? angle : Math.PI / 3;
+        var c = document.createElement('canvas'); c.width = w; c.height = h;
+        var ctx = c.getContext('2d');
+        var img = ctx.createImageData(w, h); var d = img.data; d.fill(0);
+        var r = radius, rSq = r*r, r1Sq = (r+1)*(r+1);
+        var rBSq = Math.max(r - bezel, 0); rBSq *= rBSq;
+        var wB = w - r*2, hB = h - r*2;
+        var sv = [Math.cos(angle), Math.sin(angle)];
+        for (var y1 = 0; y1 < h; y1++) {
+          for (var x1 = 0; x1 < w; x1++) {
+            var x = x1 < r ? x1 - r : x1 >= w - r ? x1 - r - wB : 0;
+            var y = y1 < r ? y1 - r : y1 >= h - r ? y1 - r - hB : 0;
+            var dSq = x*x + y*y;
+            if (dSq > r1Sq || dSq < rBSq) continue;
+            var dist = Math.sqrt(dSq);
+            var fromSide = r - dist;
+            var op = dSq < rSq ? 1 : 1 - (dist - Math.sqrt(rSq)) / (Math.sqrt(r1Sq) - Math.sqrt(rSq));
+            if (op <= 0 || dist === 0) continue;
+            var cos = x / dist, sin = -y / dist;
+            var dot = Math.abs(cos * sv[0] + sin * sv[1]);
+            var edge = Math.sqrt(Math.max(0, 1 - (1 - fromSide) * (1 - fromSide)));
+            var coeff = dot * edge;
+            var col = (255 * coeff) | 0;
+            var alpha = (col * coeff * op) | 0;
+            var idx = (y1 * w + x1) * 4;
+            d[idx] = col; d[idx+1] = col; d[idx+2] = col; d[idx+3] = alpha;
+          }
+        }
+        ctx.putImageData(img, 0, 0);
+        return c.toDataURL();
+      }
+
+      var styleEl = document.createElement('style');
+      document.head.appendChild(styleEl);
+
+      function buildNavGlass() {
+        var nav = document.querySelector('.site-nav');
+        if (!nav) return;
+        var w = nav.offsetWidth, h = nav.offsetHeight;
+        if (w < 2 || h < 2) return;
+        var radius = Math.min(999, h / 2);
+        var bezel = Math.min(radius * 0.7, radius - 1, Math.min(w, h) / 2 - 1);
+        var specUrl = makeSpecularMap(w, h, radius, bezel * 2.5);
+        styleEl.textContent = '.site-nav::before { background-image: url("' + specUrl + '"); }';
+      }
+
+      requestAnimationFrame(function() { requestAnimationFrame(buildNavGlass); });
+      var glassTimer;
+      window.addEventListener('resize', function() {
+        clearTimeout(glassTimer);
+        glassTimer = setTimeout(buildNavGlass, 150);
+      });
+    })();
+  </script>
+</body>
+
+</html>
