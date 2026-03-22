@@ -522,8 +522,7 @@
     /* Centre the poster card within its grid column */
     .frame--hero .filmcard {
       justify-self: center;
-      animation: hero-card-in 0.8s ease both;
-      animation-delay: 2s;
+      animation: hero-card-in 2s ease both;
     }
 
     @keyframes hero-card-in {
@@ -546,6 +545,7 @@
 
     .frame--hero .frame-heading {
       color: var(--ink);
+      font-size: clamp(3.5rem, 9vw, 8.5rem);
     }
 
     .frame--hero .frame-sub {
