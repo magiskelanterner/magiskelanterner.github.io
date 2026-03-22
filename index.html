@@ -559,12 +559,12 @@
       position: absolute;
       top: 20px;
       right: 10px;
-      padding: 0.25rem 0.6rem;
+      padding: 0.3rem 0.65rem;
       border-radius: 6px;
       background: var(--gold);
       color: var(--night);
       font-family: "Space Grotesk", sans-serif;
-      font-size: 0.6rem;
+      font-size: 0.82rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.06em;
@@ -731,7 +731,7 @@
 
     .about-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 0.7rem;
       margin-top: 1.2rem;
     }
@@ -756,6 +756,16 @@
       line-height: 1.5;
     }
 
+    .about-card a {
+      color: var(--ruby);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(215, 106, 82, 0.3);
+    }
+
+    .about-card a:hover {
+      border-bottom-color: var(--ruby);
+    }
+
     .about-card-kicker {
       font-size: 0.62rem;
       text-transform: uppercase;
@@ -771,25 +781,13 @@
         url('./assets/folken1930.jpg') center / cover no-repeat;
     }
 
-    .venue-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 0.9rem;
-      margin-top: 1.2rem;
-    }
-
-    .venue-info {
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-    }
-
-    .venue-info h3 {
+    .frame--venue h3 {
       font-family: "Cormorant Garamond", serif;
       font-size: clamp(1.4rem, 3vw, 2.2rem);
       font-weight: 600;
       line-height: 1;
       color: var(--paper-strong);
+      margin-top: 1.2rem;
     }
 
     .venue-list {
@@ -816,38 +814,6 @@
       height: 5px;
       border-radius: 50%;
       background: var(--gold);
-    }
-
-    .venue-stats {
-      display: grid;
-      gap: 0.5rem;
-    }
-
-    .venue-stat {
-      padding: 0.7rem;
-      border-radius: 10px;
-      border: 1px solid rgba(245, 239, 228, 0.08);
-      background: rgba(245, 239, 228, 0.04);
-    }
-
-    .venue-stat-label {
-      font-size: 0.6rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: rgba(245, 239, 228, 0.5);
-    }
-
-    .venue-stat strong {
-      display: block;
-      font-size: clamp(0.9rem, 1.8vw, 1.25rem);
-      color: var(--gold-soft);
-      margin-top: 0.2rem;
-    }
-
-    .venue-stat p {
-      margin: 0.15rem 0 0;
-      font-size: 0.75rem;
-      color: rgba(245, 239, 228, 0.65);
     }
 
     /* ══════════════════════════════════════
@@ -911,12 +877,12 @@
       position: absolute;
       top: 8px;
       left: 8px;
-      padding: 0.2rem 0.5rem;
-      border-radius: 6px;
+      padding: 0.3rem 0.65rem;
+      border-radius: 8px;
       background: rgba(7, 18, 31, 0.8);
       color: var(--gold);
       font-family: "Space Grotesk", sans-serif;
-      font-size: 0.62rem;
+      font-size: 1rem;
       font-weight: 700;
       letter-spacing: 0.02em;
       z-index: 3;
@@ -1076,56 +1042,6 @@
     }
 
 
-    /* ── Community frame ── */
-    .frame--community .film-frame-gate {
-      background: linear-gradient(135deg, #0a1625 0%, #10233c 100%);
-    }
-
-    .community-row {
-      display: grid;
-      grid-template-columns: 1.15fr 1fr 1fr;
-      gap: 0.7rem;
-      margin-top: 1rem;
-    }
-
-    .community-card {
-      padding: 0.9rem;
-      border-radius: 12px;
-      border: 1px solid rgba(245, 239, 228, 0.08);
-      background: rgba(245, 239, 228, 0.04);
-    }
-
-    .community-card--accent {
-      background: linear-gradient(180deg, rgba(240, 181, 90, 0.12), rgba(245, 239, 228, 0.04));
-    }
-
-    .community-kicker {
-      font-size: 0.62rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--gold-soft);
-      font-weight: 500;
-    }
-
-    .community-card h3 {
-      font-size: 0.9rem;
-      margin: 0.25rem 0 0;
-      color: var(--paper-strong);
-    }
-
-    .community-card p {
-      margin: 0.35rem 0 0;
-      font-size: 0.78rem;
-      color: rgba(245, 239, 228, 0.75);
-      line-height: 1.5;
-    }
-
-    .community-card a {
-      color: var(--gold-soft);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(255, 225, 162, 0.3);
-    }
-
     /* ── Leader / tail ── */
     .film-leader {
       position: relative;
@@ -1178,7 +1094,6 @@
        RESPONSIVE
        ══════════════════════════════════════ */
     @media (max-width: 900px) {
-      .venue-grid,
       .about-grid {
         grid-template-columns: 1fr;
       }
@@ -1191,15 +1106,6 @@
       .pricing-row {
         grid-template-columns: 1fr;
       }
-
-      .community-row {
-        grid-template-columns: 1fr;
-      }
-
-      .poster-3d-container {
-        max-width: 100%;
-      }
-
 
       .film-frame-gate {
         aspect-ratio: auto;
@@ -1350,8 +1256,6 @@
       <span class="edge-marking" style="top: 4700px;">&#9661; 12A</span>
       <span class="edge-marking" style="top: 5200px;">13</span>
       <span class="edge-marking" style="top: 5700px;">&#9661; 13A</span>
-      <span class="edge-marking" style="top: 6200px;">14</span>
-      <span class="edge-marking" style="top: 6700px;">&#9661; 14A</span>
     </div>
     <div class="edge-text edge-text--right" aria-hidden="true">
       <span class="edge-marking" style="top: 100px;">Stavanger Magiske Lanterner KODAK 5017 EPR</span>
@@ -1364,8 +1268,6 @@
       <span class="edge-marking" style="top: 4600px;">11</span>
       <span class="edge-marking" style="top: 5200px;">Stavanger Magiske Lanterner KODAK 5017 EPR</span>
       <span class="edge-marking" style="top: 5800px;">12</span>
-      <span class="edge-marking" style="top: 6400px;">Stavanger Magiske Lanterner KODAK 5017 EPR</span>
-      <span class="edge-marking" style="top: 7000px;">13</span>
     </div>
 
     <!-- Film content between the sprocket tracks -->
@@ -1406,34 +1308,13 @@
           <div class="frame-content">
             <p class="frame-eyebrow">Our program</p>
             <h2 class="frame-heading">Social screenings at Folken's historic main hall.</h2>
-            <div class="venue-grid">
-              <div class="venue-info">
-                <h3>Big-screen cinema with club-night warmth.</h3>
-                <ul class="venue-list">
-                  <li>Our club mixes beloved classics with lesser-known works and contemporary films beyond a standard cinema schedule.</li>
-                  <li>Free popcorn at every screening.</li>
-                  <li>The bar at Folken offers a selection of beer, wine, coffee and soda.</li>
-                  <li>BYO snacks if desired!</li>
-                </ul>
-              </div>
-              <div class="venue-stats">
-                <div class="venue-stat">
-                  <p class="venue-stat-label">Formats</p>
-                  <strong>Digital + analogue</strong>
-                  <p>35mm and 16mm projection alongside digital.</p>
-                </div>
-                <div class="venue-stat">
-                  <p class="venue-stat-label">Experience</p>
-                  <strong>Popcorn included</strong>
-                  <p>Welcoming film nights with space to linger.</p>
-                </div>
-                <div class="venue-stat">
-                  <p class="venue-stat-label">Location</p>
-                  <strong>Folken, Stavanger</strong>
-                  <p>Central venue tied to the city's cultural scene.</p>
-                </div>
-              </div>
-            </div>
+            <h3>Evenings of big-screen cinema and local soul.</h3>
+            <ul class="venue-list">
+              <li>Our club mixes beloved classics with lesser-known works and contemporary films beyond a standard cinema schedule.</li>
+              <li>Free popcorn at every screening.</li>
+              <li>The bar at Folken offers a selection of beer, wine, coffee and soda.</li>
+              <li>BYO snacks if desired!</li>
+            </ul>
           </div>
           <div class="frame-counter" aria-hidden="true">02</div>
         </div>
@@ -1444,9 +1325,8 @@
         <div class="film-frame-gate">
           <div class="frame-content frame-content--centered">
             <p class="frame-eyebrow">Programme &middot; Spring 2026</p>
-            <h2 class="frame-heading">Curated for discovery.</h2>
-            <p class="frame-sub">Eight films from January to April — cult touchstones,
-              contemporary classics, international cinema.</p>
+            <h2 class="frame-heading">A season curated for discovery.</h2>
+            <p class="frame-sub">A mix of cult favourites and contemporary standouts, eight films selected to stay with you.</p>
             <div class="mt-md">
               <a class="button button--dark"
                 href="./assets/2026%20Spring.png" target="_blank" rel="noreferrer">View full season poster</a>
@@ -1592,40 +1472,7 @@
         </div>
       </div>
 
-      <!-- ═══ FRAME 8: Community ═══ -->
-      <div class="film-frame frame--community frame--dark" id="community">
-        <div class="film-frame-gate">
-          <div class="frame-content">
-            <p class="frame-eyebrow">Community</p>
-            <h2 class="frame-heading">A volunteer-run club with serious taste.</h2>
-            <p class="frame-sub">Part of the Norsk Filmklubbforbund network, recognised for bold programming and a truly
-              international film culture.</p>
-            <div class="community-row">
-              <div class="community-card community-card--accent">
-                <p class="community-kicker">Recognition</p>
-                <h3>Film Club of the Year 2023.</h3>
-                <p>NFK highlighted the club for its range, mixed audience and the people behind the screenings.</p>
-                <p class="mt-sm"><a
-                    href="https://filmklubb.no/aktuelt/prisvinnerne-pa-filmklubbenes-husstyremote-2023/" target="_blank"
-                    rel="noreferrer">Read the NFK award note</a></p>
-              </div>
-              <div class="community-card">
-                <p class="community-kicker">People</p>
-                <h3>Volunteer energy, club-night intimacy.</h3>
-                <p>The atmosphere comes from volunteers who care about curation, hospitality and accessibility.</p>
-              </div>
-              <div class="community-card">
-                <p class="community-kicker">Network</p>
-                <h3>Connected to a wider movement.</h3>
-                <p>Through NFK, screenings run with proper rights clearance while keeping club personality.</p>
-              </div>
-            </div>
-          </div>
-          <div class="frame-counter" aria-hidden="true">08</div>
-        </div>
-      </div>
-
-      <!-- ═══ FRAME 9: About ═══ -->
+      <!-- ═══ FRAME 8: About ═══ -->
       <div class="film-frame frame--about" id="about">
         <div class="film-frame-gate">
           <div class="frame-content">
@@ -1637,34 +1484,41 @@
             </p>
             <div class="about-grid">
               <div class="about-card">
+                <p class="about-card-kicker">People</p>
+                <h3>A volunteer-run club with serious taste.</h3>
+                <p>Our warm atmosphere comes from volunteers who care about curation, hospitality and accessibility.</p>
+              </div>
+              <div class="about-card">
+                <p class="about-card-kicker">Community</p>
+                <h3>International, local, curious.</h3>
+                <p>Our movie evenings are a meeting point for film lovers, newcomers and regulars alike.</p>
+              </div>
+              <div class="about-card">
+                <p class="about-card-kicker">Network</p>
+                <h3>A truly international film culture.</h3>
+                <p>Belonging to the Norsk Filmklubbforbund network ensures our screenings run with proper rights clearance.</p>
+              </div>
+              <div class="about-card">
                 <p class="about-card-kicker">Programming</p>
                 <h3>Classics, discoveries, newer film art.</h3>
                 <p>The club mixes beloved landmarks with lesser-known works and contemporary films beyond a standard
                   cinema schedule.</p>
-              </div>
-              <div class="about-card">
-                <p class="about-card-kicker">Atmosphere</p>
-                <h3>A social screening night.</h3>
-                <p>Free popcorn, open bar, and evenings designed to feel like a meeting point for film lovers.</p>
-              </div>
-              <div class="about-card">
-                <p class="about-card-kicker">Audience</p>
-                <h3>International, local, curious.</h3>
-                <p>NFK has highlighted the club's warm, international community. A place for newcomers and regulars
-                  alike.</p>
+                <p class="mt-sm"><a
+                    href="https://filmklubb.no/wp/arets-filmklubb-magiske-lanterner-stavanger-filmklubb/" target="_blank"
+                    rel="noreferrer">Read the NFK award note</a></p>
               </div>
             </div>
           </div>
-          <div class="frame-counter" aria-hidden="true">09</div>
+          <div class="frame-counter" aria-hidden="true">08</div>
         </div>
       </div>
 
-      <!-- ═══ FRAME 10: Membership ═══ -->
+      <!-- ═══ FRAME 9: Membership ═══ -->
       <div class="film-frame frame--membership" id="membership">
         <div class="film-frame-gate">
           <div class="frame-content">
             <p class="frame-eyebrow">Membership and tickets</p>
-            <h2 class="frame-heading">Simple, affordable, built for repeat visits.</h2>
+            <h2 class="frame-heading">See you at the cinema?</h2>
             <div class="pricing-row pricing-row--two">
               <div class="price-card price-card--accent">
                 <p class="price-kicker">Membership</p>
@@ -1684,7 +1538,7 @@
                 href="https://www.filmklubbmedlem.no/registrer/86" target="_blank" rel="noreferrer">Register now</a>
             </div>
           </div>
-          <div class="frame-counter" aria-hidden="true">10</div>
+          <div class="frame-counter" aria-hidden="true">09</div>
         </div>
       </div>
 
