@@ -578,6 +578,103 @@
       min-height: 0;
     }
 
+    /* ── Season navigation ── */
+    .season-nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .season-card {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      aspect-ratio: 3 / 2;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .season-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    .season-card-img {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .season-card-img img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .season-card-img::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top,
+          rgba(5, 5, 5, 0.88) 0%,
+          rgba(5, 5, 5, 0.55) 40%,
+          rgba(5, 5, 5, 0.2) 70%,
+          transparent 100%);
+      z-index: 1;
+    }
+
+    .season-card-body {
+      position: relative;
+      z-index: 2;
+      margin-top: auto;
+      padding: 1rem 1.2rem;
+    }
+
+    .season-card-body h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+      font-weight: 700;
+      line-height: 1;
+      color: #fff;
+      margin: 0;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+    }
+
+    .season-card-sub {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.7rem;
+      color: rgba(245, 239, 228, 0.6);
+      margin-top: 0.3rem;
+    }
+
+    /* ── Season divider ── */
+    .season-divider {
+      position: relative;
+      height: 40px;
+      background: var(--frame-gap);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-top: var(--frame-border) solid var(--frame-gap);
+      border-bottom: var(--frame-border) solid var(--frame-gap);
+    }
+
+    .season-divider::before {
+      content: "";
+      display: block;
+      width: 40px;
+      height: 2px;
+      background: rgba(245, 239, 228, 0.12);
+      border-radius: 1px;
+    }
+
     /* ── Leader / tail ── */
     .film-leader {
       position: relative;
@@ -631,7 +728,8 @@
        ══════════════════════════════════════ */
     @media (max-width: 900px) {
       .film-pair,
-      .film-trio {
+      .film-trio,
+      .season-nav {
         grid-template-columns: 1fr;
       }
 
@@ -744,6 +842,36 @@
 
       <!-- Film leader -->
       <div class="film-leader" aria-hidden="true"></div>
+
+      <!-- ═══ FRAME 0: Past seasons overview ═══ -->
+      <div class="film-frame frame--programme">
+        <div class="film-frame-gate">
+          <div class="frame-content">
+            <p class="frame-eyebrow">Past seasons</p>
+            <div class="season-nav">
+              <a class="season-card" href="#autumn-2025">
+                <div class="season-card-img">
+                  <img src="./assets/2025%20Autumn/the-lighthouse.jpg" alt="Autumn 2025" loading="lazy">
+                </div>
+                <div class="season-card-body">
+                  <h3>Autumn 2025</h3>
+                  <p class="season-card-sub">8 films &middot; Sep &ndash; Dec 2025</p>
+                </div>
+              </a>
+              <a class="season-card" href="#autumn-2024">
+                <div class="season-card-img">
+                  <img src="./assets/2024%20Autumn/aguirre-the-wrath-of-god.webp" alt="Autumn 2024" loading="lazy">
+                </div>
+                <div class="season-card-body">
+                  <h3>Autumn 2024</h3>
+                  <p class="season-card-sub">8 films &middot; Sep &ndash; Dec 2024</p>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="frame-counter" aria-hidden="true">00</div>
+        </div>
+      </div>
 
       <!-- ═══ FRAME 1: Season intro ═══ -->
       <div class="film-frame frame--programme" id="autumn-2025">
@@ -898,6 +1026,9 @@
           <div class="frame-counter" aria-hidden="true">05</div>
         </div>
       </div>
+
+      <!-- Season divider -->
+      <div class="season-divider" aria-hidden="true"></div>
 
       <!-- ═══════════════════════════════════════
            SEASON: AUTUMN 2024
