@@ -15,7 +15,9 @@
   h2 { font-family: "Cormorant Garamond", serif; font-size: 1.8rem; margin: 30px 0 12px; color: #141312; }
   h2:first-child { margin-top: 0; }
   .label { font-size: 0.75rem; color: #888; margin-bottom: 16px; }
-  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 40px; max-width: 800px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 50px; max-width: 1000px; }
+
+  /* ── Base filmcard ── */
   .filmcard {
     position: relative; border-radius: 10px; overflow: hidden;
     aspect-ratio: 2 / 3; min-height: 360px; display: flex; flex-direction: column;
@@ -46,65 +48,61 @@
     content: ""; display: block; width: 14px; height: 2px;
     background: var(--gold); margin-bottom: 0.2rem; border-radius: 1px;
   }
-  /* A: Corner Stack */
-  .a-badges {
-    position: absolute; top: 8px; right: 8px; display: flex; flex-direction: column;
-    align-items: flex-end; gap: 4px; z-index: 3;
-  }
-  .a-badge {
-    display: inline-block; padding: 0.2rem 0.45rem; border-radius: 6px;
-    background: rgba(7,18,31,0.8); color: rgba(245,239,228,0.85);
-    font-family: "Space Grotesk", sans-serif; font-size: 0.55rem; font-weight: 500;
-    letter-spacing: 0.04em; text-transform: uppercase; line-height: 1; white-space: nowrap;
-  }
-  .a-badge.imdb { color: var(--gold); font-weight: 700; }
-  .a-badge.age { border: 1px solid rgba(245,239,228,0.25); }
-  /* B: Inline Bottom */
-  .b-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 0.3rem; }
-  .b-tag {
-    display: inline-block; padding: 0.15rem 0.4rem; border-radius: 4px;
-    background: rgba(245,239,228,0.1); color: rgba(245,239,228,0.6);
-    font-family: "Space Grotesk", sans-serif; font-size: 0.52rem; font-weight: 500;
-    letter-spacing: 0.03em; text-transform: uppercase; line-height: 1.2; white-space: nowrap;
-    border: 1px solid rgba(245,239,228,0.08);
-  }
-  .b-tag.imdb { color: var(--gold); border-color: rgba(216,145,50,0.25); background: rgba(216,145,50,0.08); }
-  .b-tag.age { border-color: rgba(245,239,228,0.2); background: transparent; }
-  /* C: Hybrid */
-  .c-age {
-    position: absolute; top: 8px; right: 8px; padding: 0.2rem 0.5rem; border-radius: 6px;
+
+  /* ═══ OPTION 1: Age circle top-right, lang & subs inline ═══ */
+  .opt1-age {
+    position: absolute; top: 8px; right: 8px;
+    width: 28px; height: 28px; border-radius: 50%;
     background: rgba(7,18,31,0.8); color: rgba(245,239,228,0.85);
     font-family: "Space Grotesk", sans-serif; font-size: 0.6rem; font-weight: 700;
-    letter-spacing: 0.05em; text-transform: uppercase; line-height: 1; z-index: 3;
-    border: 1px solid rgba(245,239,228,0.12);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 3; border: 1px solid rgba(245,239,228,0.15);
   }
-  .c-detail {
-    font-size: 0.56rem; color: rgba(245,239,228,0.55); margin-top: 0.2rem;
-    display: flex; align-items: center; gap: 0.3em;
+  .opt1-detail {
+    font-size: 0.56rem; color: rgba(245,239,228,0.5); margin-top: 0.2rem;
+    text-transform: uppercase; letter-spacing: 0.04em; font-weight: 500;
   }
-  .c-sep { opacity: 0.4; }
-  .c-lang, .c-subs { text-transform: uppercase; letter-spacing: 0.04em; font-weight: 500; }
-  .c-imdb { color: var(--gold); text-decoration: none; font-weight: 600; }
+  .opt1-detail .sep { opacity: 0.35; }
+
+  /* ═══ OPTION 2: All three inline below meta ═══ */
+  .opt2-detail {
+    font-size: 0.56rem; color: rgba(245,239,228,0.5); margin-top: 0.2rem;
+    text-transform: uppercase; letter-spacing: 0.04em; font-weight: 500;
+  }
+  .opt2-detail .sep { opacity: 0.35; }
+  .opt2-detail .age {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 16px; height: 16px; border-radius: 50%;
+    border: 1px solid rgba(245,239,228,0.3); font-size: 0.48rem;
+    font-weight: 700; vertical-align: middle; margin-left: 2px;
+  }
+
+  /* ═══ OPTION 3: Woven into existing meta ═══ */
+  .opt3-meta-ext { font-size: 0.56rem; color: rgba(245,239,228,0.45); margin-top: 0.12rem; }
+  .opt3-meta-ext .sep { opacity: 0.35; }
+  .opt3-meta-ext .age-circle {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 15px; height: 15px; border-radius: 50%;
+    border: 1px solid rgba(245,239,228,0.25); font-size: 0.45rem;
+    font-weight: 700; vertical-align: middle; color: rgba(245,239,228,0.6);
+  }
 </style>
 </head>
 <body>
-<h2>Approach A: Corner Badge Stack</h2>
-<p class="label">All 4 badges stacked in top-right corner</p>
+
+<h2>Option 1: Age circle top-right, lang &amp; subs inline</h2>
+<p class="label">Circular age badge mirrors the date badge. Language and subtitles as a subtle line below director info.</p>
 <div class="row">
   <div class="filmcard">
     <div class="filmcard-poster">
       <img src="./assets/2024%20Autumn/pulp-fiction.avif" alt="Pulp Fiction">
       <span class="filmcard-date">04 Sep</span>
-      <div class="a-badges">
-        <span class="a-badge">EN</span>
-        <span class="a-badge">NO subs</span>
-        <span class="a-badge imdb">&#9733; 8.9</span>
-        <span class="a-badge age">R</span>
-      </div>
+      <span class="opt1-age">18</span>
     </div>
     <div class="filmcard-body">
       <h3>Pulp Fiction</h3>
       <p class="filmcard-meta">Quentin Tarantino &middot; 1994 &middot; USA</p>
+      <p class="opt1-detail">EN <span class="sep">&middot;</span> NO subs</p>
     </div>
     <p class="filmcard-note">Hitmen, a boxer, and a pair of bandits collide across Los Angeles.</p>
   </div>
@@ -112,23 +110,32 @@
     <div class="filmcard-poster">
       <img src="./assets/2025%20Autumn/paprika.jpg" alt="Paprika">
       <span class="filmcard-date">03 Sep</span>
-      <div class="a-badges">
-        <span class="a-badge">JP</span>
-        <span class="a-badge">EN subs</span>
-        <span class="a-badge imdb">&#9733; 7.7</span>
-        <span class="a-badge age">R</span>
-      </div>
+      <span class="opt1-age">12</span>
     </div>
     <div class="filmcard-body">
       <h3>Paprika</h3>
       <p class="filmcard-meta">Satoshi Kon &middot; 2006 &middot; Japan</p>
+      <p class="opt1-detail">JP <span class="sep">&middot;</span> EN subs</p>
     </div>
     <p class="filmcard-note">Reality and fantasy collapse in Kon's wildly inventive animated thriller.</p>
+  </div>
+  <div class="filmcard">
+    <div class="filmcard-poster">
+      <img src="./assets/2025%20Autumn/the-lighthouse.jpg" alt="The Lighthouse">
+      <span class="filmcard-date">29 Oct</span>
+      <span class="opt1-age">15</span>
+    </div>
+    <div class="filmcard-body">
+      <h3>The Lighthouse</h3>
+      <p class="filmcard-meta">Robert Eggers &middot; 2019 &middot; USA / Canada</p>
+      <p class="opt1-detail">EN <span class="sep">&middot;</span> NO subs</p>
+    </div>
+    <p class="filmcard-note">Two lighthouse keepers descend into madness on a remote island.</p>
   </div>
 </div>
 
-<h2>Approach B: All Inline Bottom</h2>
-<p class="label">All metadata as tiny pill tags below director/year/country</p>
+<h2>Option 2: All three inline below meta</h2>
+<p class="label">Language, subtitles, and age as a single line with a circled age number. Nothing on the poster image.</p>
 <div class="row">
   <div class="filmcard">
     <div class="filmcard-poster">
@@ -138,12 +145,7 @@
     <div class="filmcard-body">
       <h3>Pulp Fiction</h3>
       <p class="filmcard-meta">Quentin Tarantino &middot; 1994 &middot; USA</p>
-      <div class="b-tags">
-        <span class="b-tag">EN</span>
-        <span class="b-tag">NO subs</span>
-        <span class="b-tag imdb">&#9733; 8.9</span>
-        <span class="b-tag age">R</span>
-      </div>
+      <p class="opt2-detail">EN <span class="sep">&middot;</span> NO subs <span class="sep">&middot;</span> <span class="age">18</span></p>
     </div>
     <p class="filmcard-note">Hitmen, a boxer, and a pair of bandits collide across Los Angeles.</p>
   </div>
@@ -155,36 +157,36 @@
     <div class="filmcard-body">
       <h3>Paprika</h3>
       <p class="filmcard-meta">Satoshi Kon &middot; 2006 &middot; Japan</p>
-      <div class="b-tags">
-        <span class="b-tag">JP</span>
-        <span class="b-tag">EN subs</span>
-        <span class="b-tag imdb">&#9733; 7.7</span>
-        <span class="b-tag age">R</span>
-      </div>
+      <p class="opt2-detail">JP <span class="sep">&middot;</span> EN subs <span class="sep">&middot;</span> <span class="age">12</span></p>
     </div>
     <p class="filmcard-note">Reality and fantasy collapse in Kon's wildly inventive animated thriller.</p>
+  </div>
+  <div class="filmcard">
+    <div class="filmcard-poster">
+      <img src="./assets/2025%20Autumn/the-lighthouse.jpg" alt="The Lighthouse">
+      <span class="filmcard-date">29 Oct</span>
+    </div>
+    <div class="filmcard-body">
+      <h3>The Lighthouse</h3>
+      <p class="filmcard-meta">Robert Eggers &middot; 2019 &middot; USA / Canada</p>
+      <p class="opt2-detail">EN <span class="sep">&middot;</span> NO subs <span class="sep">&middot;</span> <span class="age">15</span></p>
+    </div>
+    <p class="filmcard-note">Two lighthouse keepers descend into madness on a remote island.</p>
   </div>
 </div>
 
-<h2>Approach C: Hybrid Split (Recommended)</h2>
-<p class="label">Age badge top-right &middot; Language, subs &amp; IMDB inline at bottom</p>
+<h2>Option 3: Woven into existing meta</h2>
+<p class="label">Full language names, spelled-out subtitles, circled age — feels like it was always part of the design.</p>
 <div class="row">
   <div class="filmcard">
     <div class="filmcard-poster">
       <img src="./assets/2024%20Autumn/pulp-fiction.avif" alt="Pulp Fiction">
       <span class="filmcard-date">04 Sep</span>
-      <span class="c-age">R</span>
     </div>
     <div class="filmcard-body">
       <h3>Pulp Fiction</h3>
       <p class="filmcard-meta">Quentin Tarantino &middot; 1994 &middot; USA</p>
-      <p class="c-detail">
-        <span class="c-lang">EN</span>
-        <span class="c-sep">&middot;</span>
-        <span class="c-subs">NO subs</span>
-        <span class="c-sep">&middot;</span>
-        <a class="c-imdb" href="https://www.imdb.com/title/tt0110912/">&#9733; 8.9</a>
-      </p>
+      <p class="opt3-meta-ext">English <span class="sep">&middot;</span> Norwegian subtitles <span class="sep">&middot;</span> <span class="age-circle">18</span></p>
     </div>
     <p class="filmcard-note">Hitmen, a boxer, and a pair of bandits collide across Los Angeles.</p>
   </div>
@@ -192,21 +194,27 @@
     <div class="filmcard-poster">
       <img src="./assets/2025%20Autumn/paprika.jpg" alt="Paprika">
       <span class="filmcard-date">03 Sep</span>
-      <span class="c-age">R</span>
     </div>
     <div class="filmcard-body">
       <h3>Paprika</h3>
       <p class="filmcard-meta">Satoshi Kon &middot; 2006 &middot; Japan</p>
-      <p class="c-detail">
-        <span class="c-lang">JP</span>
-        <span class="c-sep">&middot;</span>
-        <span class="c-subs">EN subs</span>
-        <span class="c-sep">&middot;</span>
-        <a class="c-imdb" href="https://www.imdb.com/title/tt0851578/">&#9733; 7.7</a>
-      </p>
+      <p class="opt3-meta-ext">Japanese <span class="sep">&middot;</span> English subtitles <span class="sep">&middot;</span> <span class="age-circle">12</span></p>
     </div>
     <p class="filmcard-note">Reality and fantasy collapse in Kon's wildly inventive animated thriller.</p>
   </div>
+  <div class="filmcard">
+    <div class="filmcard-poster">
+      <img src="./assets/2025%20Autumn/the-lighthouse.jpg" alt="The Lighthouse">
+      <span class="filmcard-date">29 Oct</span>
+    </div>
+    <div class="filmcard-body">
+      <h3>The Lighthouse</h3>
+      <p class="filmcard-meta">Robert Eggers &middot; 2019 &middot; USA / Canada</p>
+      <p class="opt3-meta-ext">English <span class="sep">&middot;</span> Norwegian subtitles <span class="sep">&middot;</span> <span class="age-circle">15</span></p>
+    </div>
+    <p class="filmcard-note">Two lighthouse keepers descend into madness on a remote island.</p>
+  </div>
 </div>
+
 </body>
 </html>
