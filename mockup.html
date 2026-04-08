@@ -86,6 +86,25 @@
     border: 1px solid rgba(245,239,228,0.25); font-size: 0.45rem;
     font-weight: 700; vertical-align: middle; color: rgba(245,239,228,0.6);
   }
+  /* ═══ OPTION 4: Icons — speaker for lang, CC for subs, circled age ═══ */
+  .opt4-detail {
+    font-size: 0.56rem; color: rgba(245,239,228,0.55); margin-top: 0.25rem;
+    display: flex; align-items: center; gap: 0.5em; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.03em;
+  }
+  .opt4-detail .icon-group {
+    display: inline-flex; align-items: center; gap: 0.2em;
+  }
+  .opt4-detail .icon {
+    font-style: normal; font-size: 0.62rem; opacity: 0.6;
+  }
+  .opt4-detail .sep { opacity: 0.3; }
+  .opt4-detail .age {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 17px; height: 17px; border-radius: 50%;
+    border: 1px solid rgba(245,239,228,0.3); font-size: 0.46rem;
+    font-weight: 700; vertical-align: middle;
+  }
 </style>
 </head>
 <body>
@@ -211,6 +230,65 @@
       <h3>The Lighthouse</h3>
       <p class="filmcard-meta">Robert Eggers &middot; 2019 &middot; USA / Canada</p>
       <p class="opt3-meta-ext">English <span class="sep">&middot;</span> Norwegian subtitles <span class="sep">&middot;</span> <span class="age-circle">15</span></p>
+    </div>
+    <p class="filmcard-note">Two lighthouse keepers descend into madness on a remote island.</p>
+  </div>
+</div>
+
+<h2>Option 4: Icons &mdash; speaker + CC + age circle</h2>
+<p class="label">Speaker icon for original language, CC icon for subtitles, circled age. Compact and universal.</p>
+<div class="row">
+  <div class="filmcard">
+    <div class="filmcard-poster">
+      <img src="./assets/2024%20Autumn/pulp-fiction.avif" alt="Pulp Fiction">
+      <span class="filmcard-date">04 Sep</span>
+    </div>
+    <div class="filmcard-body">
+      <h3>Pulp Fiction</h3>
+      <p class="filmcard-meta">Quentin Tarantino &middot; 1994 &middot; USA</p>
+      <p class="opt4-detail">
+        <span class="icon-group"><em class="icon">&#128264;</em> EN</span>
+        <span class="sep">&middot;</span>
+        <span class="icon-group"><em class="icon">CC</em> NO</span>
+        <span class="sep">&middot;</span>
+        <span class="age">18</span>
+      </p>
+    </div>
+    <p class="filmcard-note">Hitmen, a boxer, and a pair of bandits collide across Los Angeles.</p>
+  </div>
+  <div class="filmcard">
+    <div class="filmcard-poster">
+      <img src="./assets/2025%20Autumn/paprika.jpg" alt="Paprika">
+      <span class="filmcard-date">03 Sep</span>
+    </div>
+    <div class="filmcard-body">
+      <h3>Paprika</h3>
+      <p class="filmcard-meta">Satoshi Kon &middot; 2006 &middot; Japan</p>
+      <p class="opt4-detail">
+        <span class="icon-group"><em class="icon">&#128264;</em> JP</span>
+        <span class="sep">&middot;</span>
+        <span class="icon-group"><em class="icon">CC</em> EN</span>
+        <span class="sep">&middot;</span>
+        <span class="age">12</span>
+      </p>
+    </div>
+    <p class="filmcard-note">Reality and fantasy collapse in Kon's wildly inventive animated thriller.</p>
+  </div>
+  <div class="filmcard">
+    <div class="filmcard-poster">
+      <img src="./assets/2025%20Autumn/the-lighthouse.jpg" alt="The Lighthouse">
+      <span class="filmcard-date">29 Oct</span>
+    </div>
+    <div class="filmcard-body">
+      <h3>The Lighthouse</h3>
+      <p class="filmcard-meta">Robert Eggers &middot; 2019 &middot; USA / Canada</p>
+      <p class="opt4-detail">
+        <span class="icon-group"><em class="icon">&#128264;</em> EN</span>
+        <span class="sep">&middot;</span>
+        <span class="icon-group"><em class="icon">CC</em> NO</span>
+        <span class="sep">&middot;</span>
+        <span class="age">15</span>
+      </p>
     </div>
     <p class="filmcard-note">Two lighthouse keepers descend into madness on a remote island.</p>
   </div>
