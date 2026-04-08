@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #d89132;
+    --gold-soft: #f0b565;
+    --night: #07121f;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { font-family: "Space Grotesk", sans-serif; background: #f3f0e9; padding: 30px; }
+  h2 { font-family: "Cormorant Garamond", serif; font-size: 1.8rem; margin: 30px 0 12px; color: #141312; }
+  h2:first-child { margin-top: 0; }
+  .label { font-size: 0.75rem; color: #888; margin-bottom: 16px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 40px; max-width: 800px; }
+  .filmcard {
+    position: relative; border-radius: 10px; overflow: hidden;
+    aspect-ratio: 2 / 3; min-height: 360px; display: flex; flex-direction: column;
+  }
+  .filmcard-poster { position: absolute; inset: 0; z-index: 0; }
+  .filmcard-poster img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .filmcard-poster::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(5,5,5,0.95) 0%, rgba(5,5,5,0.82) 22%, rgba(5,5,5,0.45) 45%, rgba(5,5,5,0.1) 60%, transparent 72%);
+    z-index: 1;
+  }
+  .filmcard-date {
+    position: absolute; top: 8px; left: 8px; padding: 0.3rem 0.65rem; border-radius: 8px;
+    background: rgba(7,18,31,0.8); color: var(--gold);
+    font-family: "Space Grotesk", sans-serif; font-size: 1rem; font-weight: 700; z-index: 3;
+  }
+  .filmcard-body { position: relative; z-index: 2; margin-top: auto; padding: 0.6rem 0.75rem 0.15rem; }
+  .filmcard-body h3 {
+    font-family: "Cormorant Garamond", serif; font-size: 1.7rem; font-weight: 700;
+    line-height: 1.05; color: #fff; margin: 0; text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  }
+  .filmcard-meta { font-size: 0.62rem; color: rgba(245,239,228,0.7); margin-top: 0.15rem; }
+  .filmcard-note {
+    position: relative; z-index: 2; font-size: 0.68rem; color: rgba(245,239,228,0.6);
+    line-height: 1.4; padding: 0.25rem 0.75rem 0.6rem;
+  }
+  .filmcard-note::before {
+    content: ""; display: block; width: 14px; height: 2px;
+    background: var(--gold); margin-bottom: 0.2rem; border-radius: 1px;
+  }
+  /* A: Corner Stack */
+  .a-badges {
+    position: absolute; top: 8px; right: 8px; display: flex; flex-direction: column;
+    align-items: flex-end; gap: 4px; z-index: 3;
+  }
+  .a-badge {
+    display: inline-block; padding: 0.2rem 0.45rem; border-radius: 6px;
+    background: rgba(7,18,31,0.8); color: rgba(245,239,228,0.85);
+    font-family: "Space Grotesk", sans-serif; font-size: 0.55rem; font-weight: 500;
+    letter-spacing: 0.04em; text-transform: uppercase; line-height: 1; white-space: nowrap;
+  }
+  .a-badge.imdb { color: var(--gold); font-weight: 700; }
+  .a-badge.age { border: 1px solid rgba(245,239,228,0.25); }
+  /* B: Inline Bottom */
+  .b-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 0.3rem; }
+  .b-tag {
+    display: inline-block; padding: 0.15rem 0.4rem; border-radius: 4px;
+    background: rgba(245,239,228,0.1); color: rgba(245,239,228,0.6);
+    font-family: "Space Grotesk", sans-serif; font-size: 0.52rem; font-weight: 500;
+    letter-spacing: 0.03em; text-transform: uppercase; line-height: 1.2; white-space: nowrap;
+    border: 1px solid rgba(245,239,228,0.08);
+  }
+  .b-tag.imdb { color: var(--gold); border-color: rgba(216,145,50,0.25); background: rgba(216,145,50,0.08); }
+  .b-tag.age { border-color: rgba(245,239,228,0.2); background: transparent; }
+  /* C: Hybrid */
+  .c-age {
+    position: absolute; top: 8px; right: 8px; padding: 0.2rem 0.5rem; border-radius: 6px;
+    background: rgba(7,18,31,0.8); color: rgba(245,239,228,0.85);
+    font-family: "Space Grotesk", sans-serif; font-size: 0.6rem; font-weight: 700;
+    letter-spacing: 0.05em; text-transform: uppercase; line-height: 1; z-index: 3;
+    border: 1px solid rgba(245,239,228,0.12);
+  }
+  .c-detail {
+    font-size: 0.56rem; color: rgba(245,239,228,0.55); margin-top: 0.2rem;
+    display: flex; align-items: center; gap: 0.3em;
+  }
+  .c-sep { opacity: 0.4; }
+  .c-lang, .c-subs { text-transform: uppercase; letter-spacing: 0.04em; font-weight: 500; }
+  .c-imdb { color: var(--gold); text-decoration: none; font-weight: 600; }
+</style>
+</head>
+<body>
+<h2>Approach A: Corner Badge Stack</h2>
+<p class="label">All 4 badges stacked in top-right corner</p>
+<div class="row">
+  <div class="filmcard">
+    <div class="filmcard-poster">
+      <img src="./assets/2024%20Autumn/pulp-fiction.avif" alt="Pulp Fiction">
+      <span class="filmcard-date">04 Sep</span>
+      <div class="a-badges">
+        <span class="a-badge">EN</span>
+        <span class="a-badge">NO subs</span>
+        <span class="a-badge imdb">&#9733; 8.9</span>
+        <span class="a-badge age">R</span>
+      </div>
+    </div>
+    <div class="filmcard-body">
+      <h3>Pulp Fiction</h3>
+      <p class="filmcard-meta">Quentin Tarantino &middot; 1994 &middot; USA</p>
+    </div>
+    <p class="filmcard-note">Hitmen, a boxer, and a pair of bandits collide across Los Angeles.</p>
+  </div>
+  <div class="filmcard">
+    <div class="filmcard-poster">
+      <img src="./assets/2025%20Autumn/paprika.jpg" alt="Paprika">
+      <span class="filmcard-date">03 Sep</span>
+      <div class="a-badges">
+        <span class="a-badge">JP</span>
+        <span class="a-badge">EN subs</span>
+        <span class="a-badge imdb">&#9733; 7.7</span>
+        <span class="a-badge age">R</span>
+      </div>
+    </div>
+    <div class="filmcard-body">
+      <h3>Paprika</h3>
+      <p class="filmcard-meta">Satoshi Kon &middot; 2006 &middot; Japan</p>
+    </div>
+    <p class="filmcard-note">Reality and fantasy collapse in Kon's wildly inventive animated thriller.</p>
+  </div>
+</div>
+
+<h2>Approach B: All Inline Bottom</h2>
+<p class="label">All metadata as tiny pill tags below director/year/country</p>
+<div class="row">
+  <div class="filmcard">
+    <div class="filmcard-poster">
+      <img src="./assets/2024%20Autumn/pulp-fiction.avif" alt="Pulp Fiction">
+      <span class="filmcard-date">04 Sep</span>
+    </div>
+    <div class="filmcard-body">
+      <h3>Pulp Fiction</h3>
+      <p class="filmcard-meta">Quentin Tarantino &middot; 1994 &middot; USA</p>
+      <div class="b-tags">
+        <span class="b-tag">EN</span>
+        <span class="b-tag">NO subs</span>
+        <span class="b-tag imdb">&#9733; 8.9</span>
+        <span class="b-tag age">R</span>
+      </div>
+    </div>
+    <p class="filmcard-note">Hitmen, a boxer, and a pair of bandits collide across Los Angeles.</p>
+  </div>
+  <div class="filmcard">
+    <div class="filmcard-poster">
+      <img src="./assets/2025%20Autumn/paprika.jpg" alt="Paprika">
+      <span class="filmcard-date">03 Sep</span>
+    </div>
+    <div class="filmcard-body">
+      <h3>Paprika</h3>
+      <p class="filmcard-meta">Satoshi Kon &middot; 2006 &middot; Japan</p>
+      <div class="b-tags">
+        <span class="b-tag">JP</span>
+        <span class="b-tag">EN subs</span>
+        <span class="b-tag imdb">&#9733; 7.7</span>
+        <span class="b-tag age">R</span>
+      </div>
+    </div>
+    <p class="filmcard-note">Reality and fantasy collapse in Kon's wildly inventive animated thriller.</p>
+  </div>
+</div>
+
+<h2>Approach C: Hybrid Split (Recommended)</h2>
+<p class="label">Age badge top-right &middot; Language, subs &amp; IMDB inline at bottom</p>
+<div class="row">
+  <div class="filmcard">
+    <div class="filmcard-poster">
+      <img src="./assets/2024%20Autumn/pulp-fiction.avif" alt="Pulp Fiction">
+      <span class="filmcard-date">04 Sep</span>
+      <span class="c-age">R</span>
+    </div>
+    <div class="filmcard-body">
+      <h3>Pulp Fiction</h3>
+      <p class="filmcard-meta">Quentin Tarantino &middot; 1994 &middot; USA</p>
+      <p class="c-detail">
+        <span class="c-lang">EN</span>
+        <span class="c-sep">&middot;</span>
+        <span class="c-subs">NO subs</span>
+        <span class="c-sep">&middot;</span>
+        <a class="c-imdb" href="https://www.imdb.com/title/tt0110912/">&#9733; 8.9</a>
+      </p>
+    </div>
+    <p class="filmcard-note">Hitmen, a boxer, and a pair of bandits collide across Los Angeles.</p>
+  </div>
+  <div class="filmcard">
+    <div class="filmcard-poster">
+      <img src="./assets/2025%20Autumn/paprika.jpg" alt="Paprika">
+      <span class="filmcard-date">03 Sep</span>
+      <span class="c-age">R</span>
+    </div>
+    <div class="filmcard-body">
+      <h3>Paprika</h3>
+      <p class="filmcard-meta">Satoshi Kon &middot; 2006 &middot; Japan</p>
+      <p class="c-detail">
+        <span class="c-lang">JP</span>
+        <span class="c-sep">&middot;</span>
+        <span class="c-subs">EN subs</span>
+        <span class="c-sep">&middot;</span>
+        <a class="c-imdb" href="https://www.imdb.com/title/tt0851578/">&#9733; 7.7</a>
+      </p>
+    </div>
+    <p class="filmcard-note">Reality and fantasy collapse in Kon's wildly inventive animated thriller.</p>
+  </div>
+</div>
+</body>
+</html>
