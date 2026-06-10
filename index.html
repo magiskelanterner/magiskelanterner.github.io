@@ -25,7 +25,7 @@
     content="Curated screenings at Folken: classics, discoveries, contemporary film art, free popcorn, and a welcoming film community in Stavanger.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://magiskelanterner.github.io/">
-  <meta property="og:image" content="https://magiskelanterner.github.io/assets/2026%20Spring/2026-spring-poster.png">
+  <meta property="og:image" content="https://magiskelanterner.github.io/assets/2026%20Autumn/the-darjeeling-limited.jpg">
   <meta property="og:locale" content="en_GB">
   <meta name="twitter:card" content="summary_large_image">
 
@@ -786,6 +786,23 @@
       z-index: 3;
     }
 
+    /* Tag badge (e.g. live music) — top-right corner */
+    .filmcard-tag {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      padding: 0.3rem 0.6rem;
+      border-radius: 8px;
+      background: var(--ruby);
+      color: #fff;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      z-index: 3;
+    }
+
     /* Text content — overlaid at the bottom */
     .filmcard-body {
       position: relative;
@@ -1097,29 +1114,29 @@
   [{
     "@context": "https://schema.org",
     "@type": "Event",
-    "name": "Graduation — Magiske Lanterner Screening",
-    "startDate": "2026-04-08",
+    "name": "The Darjeeling Limited — Magiske Lanterner Screening",
+    "startDate": "2026-09-16",
     "location": {"@type": "Place", "name": "Folken", "address": {"@type": "PostalAddress", "addressLocality": "Stavanger", "addressCountry": "NO"}},
     "organizer": {"@type": "Organization", "name": "Magiske Lanterner"},
-    "image": "https://magiskelanterner.github.io/assets/2026%20Spring/graduation.jpg"
+    "image": "https://magiskelanterner.github.io/assets/2026%20Autumn/the-darjeeling-limited.jpg"
   },
   {
     "@context": "https://schema.org",
     "@type": "Event",
-    "name": "Kneecap — Magiske Lanterner Screening",
-    "startDate": "2026-04-22",
+    "name": "Spirited Away — Magiske Lanterner Screening",
+    "startDate": "2026-10-14",
     "location": {"@type": "Place", "name": "Folken", "address": {"@type": "PostalAddress", "addressLocality": "Stavanger", "addressCountry": "NO"}},
     "organizer": {"@type": "Organization", "name": "Magiske Lanterner"},
-    "image": "https://magiskelanterner.github.io/assets/2026%20Spring/kneecap.jpg"
+    "image": "https://magiskelanterner.github.io/assets/2026%20Autumn/spirited-away.png"
   },
   {
     "@context": "https://schema.org",
     "@type": "Event",
-    "name": "Tampopo — Magiske Lanterner Screening",
-    "startDate": "2026-04-29",
+    "name": "Nosferatu (with live music) — Magiske Lanterner Screening",
+    "startDate": "2026-10-28",
     "location": {"@type": "Place", "name": "Folken", "address": {"@type": "PostalAddress", "addressLocality": "Stavanger", "addressCountry": "NO"}},
     "organizer": {"@type": "Organization", "name": "Magiske Lanterner"},
-    "image": "https://magiskelanterner.github.io/assets/2026%20Spring/tampopo.jpg"
+    "image": "https://magiskelanterner.github.io/assets/2026%20Autumn/nosferatu.jpg"
   }]
   </script>
 </head>
@@ -1190,14 +1207,14 @@
             </div>
             <div class="filmcard">
               <div class="filmcard-poster">
-                <img src="./assets/2026%20Spring/tampopo.jpg" alt="Tampopo poster" loading="eager">
-                <span class="filmcard-date">Next screening &middot; 29 Apr</span>
+                <img src="./assets/2026%20Autumn/the-darjeeling-limited.jpg" alt="The Darjeeling Limited poster" loading="eager">
+                <span class="filmcard-date">Next screening &middot; 16 Sep</span>
               </div>
               <div class="filmcard-body">
-                <h3>Tampopo</h3>
-                <p class="filmcard-meta">Juzo Itami &middot; 1985 &middot; Japan</p>
+                <h3>The Darjeeling Limited</h3>
+                <p class="filmcard-meta">Wes Anderson &middot; 2007 &middot; USA</p>
               </div>
-              <p class="filmcard-note">A &ldquo;ramen western&rdquo; that playfully mixes food, desire and genre conventions.</p>
+              <p class="filmcard-note">Three estranged brothers chase reconciliation across India in Wes Anderson's deadpan comedy.</p>
             </div>
           </div>
           <div class="frame-counter" aria-hidden="true">01</div>
@@ -1226,14 +1243,10 @@
       <div class="film-frame frame--programme" id="programme">
         <div class="film-frame-gate">
           <div class="frame-content frame-content--centered">
-            <p class="frame-eyebrow">Programme &middot; Spring 2026</p>
+            <p class="frame-eyebrow">Programme &middot; Autumn 2026</p>
             <h2 class="frame-heading">A season curated for discovery.</h2>
-            <p class="frame-sub">A mix of cult favourites and contemporary standouts, eight films selected to stay with you.</p>
-            <div class="mt-md">
-              <a class="button button--dark"
-                href="./assets/2026%20Spring/2026-spring-poster.png" target="_blank" rel="noreferrer">View full season poster</a>
-            </div>
-            <p class="mt-sm" style="font-size: 0.78rem; color: var(--ink-soft);">
+            <p class="frame-sub">From Wes Anderson to silent horror with live music, eight films spanning a century of cinema and five continents.</p>
+            <p class="mt-md" style="font-size: 0.78rem; color: var(--ink-soft);">
               <a href="./past-seasons.html" target="_blank" rel="noreferrer"
                 style="color: var(--ink-soft); text-decoration: none; border-bottom: 1px solid rgba(17, 32, 50, 0.2);">Past seasons &rarr;</a>
             </p>
@@ -1242,22 +1255,33 @@
         </div>
       </div>
 
-      <!-- ═══ FRAME 4: January — Sin City ═══ -->
+      <!-- ═══ FRAME 4: September — The Darjeeling Limited + Four Daughters ═══ -->
       <div class="film-frame frame--programme">
         <div class="film-frame-gate">
           <div class="frame-content">
-            <p class="frame-eyebrow">January</p>
+            <p class="frame-eyebrow">September</p>
             <div class="film-pair">
               <div class="filmcard">
                 <div class="filmcard-poster">
-                  <img src="./assets/2026%20Spring/sin-city.jpg" alt="Sin City poster" loading="lazy">
-                  <span class="filmcard-date">21 Jan</span>
+                  <img src="./assets/2026%20Autumn/the-darjeeling-limited.jpg" alt="The Darjeeling Limited poster" loading="lazy">
+                  <span class="filmcard-date">16 Sep</span>
                 </div>
                 <div class="filmcard-body">
-                  <h3>Sin City</h3>
-                  <p class="filmcard-meta">Rodriguez &amp; Miller &middot; 2005 &middot; USA</p>
+                  <h3>The Darjeeling Limited</h3>
+                  <p class="filmcard-meta">Wes Anderson &middot; 2007 &middot; USA</p>
                 </div>
-                <p class="filmcard-note">A hyper-stylised neo-noir that turned a graphic novel into a new kind of cinema.</p>
+                <p class="filmcard-note">Three estranged brothers chase reconciliation across India in Wes Anderson's deadpan comedy.</p>
+              </div>
+              <div class="filmcard">
+                <div class="filmcard-poster">
+                  <img src="./assets/2026%20Autumn/four-daughters.jpg" alt="Four Daughters poster" loading="lazy">
+                  <span class="filmcard-date">30 Sep</span>
+                </div>
+                <div class="filmcard-body">
+                  <h3>Four Daughters</h3>
+                  <p class="filmcard-meta">Kaouther Ben Hania &middot; 2023 &middot; Tunisia</p>
+                </div>
+                <p class="filmcard-note">A Cannes Golden Eye winner blending documentary and re-enactment to trace how two daughters vanished into extremism.</p>
               </div>
             </div>
           </div>
@@ -1265,33 +1289,34 @@
         </div>
       </div>
 
-      <!-- ═══ FRAME 5: February — Totem + Fallen Leaves ═══ -->
+      <!-- ═══ FRAME 5: October — Spirited Away + Nosferatu (live music) ═══ -->
       <div class="film-frame frame--programme">
         <div class="film-frame-gate">
           <div class="frame-content">
-            <p class="frame-eyebrow">February</p>
+            <p class="frame-eyebrow">October</p>
             <div class="film-pair">
               <div class="filmcard">
                 <div class="filmcard-poster">
-                  <img src="./assets/2026%20Spring/totem.jpg" alt="Totem poster" loading="lazy">
-                  <span class="filmcard-date">04 Feb</span>
+                  <img src="./assets/2026%20Autumn/spirited-away.png" alt="Spirited Away poster" loading="lazy">
+                  <span class="filmcard-date">14 Oct</span>
                 </div>
                 <div class="filmcard-body">
-                  <h3>Totem</h3>
-                  <p class="filmcard-meta">Lila Avil&eacute;s &middot; 2023 &middot; Mexico</p>
+                  <h3>Spirited Away</h3>
+                  <p class="filmcard-meta">Hayao Miyazaki &middot; 2001 &middot; Japan</p>
                 </div>
-                <p class="filmcard-note">A quietly devastating family portrait seen through a child's eyes.</p>
+                <p class="filmcard-note">Miyazaki's Oscar-winning masterpiece &mdash; a girl toils in a spirit-world bathhouse to free her parents.</p>
               </div>
               <div class="filmcard">
                 <div class="filmcard-poster">
-                  <img src="./assets/2026%20Spring/fallen-leaves.jpg" alt="Fallen Leaves poster" loading="lazy">
-                  <span class="filmcard-date">18 Feb</span>
+                  <img src="./assets/2026%20Autumn/nosferatu.jpg" alt="Nosferatu poster" loading="lazy">
+                  <span class="filmcard-date">28 Oct</span>
+                  <span class="filmcard-tag">Live music</span>
                 </div>
                 <div class="filmcard-body">
-                  <h3>Fallen Leaves</h3>
-                  <p class="filmcard-meta">Aki Kaurism&auml;ki &middot; 2023 &middot; Finland</p>
+                  <h3>Nosferatu</h3>
+                  <p class="filmcard-meta">F.W. Murnau &middot; 1922 &middot; Germany</p>
                 </div>
-                <p class="filmcard-note">Deadpan Helsinki romance where two lonely workers try to find each other.</p>
+                <p class="filmcard-note">Murnau's silent vampire landmark, screened with live musical accompaniment.</p>
               </div>
             </div>
           </div>
@@ -1299,33 +1324,44 @@
         </div>
       </div>
 
-      <!-- ═══ FRAME 6: March — Memoir of a Snail + The Hunt ═══ -->
+      <!-- ═══ FRAME 6: November — Utama + Loveless + Black Dog ═══ -->
       <div class="film-frame frame--programme">
         <div class="film-frame-gate">
           <div class="frame-content">
-            <p class="frame-eyebrow">March</p>
-            <div class="film-pair">
+            <p class="frame-eyebrow">November</p>
+            <div class="film-trio">
               <div class="filmcard">
                 <div class="filmcard-poster">
-                  <img src="./assets/2026%20Spring/memoir-of-a-snail.jpg" alt="Memoir of a Snail poster" loading="lazy">
-                  <span class="filmcard-date">04 Mar</span>
+                  <img src="./assets/2026%20Autumn/utama.jpg" alt="Utama poster" loading="lazy">
+                  <span class="filmcard-date">04 Nov</span>
                 </div>
                 <div class="filmcard-body">
-                  <h3>Memoir of a Snail</h3>
-                  <p class="filmcard-meta">Adam Elliot &middot; 2024 &middot; Australia</p>
+                  <h3>Utama</h3>
+                  <p class="filmcard-meta">Alejandro Loayza Grisi &middot; 2022 &middot; Bolivia</p>
                 </div>
-                <p class="filmcard-note">Animated tale of hoarding, heartbreak and finding your people.</p>
+                <p class="filmcard-note">An elderly Quechua couple weather drought and change on the Bolivian altiplano.</p>
               </div>
               <div class="filmcard">
                 <div class="filmcard-poster">
-                  <img src="./assets/2026%20Spring/the-hunt.jpg" alt="The Hunt poster" loading="lazy">
-                  <span class="filmcard-date">18 Mar</span>
+                  <img src="./assets/2026%20Autumn/loveless.png" alt="Loveless poster" loading="lazy">
+                  <span class="filmcard-date">18 Nov</span>
                 </div>
                 <div class="filmcard-body">
-                  <h3>The Hunt</h3>
-                  <p class="filmcard-meta">Thomas Vinterberg &middot; 2012 &middot; Denmark</p>
+                  <h3>Loveless</h3>
+                  <p class="filmcard-meta">Andrey Zvyagintsev &middot; 2017 &middot; Russia</p>
                 </div>
-                <p class="filmcard-note">Mads Mikkelsen destroyed by a false accusation. Nerve-shredding mob mentality.</p>
+                <p class="filmcard-note">An icy drama: a divorcing couple search for their missing son in a loveless Russia.</p>
+              </div>
+              <div class="filmcard">
+                <div class="filmcard-poster">
+                  <img src="./assets/2026%20Autumn/black-dog.jpg" alt="Black Dog poster" loading="lazy">
+                  <span class="filmcard-date">25 Nov</span>
+                </div>
+                <div class="filmcard-body">
+                  <h3>Black Dog</h3>
+                  <p class="filmcard-meta">Guan Hu &middot; 2024 &middot; China</p>
+                </div>
+                <p class="filmcard-note">A drifter and a stray bond on the edge of the Gobi in Guan Hu's Cannes-winning tale.</p>
               </div>
             </div>
           </div>
@@ -1333,44 +1369,22 @@
         </div>
       </div>
 
-      <!-- ═══ FRAME 7: April — Graduation + Kneecap + Tampopo ═══ -->
+      <!-- ═══ FRAME 7: December — Jodorowsky's Dune ═══ -->
       <div class="film-frame frame--programme">
         <div class="film-frame-gate">
           <div class="frame-content">
-            <p class="frame-eyebrow">April</p>
-            <div class="film-trio">
+            <p class="frame-eyebrow">December</p>
+            <div class="film-pair">
               <div class="filmcard">
                 <div class="filmcard-poster">
-                  <img src="./assets/2026%20Spring/graduation.jpg" alt="Graduation poster" loading="lazy">
-                  <span class="filmcard-date">08 Apr</span>
+                  <img src="./assets/2026%20Autumn/jodorowskys-dune.jpg" alt="Jodorowsky's Dune poster" loading="lazy">
+                  <span class="filmcard-date">09 Dec</span>
                 </div>
                 <div class="filmcard-body">
-                  <h3>Graduation</h3>
-                  <p class="filmcard-meta">Cristian Mungiu &middot; 2016 &middot; Romania</p>
+                  <h3>Jodorowsky's Dune</h3>
+                  <p class="filmcard-meta">Frank Pavich &middot; 2013 &middot; France / USA</p>
                 </div>
-                <p class="filmcard-note">A father's moral compromise spirals in this slow-burn thriller.</p>
-              </div>
-              <div class="filmcard">
-                <div class="filmcard-poster">
-                  <img src="./assets/2026%20Spring/kneecap.jpg" alt="Kneecap poster" loading="lazy">
-                  <span class="filmcard-date">22 Apr</span>
-                </div>
-                <div class="filmcard-body">
-                  <h3>Kneecap</h3>
-                  <p class="filmcard-meta">Rich Peppiatt &middot; 2024 &middot; Ireland / UK</p>
-                </div>
-                <p class="filmcard-note">Belfast hip-hop trio play themselves in a wild, politically charged film about language and identity.</p>
-              </div>
-              <div class="filmcard">
-                <div class="filmcard-poster">
-                  <img src="./assets/2026%20Spring/tampopo.jpg" alt="Tampopo poster" loading="lazy">
-                  <span class="filmcard-date">29 Apr</span>
-                </div>
-                <div class="filmcard-body">
-                  <h3>Tampopo</h3>
-                  <p class="filmcard-meta">Juzo Itami &middot; 1985 &middot; Japan</p>
-                </div>
-                <p class="filmcard-note">A &ldquo;ramen western&rdquo; that playfully mixes food, desire and genre conventions.</p>
+                <p class="filmcard-note">The greatest sci-fi film never made &mdash; Pavich chronicles Jodorowsky's wild 1970s Dune. Free admission.</p>
               </div>
             </div>
           </div>
