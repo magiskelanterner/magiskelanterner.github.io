@@ -803,6 +803,32 @@
       z-index: 3;
     }
 
+    /* Screened films — poster and text fade, date badge stays readable */
+    .filmcard.is-screened .filmcard-poster img {
+      filter: grayscale(0.7) brightness(0.6);
+    }
+
+    .filmcard.is-screened .filmcard-body,
+    .filmcard.is-screened .filmcard-note {
+      opacity: 0.6;
+    }
+
+    .filmcard.is-screened .filmcard-tag {
+      background: rgba(7, 18, 31, 0.8);
+      color: rgba(245, 239, 228, 0.85);
+    }
+
+    /* Between seasons — hero card without a poster */
+    .filmcard--soon {
+      background:
+        radial-gradient(circle at 30% 20%, rgba(240, 181, 90, 0.35), transparent 55%),
+        var(--night);
+    }
+
+    .filmcard--soon a {
+      color: var(--gold-soft);
+    }
+
     /* Text content — overlaid at the bottom */
     .filmcard-body {
       position: relative;
@@ -1133,7 +1159,7 @@
     "@context": "https://schema.org",
     "@type": "Event",
     "name": "Nosferatu (with live music) — Magiske Lanterner Screening",
-    "startDate": "2026-10-28",
+    "startDate": "2026-10-29",
     "location": {"@type": "Place", "name": "Folken", "address": {"@type": "PostalAddress", "addressLocality": "Stavanger", "addressCountry": "NO"}},
     "organizer": {"@type": "Organization", "name": "Magiske Lanterner"},
     "image": "https://magiskelanterner.github.io/assets/2026%20Autumn/nosferatu.jpg"
@@ -1205,7 +1231,8 @@
               <p class="hero-note">Magiske Lanterner brings carefully selected classics, contemporary discoveries and
                 international film culture to Stavanger.</p>
             </div>
-            <div class="filmcard">
+            <!-- Filled at page load from the next upcoming programme card (see "Next screening" script) -->
+            <div class="filmcard" id="next-screening">
               <div class="filmcard-poster">
                 <img src="./assets/2026%20Autumn/the-darjeeling-limited.jpg" alt="The Darjeeling Limited poster" loading="eager">
                 <span class="filmcard-date">Next screening &middot; 16 Sep</span>
@@ -1216,6 +1243,18 @@
               </div>
               <p class="filmcard-note">Three estranged brothers chase reconciliation across India in Wes Anderson's deadpan comedy.</p>
             </div>
+            <!-- Shown instead once the season's last screening has passed -->
+            <template id="season-break">
+              <div class="filmcard filmcard--soon">
+                <span class="filmcard-date">Season complete</span>
+                <div class="filmcard-body">
+                  <h3>New season coming soon</h3>
+                  <p class="filmcard-meta">The next programme will be announced here.</p>
+                </div>
+                <p class="filmcard-note">Meanwhile, browse <a href="./past-seasons.html">past seasons</a> or write to
+                  <a href="mailto:contact@mlfk.no">contact@mlfk.no</a>.</p>
+              </div>
+            </template>
           </div>
           <div class="frame-counter" aria-hidden="true">01</div>
         </div>
@@ -1261,7 +1300,7 @@
           <div class="frame-content">
             <p class="frame-eyebrow">September</p>
             <div class="film-pair">
-              <div class="filmcard">
+              <div class="filmcard" data-date="2026-09-16">
                 <div class="filmcard-poster">
                   <img src="./assets/2026%20Autumn/the-darjeeling-limited.jpg" alt="The Darjeeling Limited poster" loading="lazy">
                   <span class="filmcard-date">16 Sep</span>
@@ -1272,7 +1311,7 @@
                 </div>
                 <p class="filmcard-note">Three estranged brothers chase reconciliation across India in Wes Anderson's deadpan comedy.</p>
               </div>
-              <div class="filmcard">
+              <div class="filmcard" data-date="2026-09-30">
                 <div class="filmcard-poster">
                   <img src="./assets/2026%20Autumn/four-daughters.jpg" alt="Four Daughters poster" loading="lazy">
                   <span class="filmcard-date">30 Sep</span>
@@ -1295,7 +1334,7 @@
           <div class="frame-content">
             <p class="frame-eyebrow">October</p>
             <div class="film-pair">
-              <div class="filmcard">
+              <div class="filmcard" data-date="2026-10-14">
                 <div class="filmcard-poster">
                   <img src="./assets/2026%20Autumn/spirited-away.png" alt="Spirited Away poster" loading="lazy">
                   <span class="filmcard-date">14 Oct</span>
@@ -1306,7 +1345,7 @@
                 </div>
                 <p class="filmcard-note">Miyazaki's Oscar-winning masterpiece &mdash; a girl toils in a spirit-world bathhouse to free her parents.</p>
               </div>
-              <div class="filmcard">
+              <div class="filmcard" data-date="2026-10-29">
                 <div class="filmcard-poster">
                   <img src="./assets/2026%20Autumn/nosferatu.jpg" alt="Nosferatu poster" loading="lazy">
                   <span class="filmcard-date">29 Oct</span>
@@ -1330,7 +1369,7 @@
           <div class="frame-content">
             <p class="frame-eyebrow">November</p>
             <div class="film-trio">
-              <div class="filmcard">
+              <div class="filmcard" data-date="2026-11-04">
                 <div class="filmcard-poster">
                   <img src="./assets/2026%20Autumn/utama.jpg" alt="Utama poster" loading="lazy">
                   <span class="filmcard-date">04 Nov</span>
@@ -1341,7 +1380,7 @@
                 </div>
                 <p class="filmcard-note">An elderly Quechua couple weather drought and change on the Bolivian altiplano.</p>
               </div>
-              <div class="filmcard">
+              <div class="filmcard" data-date="2026-11-18">
                 <div class="filmcard-poster">
                   <img src="./assets/2026%20Autumn/loveless.png" alt="Loveless poster" loading="lazy">
                   <span class="filmcard-date">18 Nov</span>
@@ -1352,7 +1391,7 @@
                 </div>
                 <p class="filmcard-note">An icy drama: a divorcing couple search for their missing son in a loveless Russia.</p>
               </div>
-              <div class="filmcard">
+              <div class="filmcard" data-date="2026-11-25">
                 <div class="filmcard-poster">
                   <img src="./assets/2026%20Autumn/black-dog.jpg" alt="Black Dog poster" loading="lazy">
                   <span class="filmcard-date">25 Nov</span>
@@ -1375,7 +1414,7 @@
           <div class="frame-content">
             <p class="frame-eyebrow">December</p>
             <div class="film-pair">
-              <div class="filmcard">
+              <div class="filmcard" data-date="2026-12-09">
                 <div class="filmcard-poster">
                   <img src="./assets/2026%20Autumn/jodorowskys-dune.jpg" alt="Jodorowsky's Dune poster" loading="lazy">
                   <span class="filmcard-date">09 Dec</span>
@@ -1480,6 +1519,55 @@
     </main><!-- /.film-content -->
   </div><!-- /.film-strip -->
 
+  <script>
+    /* Next screening — the hero card follows the programme cards' data-date.
+       A film stays "next" through its screening day (Stavanger time); earlier films
+       are marked as screened. Preview another day with ?date=YYYY-MM-DD. */
+    (function () {
+      var hero = document.getElementById('next-screening');
+      var cards = [].slice.call(document.querySelectorAll('.filmcard[data-date]'));
+      if (!hero || !cards.length) return;
+
+      var today = new URLSearchParams(location.search).get('date');
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(today || '')) {
+        var parts = {};
+        new Intl.DateTimeFormat('en', { timeZone: 'Europe/Oslo', year: 'numeric', month: '2-digit', day: '2-digit' })
+          .formatToParts(new Date())
+          .forEach(function (p) { parts[p.type] = p.value; });
+        today = parts.year + '-' + parts.month + '-' + parts.day;
+      }
+
+      var next = null;
+      cards.forEach(function (card) {
+        var date = card.getAttribute('data-date');
+        if (date >= today) {
+          if (!next || date < next.getAttribute('data-date')) next = card;
+          return;
+        }
+        card.classList.add('is-screened');
+        var tag = card.querySelector('.filmcard-tag');
+        if (!tag) {
+          tag = document.createElement('span');
+          tag.className = 'filmcard-tag';
+          card.querySelector('.filmcard-poster').appendChild(tag);
+        }
+        tag.textContent = 'Screened';
+      });
+
+      var card;
+      if (next) {
+        card = next.cloneNode(true);
+        card.removeAttribute('data-date');
+        card.querySelector('img').loading = 'eager';
+        var badge = card.querySelector('.filmcard-date');
+        badge.textContent = 'Next screening · ' + badge.textContent;
+      } else {
+        card = document.getElementById('season-break').content.firstElementChild.cloneNode(true);
+      }
+      card.id = 'next-screening';
+      hero.replaceWith(card);
+    })();
+  </script>
   <script>
     (function () {
       /* Scroll reveal for film frames */
