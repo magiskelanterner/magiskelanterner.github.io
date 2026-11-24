@@ -518,6 +518,23 @@
       z-index: 3;
     }
 
+    /* Tag badge (e.g. live music) — top-right corner */
+    .filmcard-tag {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      padding: 0.3rem 0.6rem;
+      border-radius: 8px;
+      background: var(--ruby);
+      color: #fff;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      z-index: 3;
+    }
+
     .filmcard-body {
       position: relative;
       z-index: 2;
@@ -540,6 +557,99 @@
       font-size: 0.62rem;
       color: rgba(245, 239, 228, 0.7);
       margin-top: 0.15rem;
+    }
+
+    /* Film facts: age · audio · subtitles · IMDb, closing the card below the description.
+       Narrow cards (Next screening, phones): one compact pill with icons.
+       Wide cards (programme rows on larger screens): labelled cells in a box. */
+    .filmcard-facts-wrap {
+      position: relative;
+      z-index: 2;
+      padding: 0 0.75rem 0.75rem;
+      container-type: inline-size; /* lets the facts adapt to the card's width */
+    }
+
+    .filmcard-facts {
+      display: flex;
+      border: 1px solid rgba(245, 239, 228, 0.45);
+      border-radius: 999px;
+      overflow: hidden;
+      font-size: 0.62rem;
+      color: rgba(245, 239, 228, 0.85);
+    }
+
+    .filmcard-fact {
+      flex: 1 1 auto;
+      white-space: nowrap;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0.15rem 0.3rem;
+      color: inherit;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .filmcard-fact + .filmcard-fact {
+      border-left: 1px solid rgba(245, 239, 228, 0.3);
+    }
+
+    a.filmcard-fact:hover,
+    a.filmcard-fact:focus-visible {
+      background: rgba(245, 239, 228, 0.15);
+      color: #fff;
+    }
+
+    .filmcard-fact-value {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .filmcard-fact-value svg {
+      width: 11px;
+      height: 11px;
+    }
+
+    .filmcard-cc {
+      padding: 0 0.2rem;
+      border: 1px solid currentColor;
+      border-radius: 2px;
+      font-size: 0.5rem;
+      line-height: 1.35;
+      letter-spacing: 0.03em;
+    }
+
+    /* Labels appear only in the wide layout */
+    .filmcard-fact-label {
+      display: none;
+      font-size: 0.48rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(245, 239, 228, 0.5);
+    }
+
+    @container (min-width: 340px) {
+      .filmcard-facts {
+        border-radius: 10px;
+        font-size: 0.68rem;
+      }
+
+      .filmcard-fact {
+        flex: 1;
+        gap: 0.1rem;
+        padding: 0.25rem 0.2rem 0.3rem;
+      }
+
+      .filmcard-fact-label {
+        display: block;
+      }
+
+      .filmcard-fact-icon {
+        display: none;
+      }
     }
 
     .filmcard-note {
@@ -900,6 +1010,15 @@
           <div class="frame-content">
             <p class="frame-eyebrow">Past seasons</p>
             <div class="season-nav">
+              <a class="season-card" href="#autumn-2026">
+                <div class="season-card-img">
+                  <img src="./assets/2026%20Autumn/spirited-away.png" alt="Autumn 2026" loading="lazy">
+                </div>
+                <div class="season-card-body">
+                  <h3>Autumn 2026</h3>
+                  <p class="season-card-sub">8 films &middot; Sep &ndash; Dec 2026</p>
+                </div>
+              </a>
               <a class="season-card" href="#spring-2026">
                 <div class="season-card-img">
                   <img src="./assets/2026%20Spring/tampopo.jpg" alt="Spring 2026" loading="lazy">
@@ -952,6 +1071,239 @@
       </div>
 
       <!-- ═══════════════════════════════════════
+           SEASON: AUTUMN 2026
+           ═══════════════════════════════════════ -->
+
+      <!-- ═══ Season intro ═══ -->
+      <div class="film-frame frame--programme" id="autumn-2026">
+        <div class="film-frame-gate">
+          <div class="frame-content frame-content--centered">
+            <p class="frame-eyebrow frame-eyebrow--season">Autumn 2026</p>
+            <h2 class="frame-heading">Spirits, vampires and a dune never made.</h2>
+            <p class="frame-sub">From Wes Anderson's India to Murnau's silent vampire with live music &mdash; eight films across a century of cinema.</p>
+          </div>
+          <div class="frame-counter" aria-hidden="true">01</div>
+        </div>
+      </div>
+
+      <!-- ═══ September ═══ -->
+      <div class="film-frame frame--programme">
+        <div class="film-frame-gate">
+          <div class="frame-content">
+            <p class="frame-eyebrow">September</p>
+            <div class="film-pair">
+              <div class="filmcard">
+                <div class="filmcard-poster">
+                  <img src="./assets/2026%20Autumn/the-darjeeling-limited.jpg" alt="The Darjeeling Limited poster" loading="lazy">
+                  <span class="filmcard-date">16 Sep</span>
+                </div>
+                <div class="filmcard-body">
+                  <h3>The Darjeeling Limited</h3>
+                  <p class="filmcard-meta">Wes Anderson &middot; 2007 &middot; USA</p>
+                </div>
+                <p class="filmcard-note">Three estranged brothers chase reconciliation across India in Wes Anderson's deadpan comedy.</p>
+                <div class="filmcard-facts-wrap">
+                  <p class="filmcard-facts">
+                    <a class="filmcard-fact" href="https://filmklubb.no/film/the-darjeeling-limited/" target="_blank" rel="noreferrer"
+                      title="Norwegian age limit: 12. Source: filmklubb.no (Norsk filmklubbforbund)"><span class="filmcard-fact-label">Age (NO)</span><span class="filmcard-fact-value">12+</span></a>
+                    <span class="filmcard-fact" title="Spoken language: English"><span class="filmcard-fact-label">Audio</span><span class="filmcard-fact-value"><svg class="filmcard-fact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>EN</span></span>
+                    <span class="filmcard-fact" title="Subtitles: English"><span class="filmcard-fact-label">Subtitles</span><span class="filmcard-fact-value"><span class="filmcard-cc filmcard-fact-icon" aria-hidden="true">CC</span>EN</span></span>
+                    <a class="filmcard-fact" href="https://www.imdb.com/title/tt0838221/" target="_blank" rel="noreferrer"
+                      aria-label="The Darjeeling Limited on IMDb (opens in a new tab)"><span class="filmcard-fact-label">More</span><span class="filmcard-fact-value">IMDb &#8599;</span></a>
+                  </p>
+                </div>
+              </div>
+              <div class="filmcard">
+                <div class="filmcard-poster">
+                  <img src="./assets/2026%20Autumn/four-daughters.jpg" alt="Four Daughters poster" loading="lazy">
+                  <span class="filmcard-date">30 Sep</span>
+                </div>
+                <div class="filmcard-body">
+                  <h3>Four Daughters</h3>
+                  <p class="filmcard-meta">Kaouther Ben Hania &middot; 2023 &middot; Tunisia</p>
+                </div>
+                <p class="filmcard-note">A Cannes Golden Eye winner blending documentary and re-enactment to trace how two daughters vanished into extremism.</p>
+                <div class="filmcard-facts-wrap">
+                  <p class="filmcard-facts">
+                    <a class="filmcard-fact" href="https://filmklubb.no/film/olfas-dotre/" target="_blank" rel="noreferrer"
+                      title="Norwegian age limit: 12. Source: filmklubb.no (Norsk filmklubbforbund)"><span class="filmcard-fact-label">Age (NO)</span><span class="filmcard-fact-value">12+</span></a>
+                    <span class="filmcard-fact" title="Spoken language: Arabic"><span class="filmcard-fact-label">Audio</span><span class="filmcard-fact-value"><svg class="filmcard-fact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>AR</span></span>
+                    <span class="filmcard-fact" title="Subtitles: English"><span class="filmcard-fact-label">Subtitles</span><span class="filmcard-fact-value"><span class="filmcard-cc filmcard-fact-icon" aria-hidden="true">CC</span>EN</span></span>
+                    <a class="filmcard-fact" href="https://www.imdb.com/title/tt27502426/" target="_blank" rel="noreferrer"
+                      aria-label="Four Daughters on IMDb (opens in a new tab)"><span class="filmcard-fact-label">More</span><span class="filmcard-fact-value">IMDb &#8599;</span></a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="frame-counter" aria-hidden="true">02</div>
+        </div>
+      </div>
+
+      <!-- ═══ October ═══ -->
+      <div class="film-frame frame--programme">
+        <div class="film-frame-gate">
+          <div class="frame-content">
+            <p class="frame-eyebrow">October</p>
+            <div class="film-pair">
+              <div class="filmcard">
+                <div class="filmcard-poster">
+                  <img src="./assets/2026%20Autumn/spirited-away.png" alt="Spirited Away poster" loading="lazy">
+                  <span class="filmcard-date">14 Oct</span>
+                </div>
+                <div class="filmcard-body">
+                  <h3>Spirited Away</h3>
+                  <p class="filmcard-meta">Hayao Miyazaki &middot; 2001 &middot; Japan</p>
+                </div>
+                <p class="filmcard-note">Miyazaki's Oscar-winning masterpiece &mdash; a girl toils in a spirit-world bathhouse to free her parents.</p>
+                <div class="filmcard-facts-wrap">
+                  <p class="filmcard-facts">
+                    <a class="filmcard-fact" href="https://filmklubb.no/film/chihiro-og-heksene/" target="_blank" rel="noreferrer"
+                      title="Norwegian age limit: 9. Source: filmklubb.no (Norsk filmklubbforbund)"><span class="filmcard-fact-label">Age (NO)</span><span class="filmcard-fact-value">9+</span></a>
+                    <span class="filmcard-fact" title="Spoken language: Japanese"><span class="filmcard-fact-label">Audio</span><span class="filmcard-fact-value"><svg class="filmcard-fact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>JA</span></span>
+                    <span class="filmcard-fact" title="Subtitles: English"><span class="filmcard-fact-label">Subtitles</span><span class="filmcard-fact-value"><span class="filmcard-cc filmcard-fact-icon" aria-hidden="true">CC</span>EN</span></span>
+                    <a class="filmcard-fact" href="https://www.imdb.com/title/tt0245429/" target="_blank" rel="noreferrer"
+                      aria-label="Spirited Away on IMDb (opens in a new tab)"><span class="filmcard-fact-label">More</span><span class="filmcard-fact-value">IMDb &#8599;</span></a>
+                  </p>
+                </div>
+              </div>
+              <div class="filmcard">
+                <div class="filmcard-poster">
+                  <img src="./assets/2026%20Autumn/nosferatu.jpg" alt="Nosferatu poster" loading="lazy">
+                  <span class="filmcard-date">29 Oct</span>
+                  <span class="filmcard-tag">Live music</span>
+                </div>
+                <div class="filmcard-body">
+                  <h3>Nosferatu</h3>
+                  <p class="filmcard-meta">F.W. Murnau &middot; 1922 &middot; Germany</p>
+                </div>
+                <p class="filmcard-note">Murnau's silent vampire landmark, screened with live musical accompaniment.</p>
+                <div class="filmcard-facts-wrap">
+                  <p class="filmcard-facts">
+                    <a class="filmcard-fact" href="https://filmklubb.no/film/nosferatu-2/" target="_blank" rel="noreferrer"
+                      title="Norwegian age limit: 9. Source: filmklubb.no (Norsk filmklubbforbund)"><span class="filmcard-fact-label">Age (NO)</span><span class="filmcard-fact-value">9+</span></a>
+                    <span class="filmcard-fact" title="Silent film"><span class="filmcard-fact-label">Audio</span><span class="filmcard-fact-value"><svg class="filmcard-fact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>Silent</span></span>
+                    <span class="filmcard-fact" title="Intertitles: English"><span class="filmcard-fact-label">Subtitles</span><span class="filmcard-fact-value"><span class="filmcard-cc filmcard-fact-icon" aria-hidden="true">CC</span>EN</span></span>
+                    <a class="filmcard-fact" href="https://www.imdb.com/title/tt0013442/" target="_blank" rel="noreferrer"
+                      aria-label="Nosferatu on IMDb (opens in a new tab)"><span class="filmcard-fact-label">More</span><span class="filmcard-fact-value">IMDb &#8599;</span></a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="frame-counter" aria-hidden="true">03</div>
+        </div>
+      </div>
+
+      <!-- ═══ November ═══ -->
+      <div class="film-frame frame--programme">
+        <div class="film-frame-gate">
+          <div class="frame-content">
+            <p class="frame-eyebrow">November</p>
+            <div class="film-trio">
+              <div class="filmcard">
+                <div class="filmcard-poster">
+                  <img src="./assets/2026%20Autumn/utama.jpg" alt="Utama poster" loading="lazy">
+                  <span class="filmcard-date">04 Nov</span>
+                </div>
+                <div class="filmcard-body">
+                  <h3>Utama</h3>
+                  <p class="filmcard-meta">Alejandro Loayza Grisi &middot; 2022 &middot; Bolivia</p>
+                </div>
+                <p class="filmcard-note">An elderly Quechua couple weather drought and change on the Bolivian altiplano.</p>
+                <div class="filmcard-facts-wrap">
+                  <p class="filmcard-facts">
+                    <a class="filmcard-fact" href="https://www.imdb.com/title/tt10984580/parentalguide/#certificates" target="_blank" rel="noreferrer"
+                      title="Norwegian age limit: 9 (cinema rating). Source: IMDb certifications"><span class="filmcard-fact-label">Age (NO)</span><span class="filmcard-fact-value">9+</span></a>
+                    <span class="filmcard-fact" title="Spoken language: Quechua and Spanish"><span class="filmcard-fact-label">Audio</span><span class="filmcard-fact-value"><svg class="filmcard-fact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>QU/ES</span></span>
+                    <span class="filmcard-fact" title="Subtitles: English"><span class="filmcard-fact-label">Subtitles</span><span class="filmcard-fact-value"><span class="filmcard-cc filmcard-fact-icon" aria-hidden="true">CC</span>EN</span></span>
+                    <a class="filmcard-fact" href="https://www.imdb.com/title/tt10984580/" target="_blank" rel="noreferrer"
+                      aria-label="Utama on IMDb (opens in a new tab)"><span class="filmcard-fact-label">More</span><span class="filmcard-fact-value">IMDb &#8599;</span></a>
+                  </p>
+                </div>
+              </div>
+              <div class="filmcard">
+                <div class="filmcard-poster">
+                  <img src="./assets/2026%20Autumn/loveless.png" alt="Loveless poster" loading="lazy">
+                  <span class="filmcard-date">18 Nov</span>
+                </div>
+                <div class="filmcard-body">
+                  <h3>Loveless</h3>
+                  <p class="filmcard-meta">Andrey Zvyagintsev &middot; 2017 &middot; Russia</p>
+                </div>
+                <p class="filmcard-note">An icy drama: a divorcing couple search for their missing son in a loveless Russia.</p>
+                <div class="filmcard-facts-wrap">
+                  <p class="filmcard-facts">
+                    <a class="filmcard-fact" href="https://filmklubb.no/film/savnet/" target="_blank" rel="noreferrer"
+                      title="Norwegian age limit: 12. Source: filmklubb.no (Norsk filmklubbforbund)"><span class="filmcard-fact-label">Age (NO)</span><span class="filmcard-fact-value">12+</span></a>
+                    <span class="filmcard-fact" title="Spoken language: Russian"><span class="filmcard-fact-label">Audio</span><span class="filmcard-fact-value"><svg class="filmcard-fact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>RU</span></span>
+                    <span class="filmcard-fact" title="Subtitles: English"><span class="filmcard-fact-label">Subtitles</span><span class="filmcard-fact-value"><span class="filmcard-cc filmcard-fact-icon" aria-hidden="true">CC</span>EN</span></span>
+                    <a class="filmcard-fact" href="https://www.imdb.com/title/tt6304162/" target="_blank" rel="noreferrer"
+                      aria-label="Loveless on IMDb (opens in a new tab)"><span class="filmcard-fact-label">More</span><span class="filmcard-fact-value">IMDb &#8599;</span></a>
+                  </p>
+                </div>
+              </div>
+              <div class="filmcard">
+                <div class="filmcard-poster">
+                  <img src="./assets/2026%20Autumn/black-dog.jpg" alt="Black Dog poster" loading="lazy">
+                  <span class="filmcard-date">25 Nov</span>
+                </div>
+                <div class="filmcard-body">
+                  <h3>Black Dog</h3>
+                  <p class="filmcard-meta">Guan Hu &middot; 2024 &middot; China</p>
+                </div>
+                <p class="filmcard-note">A drifter and a stray bond on the edge of the Gobi in Guan Hu's Cannes-winning tale.</p>
+                <div class="filmcard-facts-wrap">
+                  <p class="filmcard-facts">
+                    <a class="filmcard-fact" href="https://filmklubb.no/film/black-dog/" target="_blank" rel="noreferrer"
+                      title="Norwegian age limit: 15. Source: filmklubb.no (Norsk filmklubbforbund)"><span class="filmcard-fact-label">Age (NO)</span><span class="filmcard-fact-value">15+</span></a>
+                    <span class="filmcard-fact" title="Spoken language: Mandarin"><span class="filmcard-fact-label">Audio</span><span class="filmcard-fact-value"><svg class="filmcard-fact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>ZH</span></span>
+                    <span class="filmcard-fact" title="Subtitles: English"><span class="filmcard-fact-label">Subtitles</span><span class="filmcard-fact-value"><span class="filmcard-cc filmcard-fact-icon" aria-hidden="true">CC</span>EN</span></span>
+                    <a class="filmcard-fact" href="https://www.imdb.com/title/tt28131427/" target="_blank" rel="noreferrer"
+                      aria-label="Black Dog on IMDb (opens in a new tab)"><span class="filmcard-fact-label">More</span><span class="filmcard-fact-value">IMDb &#8599;</span></a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="frame-counter" aria-hidden="true">04</div>
+        </div>
+      </div>
+
+      <!-- ═══ December ═══ -->
+      <div class="film-frame frame--programme">
+        <div class="film-frame-gate">
+          <div class="frame-content">
+            <p class="frame-eyebrow">December</p>
+            <div class="film-pair">
+              <div class="filmcard">
+                <div class="filmcard-poster">
+                  <img src="./assets/2026%20Autumn/jodorowskys-dune.jpg" alt="Jodorowsky's Dune poster" loading="lazy">
+                  <span class="filmcard-date">09 Dec</span>
+                </div>
+                <div class="filmcard-body">
+                  <h3>Jodorowsky's Dune</h3>
+                  <p class="filmcard-meta">Frank Pavich &middot; 2013 &middot; France / USA</p>
+                </div>
+                <p class="filmcard-note">The greatest sci-fi film never made &mdash; Pavich chronicles Jodorowsky's wild 1970s Dune. Free admission.</p>
+                <div class="filmcard-facts-wrap">
+                  <p class="filmcard-facts">
+                    <a class="filmcard-fact" href="https://www.imdb.com/title/tt1935156/parentalguide/#certificates" target="_blank" rel="noreferrer"
+                      title="No Norwegian age limit found. Finnish age limit: 7 (K-7). Source: IMDb certifications"><span class="filmcard-fact-label">Age (FI)</span><span class="filmcard-fact-value">7+</span></a>
+                    <span class="filmcard-fact" title="Spoken language: English, French and Spanish"><span class="filmcard-fact-label">Audio</span><span class="filmcard-fact-value"><svg class="filmcard-fact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>EN/FR/ES</span></span>
+                    <span class="filmcard-fact" title="Subtitles: English"><span class="filmcard-fact-label">Subtitles</span><span class="filmcard-fact-value"><span class="filmcard-cc filmcard-fact-icon" aria-hidden="true">CC</span>EN</span></span>
+                    <a class="filmcard-fact" href="https://www.imdb.com/title/tt1935156/" target="_blank" rel="noreferrer"
+                      aria-label="Jodorowsky's Dune on IMDb (opens in a new tab)"><span class="filmcard-fact-label">More</span><span class="filmcard-fact-value">IMDb &#8599;</span></a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="frame-counter" aria-hidden="true">05</div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════
            SEASON: SPRING 2026
            ═══════════════════════════════════════ -->
 
@@ -968,7 +1320,7 @@
                 target="_blank" rel="noreferrer">View season poster</a>
             </div>
           </div>
-          <div class="frame-counter" aria-hidden="true">01</div>
+          <div class="frame-counter" aria-hidden="true">06</div>
         </div>
       </div>
 
@@ -991,7 +1343,7 @@
               </div>
             </div>
           </div>
-          <div class="frame-counter" aria-hidden="true">02</div>
+          <div class="frame-counter" aria-hidden="true">07</div>
         </div>
       </div>
 
@@ -1025,7 +1377,7 @@
               </div>
             </div>
           </div>
-          <div class="frame-counter" aria-hidden="true">03</div>
+          <div class="frame-counter" aria-hidden="true">08</div>
         </div>
       </div>
 
@@ -1059,7 +1411,7 @@
               </div>
             </div>
           </div>
-          <div class="frame-counter" aria-hidden="true">04</div>
+          <div class="frame-counter" aria-hidden="true">09</div>
         </div>
       </div>
 
@@ -1104,7 +1456,7 @@
               </div>
             </div>
           </div>
-          <div class="frame-counter" aria-hidden="true">05</div>
+          <div class="frame-counter" aria-hidden="true">10</div>
         </div>
       </div>
 
@@ -1125,7 +1477,7 @@
                 target="_blank" rel="noreferrer">View season poster</a>
             </div>
           </div>
-          <div class="frame-counter" aria-hidden="true">06</div>
+          <div class="frame-counter" aria-hidden="true">11</div>
         </div>
       </div>
 
@@ -1159,7 +1511,7 @@
               </div>
             </div>
           </div>
-          <div class="frame-counter" aria-hidden="true">07</div>
+          <div class="frame-counter" aria-hidden="true">12</div>
         </div>
       </div>
 
@@ -1204,7 +1556,7 @@
               </div>
             </div>
           </div>
-          <div class="frame-counter" aria-hidden="true">08</div>
+          <div class="frame-counter" aria-hidden="true">13</div>
         </div>
       </div>
 
@@ -1238,7 +1590,7 @@
               </div>
             </div>
           </div>
-          <div class="frame-counter" aria-hidden="true">09</div>
+          <div class="frame-counter" aria-hidden="true">14</div>
         </div>
       </div>
 
@@ -1261,7 +1613,7 @@
               </div>
             </div>
           </div>
-          <div class="frame-counter" aria-hidden="true">10</div>
+          <div class="frame-counter" aria-hidden="true">15</div>
         </div>
       </div>
 
@@ -1285,7 +1637,7 @@
                 target="_blank" rel="noreferrer">View season poster</a>
             </div>
           </div>
-          <div class="frame-counter" aria-hidden="true">11</div>
+          <div class="frame-counter" aria-hidden="true">16</div>
         </div>
       </div>
 
@@ -1319,7 +1671,7 @@
               </div>
             </div>
           </div>
-          <div class="frame-counter" aria-hidden="true">12</div>
+          <div class="frame-counter" aria-hidden="true">17</div>
         </div>
       </div>
 
@@ -1353,7 +1705,7 @@
               </div>
             </div>
           </div>
-          <div class="frame-counter" aria-hidden="true">13</div>
+          <div class="frame-counter" aria-hidden="true">18</div>
         </div>
       </div>
 
@@ -1387,7 +1739,7 @@
               </div>
             </div>
           </div>
-          <div class="frame-counter" aria-hidden="true">14</div>
+          <div class="frame-counter" aria-hidden="true">19</div>
         </div>
       </div>
 
@@ -1421,7 +1773,7 @@
               </div>
             </div>
           </div>
-          <div class="frame-counter" aria-hidden="true">15</div>
+          <div class="frame-counter" aria-hidden="true">20</div>
         </div>
       </div>
 
@@ -1440,7 +1792,7 @@
             <h2 class="frame-heading">Where it all began.</h2>
             <p class="frame-sub">Our inaugural season — from Pulp Fiction to Crouching Tiger, eight screenings that launched a film club.</p>
           </div>
-          <div class="frame-counter" aria-hidden="true">16</div>
+          <div class="frame-counter" aria-hidden="true">21</div>
         </div>
       </div>
 
@@ -1474,7 +1826,7 @@
               </div>
             </div>
           </div>
-          <div class="frame-counter" aria-hidden="true">17</div>
+          <div class="frame-counter" aria-hidden="true">22</div>
         </div>
       </div>
 
@@ -1519,7 +1871,7 @@
               </div>
             </div>
           </div>
-          <div class="frame-counter" aria-hidden="true">18</div>
+          <div class="frame-counter" aria-hidden="true">23</div>
         </div>
       </div>
 
@@ -1553,7 +1905,7 @@
               </div>
             </div>
           </div>
-          <div class="frame-counter" aria-hidden="true">19</div>
+          <div class="frame-counter" aria-hidden="true">24</div>
         </div>
       </div>
 
@@ -1576,7 +1928,7 @@
               </div>
             </div>
           </div>
-          <div class="frame-counter" aria-hidden="true">20</div>
+          <div class="frame-counter" aria-hidden="true">25</div>
         </div>
       </div>
 
@@ -1600,7 +1952,7 @@
                 target="_blank" rel="noreferrer">View season flyer</a>
             </div>
           </div>
-          <div class="frame-counter" aria-hidden="true">21</div>
+          <div class="frame-counter" aria-hidden="true">26</div>
         </div>
       </div>
 
@@ -1634,7 +1986,7 @@
               </div>
             </div>
           </div>
-          <div class="frame-counter" aria-hidden="true">22</div>
+          <div class="frame-counter" aria-hidden="true">27</div>
         </div>
       </div>
 
@@ -1668,7 +2020,7 @@
               </div>
             </div>
           </div>
-          <div class="frame-counter" aria-hidden="true">23</div>
+          <div class="frame-counter" aria-hidden="true">28</div>
         </div>
       </div>
 
@@ -1702,7 +2054,7 @@
               </div>
             </div>
           </div>
-          <div class="frame-counter" aria-hidden="true">24</div>
+          <div class="frame-counter" aria-hidden="true">29</div>
         </div>
       </div>
 
@@ -1736,7 +2088,7 @@
               </div>
             </div>
           </div>
-          <div class="frame-counter" aria-hidden="true">25</div>
+          <div class="frame-counter" aria-hidden="true">30</div>
         </div>
       </div>
 
