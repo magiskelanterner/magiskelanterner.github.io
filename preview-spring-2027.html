@@ -837,7 +837,8 @@
     }
 
     .filmcard.is-screened .filmcard-body,
-    .filmcard.is-screened .filmcard-note {
+    .filmcard.is-screened .filmcard-note,
+    .filmcard.is-screened .filmcard-facts-wrap {
       opacity: 0.6;
     }
 
@@ -863,7 +864,6 @@
       z-index: 2;
       margin-top: auto;
       padding: 0.6rem 0.75rem 0.15rem;
-      container-type: inline-size; /* lets the facts row adapt to the card's width */
     }
 
     .filmcard-body h3 {
@@ -883,12 +883,18 @@
       margin-top: 0.15rem;
     }
 
-    /* Film facts: age · audio · subtitles · IMDb.
+    /* Film facts: age · audio · subtitles · IMDb, closing the card below the description.
        Narrow cards (Next screening, phones): one compact pill with icons.
        Wide cards (programme rows on larger screens): labelled cells in a box. */
+    .filmcard-facts-wrap {
+      position: relative;
+      z-index: 2;
+      padding: 0 0.75rem 0.75rem;
+      container-type: inline-size; /* lets the facts adapt to the card's width */
+    }
+
     .filmcard-facts {
       display: flex;
-      margin-top: 0.4rem;
       border: 1px solid rgba(245, 239, 228, 0.45);
       border-radius: 999px;
       overflow: hidden;
@@ -951,7 +957,6 @@
 
     @container (min-width: 340px) {
       .filmcard-facts {
-        margin-top: 0.45rem;
         border-radius: 10px;
         font-size: 0.68rem;
       }
@@ -1477,6 +1482,9 @@
                 <div class="filmcard-body">
                   <h3>Wag the Dog</h3>
                   <p class="filmcard-meta">Barry Levinson &middot; 1997 &middot; USA</p>
+                </div>
+                <p class="filmcard-note">A spin doctor and a Hollywood producer stage a fake war to bury a presidential scandal. Satire that keeps getting more real.</p>
+                <div class="filmcard-facts-wrap">
                   <p class="filmcard-facts">
                     <a class="filmcard-fact" href="https://www.imdb.com/title/tt0120885/parentalguide/#certificates" target="_blank" rel="noreferrer"
                       title="Norwegian age limit: 7 (set in 1998). Source: IMDb certifications"><span class="filmcard-fact-label">Age (NO)</span><span class="filmcard-fact-value">7+</span></a>
@@ -1486,7 +1494,6 @@
                       aria-label="Wag the Dog on IMDb (opens in a new tab)"><span class="filmcard-fact-label">More</span><span class="filmcard-fact-value">IMDb &#8599;</span></a>
                   </p>
                 </div>
-                <p class="filmcard-note">A spin doctor and a Hollywood producer stage a fake war to bury a presidential scandal. Satire that keeps getting more real.</p>
               </div>
               <div class="filmcard" data-date="2027-01-27">
                 <div class="filmcard-poster">
