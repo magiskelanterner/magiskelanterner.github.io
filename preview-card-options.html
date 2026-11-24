@@ -134,6 +134,13 @@
     .strip--boxed .strip-cell + .strip-cell { border-left: 1px solid rgba(245, 239, 228, 0.3); }
     .strip--boxed a.strip-cell:hover, .strip--boxed a.strip-cell:focus-visible { background: rgba(245, 239, 228, 0.15); }
 
+    /* Round 3 — wide-card layouts for the labelled box */
+    .strip--compact { display: inline-grid; grid-auto-flow: column; grid-auto-columns: 1fr; }
+    .strip--compact .strip-cell { padding: 0.25rem 0.75rem 0.3rem; }
+    .facts-bottom { position: relative; z-index: 2; padding: 0 0.75rem 0.75rem; }
+    .facts-bottom .strip { margin-top: 0; }
+    .options--fixed-wide { --card-w: 434px; margin-bottom: 2rem; }
+
     .round-title { grid-column: 1 / -1; font-family: "Cormorant Garamond", serif; font-size: 1.6rem; line-height: 1; border-bottom: 1px solid rgba(20, 19, 18, 0.15); padding-bottom: 0.4rem; }
     .round-title:not(:first-child) { margin-top: 1.5rem; }
 
@@ -148,7 +155,8 @@
 <body>
   <header>
     <h1>Card options &middot; Wag the Dog</h1>
-    <p>Ways to show age limit, language and IMDb on a film card. Round 2 builds on your pick (E). Tap or hover the age to see where it comes from:
+    <p>Ways to show age limit, language and IMDb on a film card. Round 3 (top) compares placements of the labelled box at the
+      real wide programme-card size; the size switch below applies to rounds 1 and 2. Tap or hover the age to see where it comes from:
       each age badge links to IMDb's certification list, which shows the Norwegian limit (Norway: 7, set in 1998).
       Wag the Dog is in English with English subtitles.</p>
     <div class="size-toggle" role="group" aria-label="Card size">
@@ -156,6 +164,108 @@
       <button type="button" data-size="wide" aria-pressed="false">Wide (programme rows)</button>
     </div>
   </header>
+
+  <section class="options options--fixed-wide">
+
+    <h2 class="round-title">Round 3 &middot; the labelled box on wide cards</h2>
+
+    <!-- 3A — current: under the title, full width -->
+    <section class="option">
+      <h2>3A &middot; Current</h2>
+      <p>Under the title, full width (what the Spring 2027 preview shows now).</p>
+      <div class="filmcard">
+        <div class="filmcard-poster">
+          <img src="./assets/2027%20Spring/wag-the-dog.jpg" alt="Still from Wag the Dog">
+          <span class="filmcard-date">20 Jan</span>
+        </div>
+        <div class="filmcard-body">
+          <h3>Wag the Dog</h3>
+          <p class="filmcard-meta">Barry Levinson &middot; 1997 &middot; USA</p>
+          <div class="strip strip--boxed">
+            <a class="strip-cell" href="https://www.imdb.com/title/tt0120885/parentalguide/#certificates" target="_blank" rel="noreferrer" title="Norwegian age limit: 7 (set in 1998). Source: IMDb certifications"><small>Age (NO)</small>7+</a>
+            <span class="strip-cell"><small>Audio</small>EN</span>
+            <span class="strip-cell"><small>Subtitles</small>EN</span>
+            <a class="strip-cell" href="https://www.imdb.com/title/tt0120885/" target="_blank" rel="noreferrer"><small>More</small>IMDb &#8599;</a>
+          </div>
+        </div>
+        <p class="filmcard-note">A spin doctor and a Hollywood producer stage a fake war to bury a presidential scandal. Satire that keeps getting more real.</p>
+      </div>
+    </section>
+
+    <!-- 3B — under the title, compact -->
+    <section class="option">
+      <h2>3B &middot; Compact, under the title</h2>
+      <p>Same place, but only as wide as its contents; the four cells stay equal.</p>
+      <div class="filmcard">
+        <div class="filmcard-poster">
+          <img src="./assets/2027%20Spring/wag-the-dog.jpg" alt="Still from Wag the Dog">
+          <span class="filmcard-date">20 Jan</span>
+        </div>
+        <div class="filmcard-body">
+          <h3>Wag the Dog</h3>
+          <p class="filmcard-meta">Barry Levinson &middot; 1997 &middot; USA</p>
+          <div class="strip strip--boxed strip--compact">
+            <a class="strip-cell" href="https://www.imdb.com/title/tt0120885/parentalguide/#certificates" target="_blank" rel="noreferrer" title="Norwegian age limit: 7 (set in 1998). Source: IMDb certifications"><small>Age (NO)</small>7+</a>
+            <span class="strip-cell"><small>Audio</small>EN</span>
+            <span class="strip-cell"><small>Subtitles</small>EN</span>
+            <a class="strip-cell" href="https://www.imdb.com/title/tt0120885/" target="_blank" rel="noreferrer"><small>More</small>IMDb &#8599;</a>
+          </div>
+        </div>
+        <p class="filmcard-note">A spin doctor and a Hollywood producer stage a fake war to bury a presidential scandal. Satire that keeps getting more real.</p>
+      </div>
+    </section>
+
+    <!-- 3C — below the description, full width -->
+    <section class="option">
+      <h2>3C &middot; Below the description</h2>
+      <p>Title and text keep their usual place; the box closes the card at the bottom, full width.</p>
+      <div class="filmcard">
+        <div class="filmcard-poster">
+          <img src="./assets/2027%20Spring/wag-the-dog.jpg" alt="Still from Wag the Dog">
+          <span class="filmcard-date">20 Jan</span>
+        </div>
+        <div class="filmcard-body">
+          <h3>Wag the Dog</h3>
+          <p class="filmcard-meta">Barry Levinson &middot; 1997 &middot; USA</p>
+        </div>
+        <p class="filmcard-note">A spin doctor and a Hollywood producer stage a fake war to bury a presidential scandal. Satire that keeps getting more real.</p>
+        <div class="facts-bottom">
+          <div class="strip strip--boxed">
+            <a class="strip-cell" href="https://www.imdb.com/title/tt0120885/parentalguide/#certificates" target="_blank" rel="noreferrer" title="Norwegian age limit: 7 (set in 1998). Source: IMDb certifications"><small>Age (NO)</small>7+</a>
+            <span class="strip-cell"><small>Audio</small>EN</span>
+            <span class="strip-cell"><small>Subtitles</small>EN</span>
+            <a class="strip-cell" href="https://www.imdb.com/title/tt0120885/" target="_blank" rel="noreferrer"><small>More</small>IMDb &#8599;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3D — below the description, compact -->
+    <section class="option">
+      <h2>3D &middot; Below the description, compact</h2>
+      <p>Both ideas together: at the bottom, and only as wide as its contents.</p>
+      <div class="filmcard">
+        <div class="filmcard-poster">
+          <img src="./assets/2027%20Spring/wag-the-dog.jpg" alt="Still from Wag the Dog">
+          <span class="filmcard-date">20 Jan</span>
+        </div>
+        <div class="filmcard-body">
+          <h3>Wag the Dog</h3>
+          <p class="filmcard-meta">Barry Levinson &middot; 1997 &middot; USA</p>
+        </div>
+        <p class="filmcard-note">A spin doctor and a Hollywood producer stage a fake war to bury a presidential scandal. Satire that keeps getting more real.</p>
+        <div class="facts-bottom">
+          <div class="strip strip--boxed strip--compact">
+            <a class="strip-cell" href="https://www.imdb.com/title/tt0120885/parentalguide/#certificates" target="_blank" rel="noreferrer" title="Norwegian age limit: 7 (set in 1998). Source: IMDb certifications"><small>Age (NO)</small>7+</a>
+            <span class="strip-cell"><small>Audio</small>EN</span>
+            <span class="strip-cell"><small>Subtitles</small>EN</span>
+            <a class="strip-cell" href="https://www.imdb.com/title/tt0120885/" target="_blank" rel="noreferrer"><small>More</small>IMDb &#8599;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </section>
 
   <main class="options" id="options">
 
