@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Preview: Card options | Magiske Lanterner</title>
+  <link rel="icon" type="image/jpeg" href="./assets/website/logo.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&amp;family=Space+Grotesk:wght@400;500;700&amp;display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --gold: #d89132;
+      --gold-soft: #f0b565;
+      --ruby: #d76a52;
+      --ink: #141312;
+      --ink-soft: rgba(20, 19, 18, 0.72);
+      --paper: #f3f0e9;
+      --night: #07121f;
+    }
+
+    * { box-sizing: border-box; margin: 0; }
+
+    body {
+      font-family: "Space Grotesk", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.6;
+      padding: 32px 16px 80px;
+    }
+
+    header { max-width: 1100px; margin: 0 auto 24px; }
+    header h1 { font-family: "Cormorant Garamond", serif; font-size: clamp(2rem, 5vw, 3rem); line-height: 1; }
+    header p { margin-top: 0.6rem; color: var(--ink-soft); max-width: 70ch; font-size: 0.9rem; }
+
+    .size-toggle { margin-top: 1rem; display: inline-flex; border: 1px solid rgba(20, 19, 18, 0.2); border-radius: 999px; overflow: hidden; }
+    .size-toggle button { font: inherit; font-size: 0.8rem; padding: 0.4rem 1rem; border: 0; background: transparent; cursor: pointer; }
+    .size-toggle button[aria-pressed="true"] { background: var(--night); color: #fff; }
+
+    .options {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(var(--card-w), 1fr));
+      gap: 28px 20px;
+      --card-w: 255px;
+    }
+    .options.is-wide { --card-w: 430px; }
+
+    .option { max-width: var(--card-w); width: 100%; justify-self: center; }
+    .option h2 { font-size: 0.95rem; margin-bottom: 0.15rem; }
+    .option > p { font-size: 0.78rem; color: var(--ink-soft); margin-bottom: 0.6rem; min-height: 3.2em; }
+
+    /* ── Real card styles (copied from index.html) ── */
+    .filmcard { position: relative; border-radius: 10px; overflow: hidden; aspect-ratio: 2 / 3; min-height: 360px; display: flex; flex-direction: column; }
+    .filmcard-poster { position: absolute; inset: 0; z-index: 0; }
+    .filmcard-poster img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .filmcard-poster::after {
+      content: ""; position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(to top, rgba(5, 5, 5, 0.95) 0%, rgba(5, 5, 5, 0.82) 22%, rgba(5, 5, 5, 0.45) 45%, rgba(5, 5, 5, 0.1) 60%, transparent 72%);
+    }
+    .filmcard-date {
+      position: absolute; top: 8px; left: 8px; padding: 0.3rem 0.65rem; border-radius: 8px;
+      background: rgba(7, 18, 31, 0.8); color: var(--gold); font-size: 1rem; font-weight: 700; letter-spacing: 0.02em; z-index: 3;
+    }
+    .filmcard-body { position: relative; z-index: 2; margin-top: auto; padding: 0.6rem 0.75rem 0.15rem; }
+    .filmcard-body h3 {
+      font-family: "Cormorant Garamond", serif; font-size: clamp(1.3rem, 2.8vw, 1.9rem); font-weight: 700; line-height: 1.05;
+      color: #fff; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5); letter-spacing: 0.01em;
+    }
+    .filmcard-meta { font-size: 0.62rem; color: rgba(245, 239, 228, 0.7); margin-top: 0.15rem; }
+    .filmcard-note { position: relative; z-index: 2; font-size: 0.68rem; color: rgba(245, 239, 228, 0.6); line-height: 1.4; padding: 0.25rem 0.75rem 0.6rem; }
+    .filmcard-note::before { content: ""; display: block; width: 14px; height: 2px; background: var(--gold); margin-bottom: 0.2rem; border-radius: 1px; }
+
+    /* ── Shared pieces for the options ── */
+    .facts { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.4rem; font-size: 0.62rem; color: rgba(245, 239, 228, 0.85); }
+    .facts a { text-decoration: none; }
+    .push { margin-left: auto; }
+    .age {
+      color: inherit; padding: 0.05rem 0.35rem; border: 1px solid rgba(245, 239, 228, 0.55); border-radius: 4px;
+      font-weight: 700; letter-spacing: 0.02em; cursor: help;
+    }
+    .age:hover, .age:focus-visible { border-color: #fff; color: #fff; }
+    .imdb { color: var(--gold-soft); font-weight: 700; border-bottom: 1px solid rgba(240, 181, 90, 0.4); }
+    .imdb:hover, .imdb:focus-visible { color: #fff; border-bottom-color: #fff; }
+    .ico { display: inline-flex; align-items: center; gap: 0.25rem; font-weight: 700; }
+    .ico svg { width: 11px; height: 11px; }
+    .cc { display: inline-block; padding: 0 0.2rem; border: 1px solid currentColor; border-radius: 2px; font-size: 0.5rem; font-weight: 700; line-height: 1.35; letter-spacing: 0.03em; }
+    .flag { width: 14px; height: 10px; border-radius: 2px; object-fit: cover; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25); vertical-align: -1px; }
+
+    /* B — age badge with Norwegian flag */
+    .age--flag { display: inline-flex; align-items: center; gap: 0.25rem; }
+
+    /* C — age circle on the poster, top-right */
+    .age-circle {
+      position: absolute; top: 8px; right: 8px; z-index: 3; width: 34px; height: 34px; border-radius: 50%;
+      display: grid; place-items: center; background: rgba(7, 18, 31, 0.8); color: #fff;
+      font-size: 0.8rem; font-weight: 700; text-decoration: none; border: 1.5px solid rgba(245, 239, 228, 0.7); cursor: help;
+    }
+    .age-circle:hover, .age-circle:focus-visible { border-color: var(--gold-soft); }
+
+    /* D — labelled strip */
+    .strip { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 0.45rem; padding-top: 0.4rem; border-top: 1px solid rgba(245, 239, 228, 0.18); }
+    .strip-cell { display: flex; flex-direction: column; gap: 0.1rem; text-decoration: none; color: rgba(245, 239, 228, 0.9); font-size: 0.68rem; font-weight: 700; }
+    .strip-cell small { font-size: 0.48rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(245, 239, 228, 0.5); }
+    .strip-cell--link { color: var(--gold-soft); }
+    a.strip-cell:hover, a.strip-cell:focus-visible { color: #fff; }
+
+    /* E — one segmented pill + IMDb mark */
+    .pill { display: inline-flex; align-items: stretch; border: 1px solid rgba(245, 239, 228, 0.45); border-radius: 999px; overflow: hidden; }
+    .pill > * { display: inline-flex; align-items: center; gap: 0.25rem; padding: 0.1rem 0.45rem; color: inherit; font-weight: 700; }
+    .pill > * + * { border-left: 1px solid rgba(245, 239, 228, 0.3); }
+    .pill a:hover, .pill a:focus-visible { background: rgba(245, 239, 228, 0.15); }
+    .imdb-mark { background: #f5c518; color: #000 !important; font-weight: 800; font-size: 0.6rem; padding: 0.1rem 0.35rem; border-radius: 3px; letter-spacing: 0.01em; border: 0 !important; }
+    .imdb-mark:hover, .imdb-mark:focus-visible { background: #fff; }
+
+    .ribbon {
+      position: fixed; left: 50%; bottom: 14px; transform: translateX(-50%); z-index: 2000; background: var(--ruby); color: #fff;
+      font: 700 0.75rem/1 "Space Grotesk", sans-serif; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.55rem 1rem;
+      border-radius: 999px; box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Card options &middot; Wag the Dog</h1>
+    <p>Five ways to show age limit, language and IMDb on a film card. Tap or hover the age to see where it comes from:
+      each age badge links to IMDb's certification list, which shows the Norwegian limit (Norway: 7, set in 1998).
+      Wag the Dog is in English with English subtitles.</p>
+    <div class="size-toggle" role="group" aria-label="Card size">
+      <button type="button" data-size="narrow" aria-pressed="true">Narrow (Next screening &amp; phones)</button>
+      <button type="button" data-size="wide" aria-pressed="false">Wide (programme rows)</button>
+    </div>
+  </header>
+
+  <main class="options" id="options">
+
+    <!-- A — icons, spread across the line -->
+    <section class="option">
+      <h2>A &middot; Icons</h2>
+      <p>Speaker for the film's language, CC for subtitles, two-letter codes. IMDb pushed to the right.</p>
+      <div class="filmcard">
+        <div class="filmcard-poster">
+          <img src="./assets/2027%20Spring/wag-the-dog.jpg" alt="Still from Wag the Dog">
+          <span class="filmcard-date">20 Jan</span>
+        </div>
+        <div class="filmcard-body">
+          <h3>Wag the Dog</h3>
+          <p class="filmcard-meta">Barry Levinson &middot; 1997 &middot; USA</p>
+          <p class="facts">
+            <a class="age" href="https://www.imdb.com/title/tt0120885/parentalguide/#certificates" target="_blank" rel="noreferrer"
+              title="Norwegian age limit: 7 (set in 1998). Source: IMDb certifications">7+</a>
+            <span class="ico" title="Spoken language: English"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>EN</span>
+            <span class="ico" title="Subtitles: English"><span class="cc">CC</span>EN</span>
+            <a class="imdb push" href="https://www.imdb.com/title/tt0120885/" target="_blank" rel="noreferrer">IMDb &#8599;</a>
+          </p>
+        </div>
+        <p class="filmcard-note">A spin doctor and a Hollywood producer stage a fake war to bury a presidential scandal. Satire that keeps getting more real.</p>
+      </div>
+    </section>
+
+    <!-- B — flags -->
+    <section class="option">
+      <h2>B &middot; Flags</h2>
+      <p>A small Norwegian flag on the age makes clear it's the Norwegian limit. Flags stand in for language and subtitles.</p>
+      <div class="filmcard">
+        <div class="filmcard-poster">
+          <img src="./assets/2027%20Spring/wag-the-dog.jpg" alt="Still from Wag the Dog">
+          <span class="filmcard-date">20 Jan</span>
+        </div>
+        <div class="filmcard-body">
+          <h3>Wag the Dog</h3>
+          <p class="filmcard-meta">Barry Levinson &middot; 1997 &middot; USA</p>
+          <p class="facts">
+            <a class="age age--flag" href="https://www.imdb.com/title/tt0120885/parentalguide/#certificates" target="_blank" rel="noreferrer"
+              title="Norwegian age limit: 7 (set in 1998). Source: IMDb certifications"><img class="flag" src="https://flagcdn.com/no.svg" alt="Norway">7+</a>
+            <span class="ico" title="Spoken language: English"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg><img class="flag" src="https://flagcdn.com/gb.svg" alt="English"></span>
+            <span class="ico" title="Subtitles: English"><span class="cc">CC</span><img class="flag" src="https://flagcdn.com/gb.svg" alt="English"></span>
+            <a class="imdb push" href="https://www.imdb.com/title/tt0120885/" target="_blank" rel="noreferrer">IMDb &#8599;</a>
+          </p>
+        </div>
+        <p class="filmcard-note">A spin doctor and a Hollywood producer stage a fake war to bury a presidential scandal. Satire that keeps getting more real.</p>
+      </div>
+    </section>
+
+    <!-- C — age on the poster -->
+    <section class="option">
+      <h2>C &middot; Age on the poster</h2>
+      <p>The age moves to a circle on the image, opposite the date. The line below only carries language and IMDb.</p>
+      <div class="filmcard">
+        <div class="filmcard-poster">
+          <img src="./assets/2027%20Spring/wag-the-dog.jpg" alt="Still from Wag the Dog">
+          <span class="filmcard-date">20 Jan</span>
+        </div>
+        <a class="age-circle" href="https://www.imdb.com/title/tt0120885/parentalguide/#certificates" target="_blank" rel="noreferrer"
+          title="Norwegian age limit: 7 (set in 1998). Source: IMDb certifications">7+</a>
+        <div class="filmcard-body">
+          <h3>Wag the Dog</h3>
+          <p class="filmcard-meta">Barry Levinson &middot; 1997 &middot; USA</p>
+          <p class="facts">
+            <span class="ico" title="Spoken language: English"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>EN</span>
+            <span class="ico" title="Subtitles: English"><span class="cc">CC</span>EN</span>
+            <a class="imdb push" href="https://www.imdb.com/title/tt0120885/" target="_blank" rel="noreferrer">IMDb &#8599;</a>
+          </p>
+        </div>
+        <p class="filmcard-note">A spin doctor and a Hollywood producer stage a fake war to bury a presidential scandal. Satire that keeps getting more real.</p>
+      </div>
+    </section>
+
+    <!-- D — labelled strip -->
+    <section class="option">
+      <h2>D &middot; Labelled strip</h2>
+      <p>Four evenly spaced cells with tiny labels above. No icons to decode; the most self-explanatory for visitors.</p>
+      <div class="filmcard">
+        <div class="filmcard-poster">
+          <img src="./assets/2027%20Spring/wag-the-dog.jpg" alt="Still from Wag the Dog">
+          <span class="filmcard-date">20 Jan</span>
+        </div>
+        <div class="filmcard-body">
+          <h3>Wag the Dog</h3>
+          <p class="filmcard-meta">Barry Levinson &middot; 1997 &middot; USA</p>
+          <div class="strip">
+            <a class="strip-cell" href="https://www.imdb.com/title/tt0120885/parentalguide/#certificates" target="_blank" rel="noreferrer"
+              title="Norwegian age limit: 7 (set in 1998). Source: IMDb certifications"><small>Age (NO)</small>7+</a>
+            <span class="strip-cell"><small>Audio</small>EN</span>
+            <span class="strip-cell"><small>Subtitles</small>EN</span>
+            <a class="strip-cell strip-cell--link" href="https://www.imdb.com/title/tt0120885/" target="_blank" rel="noreferrer"><small>More</small>IMDb &#8599;</a>
+          </div>
+        </div>
+        <p class="filmcard-note">A spin doctor and a Hollywood producer stage a fake war to bury a presidential scandal. Satire that keeps getting more real.</p>
+      </div>
+    </section>
+
+    <!-- E — one segmented pill + IMDb mark -->
+    <section class="option">
+      <h2>E &middot; One pill + IMDb mark</h2>
+      <p>Age and language grouped in a single outlined pill; IMDb as its familiar yellow mark on the right.</p>
+      <div class="filmcard">
+        <div class="filmcard-poster">
+          <img src="./assets/2027%20Spring/wag-the-dog.jpg" alt="Still from Wag the Dog">
+          <span class="filmcard-date">20 Jan</span>
+        </div>
+        <div class="filmcard-body">
+          <h3>Wag the Dog</h3>
+          <p class="filmcard-meta">Barry Levinson &middot; 1997 &middot; USA</p>
+          <p class="facts">
+            <span class="pill">
+              <a href="https://www.imdb.com/title/tt0120885/parentalguide/#certificates" target="_blank" rel="noreferrer"
+                title="Norwegian age limit: 7 (set in 1998). Source: IMDb certifications">7+</a>
+              <span title="Spoken language: English"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>EN</span>
+              <span title="Subtitles: English"><span class="cc">CC</span>EN</span>
+            </span>
+            <a class="imdb-mark push" href="https://www.imdb.com/title/tt0120885/" target="_blank" rel="noreferrer" aria-label="Wag the Dog on IMDb">IMDb</a>
+          </p>
+        </div>
+        <p class="filmcard-note">A spin doctor and a Hollywood producer stage a fake war to bury a presidential scandal. Satire that keeps getting more real.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="ribbon">Preview &middot; card options &middot; not live</div>
+
+  <script>
+    document.querySelectorAll('.size-toggle button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        document.querySelectorAll('.size-toggle button').forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
+        document.getElementById('options').classList.toggle('is-wide', b.dataset.size === 'wide');
+      });
+    });
+  </script>
+</body>
+
+</html>
