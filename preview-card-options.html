@@ -118,6 +118,25 @@
     .imdb-mark { background: #f5c518; color: #000 !important; font-weight: 800; font-size: 0.6rem; padding: 0.1rem 0.35rem; border-radius: 3px; letter-spacing: 0.01em; border: 0 !important; }
     .imdb-mark:hover, .imdb-mark:focus-visible { background: #fff; }
 
+    /* E2 — IMDb inside the pill; segments share the full line */
+    .pill--full { display: flex; width: 100%; }
+    .pill--full > * { flex: 1; justify-content: center; padding: 0.15rem 0.3rem; }
+
+    /* D2 — labelled strip, IMDb styled like the other cells */
+    /* (same markup as D, without the gold link class) */
+
+    /* D3 — labelled cells inside an outlined box with dividers */
+    .strip--boxed {
+      align-items: stretch; padding-top: 0; border: 1px solid rgba(245, 239, 228, 0.45);
+      border-radius: 10px; overflow: hidden;
+    }
+    .strip--boxed .strip-cell { flex: 1; align-items: center; padding: 0.25rem 0.2rem 0.3rem; }
+    .strip--boxed .strip-cell + .strip-cell { border-left: 1px solid rgba(245, 239, 228, 0.3); }
+    .strip--boxed a.strip-cell:hover, .strip--boxed a.strip-cell:focus-visible { background: rgba(245, 239, 228, 0.15); }
+
+    .round-title { grid-column: 1 / -1; font-family: "Cormorant Garamond", serif; font-size: 1.6rem; line-height: 1; border-bottom: 1px solid rgba(20, 19, 18, 0.15); padding-bottom: 0.4rem; }
+    .round-title:not(:first-child) { margin-top: 1.5rem; }
+
     .ribbon {
       position: fixed; left: 50%; bottom: 14px; transform: translateX(-50%); z-index: 2000; background: var(--ruby); color: #fff;
       font: 700 0.75rem/1 "Space Grotesk", sans-serif; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.55rem 1rem;
@@ -129,7 +148,7 @@
 <body>
   <header>
     <h1>Card options &middot; Wag the Dog</h1>
-    <p>Five ways to show age limit, language and IMDb on a film card. Tap or hover the age to see where it comes from:
+    <p>Ways to show age limit, language and IMDb on a film card. Round 2 builds on your pick (E). Tap or hover the age to see where it comes from:
       each age badge links to IMDb's certification list, which shows the Norwegian limit (Norway: 7, set in 1998).
       Wag the Dog is in English with English subtitles.</p>
     <div class="size-toggle" role="group" aria-label="Card size">
@@ -139,6 +158,110 @@
   </header>
 
   <main class="options" id="options">
+
+    <h2 class="round-title">Round 2</h2>
+
+    <!-- E — your pick, repeated here for side-by-side comparison -->
+    <section class="option">
+      <h2>E &middot; One pill + IMDb mark</h2>
+      <p>Your pick from round 1, for comparison.</p>
+      <div class="filmcard">
+        <div class="filmcard-poster">
+          <img src="./assets/2027%20Spring/wag-the-dog.jpg" alt="Still from Wag the Dog">
+          <span class="filmcard-date">20 Jan</span>
+        </div>
+        <div class="filmcard-body">
+          <h3>Wag the Dog</h3>
+          <p class="filmcard-meta">Barry Levinson &middot; 1997 &middot; USA</p>
+          <p class="facts">
+            <span class="pill">
+              <a href="https://www.imdb.com/title/tt0120885/parentalguide/#certificates" target="_blank" rel="noreferrer"
+                title="Norwegian age limit: 7 (set in 1998). Source: IMDb certifications">7+</a>
+              <span title="Spoken language: English"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>EN</span>
+              <span title="Subtitles: English"><span class="cc">CC</span>EN</span>
+            </span>
+            <a class="imdb-mark push" href="https://www.imdb.com/title/tt0120885/" target="_blank" rel="noreferrer" aria-label="Wag the Dog on IMDb">IMDb</a>
+          </p>
+        </div>
+        <p class="filmcard-note">A spin doctor and a Hollywood producer stage a fake war to bury a presidential scandal. Satire that keeps getting more real.</p>
+      </div>
+    </section>
+
+    <!-- E2 — IMDb inside the pill -->
+    <section class="option">
+      <h2>E2 &middot; IMDb inside the pill</h2>
+      <p>IMDb becomes the pill's last segment, in the same style. The segments share the full width of the line.</p>
+      <div class="filmcard">
+        <div class="filmcard-poster">
+          <img src="./assets/2027%20Spring/wag-the-dog.jpg" alt="Still from Wag the Dog">
+          <span class="filmcard-date">20 Jan</span>
+        </div>
+        <div class="filmcard-body">
+          <h3>Wag the Dog</h3>
+          <p class="filmcard-meta">Barry Levinson &middot; 1997 &middot; USA</p>
+          <p class="facts">
+            <span class="pill pill--full">
+              <a href="https://www.imdb.com/title/tt0120885/parentalguide/#certificates" target="_blank" rel="noreferrer"
+                title="Norwegian age limit: 7 (set in 1998). Source: IMDb certifications">7+</a>
+              <span title="Spoken language: English"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>EN</span>
+              <span title="Subtitles: English"><span class="cc">CC</span>EN</span>
+              <a href="https://www.imdb.com/title/tt0120885/" target="_blank" rel="noreferrer" aria-label="Wag the Dog on IMDb (opens in a new tab)">IMDb &#8599;</a>
+            </span>
+          </p>
+        </div>
+        <p class="filmcard-note">A spin doctor and a Hollywood producer stage a fake war to bury a presidential scandal. Satire that keeps getting more real.</p>
+      </div>
+    </section>
+
+    <!-- D2 — labelled strip, IMDb like the other cells -->
+    <section class="option">
+      <h2>D2 &middot; Labelled strip, even</h2>
+      <p>Like D, but IMDb is styled like the other cells: no gold, so the four read as one set.</p>
+      <div class="filmcard">
+        <div class="filmcard-poster">
+          <img src="./assets/2027%20Spring/wag-the-dog.jpg" alt="Still from Wag the Dog">
+          <span class="filmcard-date">20 Jan</span>
+        </div>
+        <div class="filmcard-body">
+          <h3>Wag the Dog</h3>
+          <p class="filmcard-meta">Barry Levinson &middot; 1997 &middot; USA</p>
+          <div class="strip">
+            <a class="strip-cell" href="https://www.imdb.com/title/tt0120885/parentalguide/#certificates" target="_blank" rel="noreferrer"
+              title="Norwegian age limit: 7 (set in 1998). Source: IMDb certifications"><small>Age (NO)</small>7+</a>
+            <span class="strip-cell"><small>Audio</small>EN</span>
+            <span class="strip-cell"><small>Subtitles</small>EN</span>
+            <a class="strip-cell" href="https://www.imdb.com/title/tt0120885/" target="_blank" rel="noreferrer"><small>More</small>IMDb &#8599;</a>
+          </div>
+        </div>
+        <p class="filmcard-note">A spin doctor and a Hollywood producer stage a fake war to bury a presidential scandal. Satire that keeps getting more real.</p>
+      </div>
+    </section>
+
+    <!-- D3 — labelled cells in an outlined box (D's labels, E's look) -->
+    <section class="option">
+      <h2>D3 &middot; Labelled box</h2>
+      <p>D's labels inside E's outline: four equal cells with dividers. IMDb is a cell like the rest.</p>
+      <div class="filmcard">
+        <div class="filmcard-poster">
+          <img src="./assets/2027%20Spring/wag-the-dog.jpg" alt="Still from Wag the Dog">
+          <span class="filmcard-date">20 Jan</span>
+        </div>
+        <div class="filmcard-body">
+          <h3>Wag the Dog</h3>
+          <p class="filmcard-meta">Barry Levinson &middot; 1997 &middot; USA</p>
+          <div class="strip strip--boxed">
+            <a class="strip-cell" href="https://www.imdb.com/title/tt0120885/parentalguide/#certificates" target="_blank" rel="noreferrer"
+              title="Norwegian age limit: 7 (set in 1998). Source: IMDb certifications"><small>Age (NO)</small>7+</a>
+            <span class="strip-cell"><small>Audio</small>EN</span>
+            <span class="strip-cell"><small>Subtitles</small>EN</span>
+            <a class="strip-cell" href="https://www.imdb.com/title/tt0120885/" target="_blank" rel="noreferrer"><small>More</small>IMDb &#8599;</a>
+          </div>
+        </div>
+        <p class="filmcard-note">A spin doctor and a Hollywood producer stage a fake war to bury a presidential scandal. Satire that keeps getting more real.</p>
+      </div>
+    </section>
+
+    <h2 class="round-title">Round 1 (for reference)</h2>
 
     <!-- A — icons, spread across the line -->
     <section class="option">
