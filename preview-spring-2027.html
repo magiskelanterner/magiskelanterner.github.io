@@ -863,6 +863,7 @@
       z-index: 2;
       margin-top: auto;
       padding: 0.6rem 0.75rem 0.15rem;
+      container-type: inline-size; /* lets the facts row adapt to the card's width */
     }
 
     .filmcard-body h3 {
@@ -882,36 +883,92 @@
       margin-top: 0.15rem;
     }
 
-    /* Age limit · language · IMDb link */
+    /* Film facts: age · audio · subtitles · IMDb.
+       Narrow cards (Next screening, phones): one compact pill with icons.
+       Wide cards (programme rows on larger screens): labelled cells in a box. */
     .filmcard-facts {
       display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.25rem 0.5rem;
-      margin-top: 0.35rem;
+      margin-top: 0.4rem;
+      border: 1px solid rgba(245, 239, 228, 0.45);
+      border-radius: 999px;
+      overflow: hidden;
       font-size: 0.62rem;
       color: rgba(245, 239, 228, 0.85);
     }
 
-    .filmcard-age {
-      padding: 0.05rem 0.35rem;
-      border: 1px solid rgba(245, 239, 228, 0.55);
-      border-radius: 4px;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-    }
-
-    .filmcard-imdb {
-      color: var(--gold-soft);
+    .filmcard-fact {
+      flex: 1 1 auto;
+      white-space: nowrap;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0.15rem 0.3rem;
+      color: inherit;
       font-weight: 700;
       text-decoration: none;
-      border-bottom: 1px solid rgba(240, 181, 90, 0.4);
     }
 
-    .filmcard-imdb:hover,
-    .filmcard-imdb:focus-visible {
+    .filmcard-fact + .filmcard-fact {
+      border-left: 1px solid rgba(245, 239, 228, 0.3);
+    }
+
+    a.filmcard-fact:hover,
+    a.filmcard-fact:focus-visible {
+      background: rgba(245, 239, 228, 0.15);
       color: #fff;
-      border-bottom-color: #fff;
+    }
+
+    .filmcard-fact-value {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .filmcard-fact-value svg {
+      width: 11px;
+      height: 11px;
+    }
+
+    .filmcard-cc {
+      padding: 0 0.2rem;
+      border: 1px solid currentColor;
+      border-radius: 2px;
+      font-size: 0.5rem;
+      line-height: 1.35;
+      letter-spacing: 0.03em;
+    }
+
+    /* Labels appear only in the wide layout */
+    .filmcard-fact-label {
+      display: none;
+      font-size: 0.48rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(245, 239, 228, 0.5);
+    }
+
+    @container (min-width: 340px) {
+      .filmcard-facts {
+        margin-top: 0.45rem;
+        border-radius: 10px;
+        font-size: 0.68rem;
+      }
+
+      .filmcard-fact {
+        flex: 1;
+        gap: 0.1rem;
+        padding: 0.25rem 0.2rem 0.3rem;
+      }
+
+      .filmcard-fact-label {
+        display: block;
+      }
+
+      .filmcard-fact-icon {
+        display: none;
+      }
     }
 
     .filmcard-note {
@@ -1421,9 +1478,12 @@
                   <h3>Wag the Dog</h3>
                   <p class="filmcard-meta">Barry Levinson &middot; 1997 &middot; USA</p>
                   <p class="filmcard-facts">
-                    <span class="filmcard-age" title="Norwegian age limit: 7">7+</span>
-                    <span>English &middot; English subtitles</span>
-                    <a class="filmcard-imdb" href="https://www.imdb.com/title/tt0120885/" target="_blank" rel="noreferrer" aria-label="Wag the Dog on IMDb (opens in a new tab)">IMDb &#8599;</a>
+                    <a class="filmcard-fact" href="https://www.imdb.com/title/tt0120885/parentalguide/#certificates" target="_blank" rel="noreferrer"
+                      title="Norwegian age limit: 7 (set in 1998). Source: IMDb certifications"><span class="filmcard-fact-label">Age (NO)</span><span class="filmcard-fact-value">7+</span></a>
+                    <span class="filmcard-fact" title="Spoken language: English"><span class="filmcard-fact-label">Audio</span><span class="filmcard-fact-value"><svg class="filmcard-fact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>EN</span></span>
+                    <span class="filmcard-fact" title="Subtitles: English"><span class="filmcard-fact-label">Subtitles</span><span class="filmcard-fact-value"><span class="filmcard-cc filmcard-fact-icon" aria-hidden="true">CC</span>EN</span></span>
+                    <a class="filmcard-fact" href="https://www.imdb.com/title/tt0120885/" target="_blank" rel="noreferrer"
+                      aria-label="Wag the Dog on IMDb (opens in a new tab)"><span class="filmcard-fact-label">More</span><span class="filmcard-fact-value">IMDb &#8599;</span></a>
                   </p>
                 </div>
                 <p class="filmcard-note">A spin doctor and a Hollywood producer stage a fake war to bury a presidential scandal. Satire that keeps getting more real.</p>
