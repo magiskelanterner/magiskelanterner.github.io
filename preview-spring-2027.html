@@ -679,10 +679,36 @@
       margin-top: 1.2rem;
     }
 
+    /* Showtime — doors and film start */
+    .showtime {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.9rem;
+    }
+
+    .showtime-item {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0.45rem;
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(240, 181, 90, 0.35);
+      background: rgba(240, 181, 90, 0.08);
+      color: rgba(245, 239, 228, 0.85);
+      font-size: clamp(0.75rem, 1.1vw, 0.88rem);
+    }
+
+    .showtime-item strong {
+      color: var(--gold-soft);
+      font-size: 1.15em;
+      letter-spacing: 0.02em;
+    }
+
     .venue-list {
       list-style: none;
       padding: 0;
-      margin: 0.4rem 0 0;
+      margin: 0.8rem 0 0;
       display: grid;
       gap: 0.4rem;
     }
@@ -777,6 +803,17 @@
       z-index: 3;
     }
 
+    /* "Next screening" label above the date in the hero stamp */
+    .filmcard-date-label {
+      display: block;
+      margin-bottom: 0.1rem;
+      color: rgba(245, 239, 228, 0.75);
+      font-size: 0.6rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
     /* Tag badge (e.g. live music) — top-right corner */
     .filmcard-tag {
       position: absolute;
@@ -843,6 +880,38 @@
       font-size: 0.62rem;
       color: rgba(245, 239, 228, 0.7);
       margin-top: 0.15rem;
+    }
+
+    /* Age limit · language · IMDb link */
+    .filmcard-facts {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.25rem 0.5rem;
+      margin-top: 0.35rem;
+      font-size: 0.62rem;
+      color: rgba(245, 239, 228, 0.85);
+    }
+
+    .filmcard-age {
+      padding: 0.05rem 0.35rem;
+      border: 1px solid rgba(245, 239, 228, 0.55);
+      border-radius: 4px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .filmcard-imdb {
+      color: var(--gold-soft);
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(240, 181, 90, 0.4);
+    }
+
+    .filmcard-imdb:hover,
+    .filmcard-imdb:focus-visible {
+      color: #fff;
+      border-bottom-color: #fff;
     }
 
     .filmcard-note {
@@ -1273,7 +1342,7 @@
             <div class="filmcard" id="next-screening">
               <div class="filmcard-poster">
                 <img src="./assets/2027%20Spring/wag-the-dog.jpg" alt="Still from Wag the Dog" loading="eager">
-                <span class="filmcard-date">Next screening &middot; 20 Jan</span>
+                <span class="filmcard-date"><span class="filmcard-date-label">Next screening</span>20 Jan &middot; 19:30</span>
               </div>
               <div class="filmcard-body">
                 <h3>Wag the Dog</h3>
@@ -1305,7 +1374,12 @@
             <p class="frame-eyebrow">Our program</p>
             <h2 class="frame-heading">Social screenings at Folken's historic main hall.</h2>
             <h3>Evenings of big-screen cinema and local soul.</h3>
+            <p class="showtime">
+              <span class="showtime-item"><strong>19:00</strong> Doors open</span>
+              <span class="showtime-item"><strong>19:30</strong> Film starts</span>
+            </p>
             <ul class="venue-list">
+              <li>Come early: settle in with a drink and some popcorn before the film starts.</li>
               <li>Our club mixes beloved classics with lesser-known works and contemporary films beyond a standard cinema schedule.</li>
               <li>Free popcorn at every screening.</li>
               <li>The bar at Folken offers a selection of beer, wine, coffee and soda.</li>
@@ -1346,6 +1420,11 @@
                 <div class="filmcard-body">
                   <h3>Wag the Dog</h3>
                   <p class="filmcard-meta">Barry Levinson &middot; 1997 &middot; USA</p>
+                  <p class="filmcard-facts">
+                    <span class="filmcard-age" title="Norwegian age limit: 7">7+</span>
+                    <span>English &middot; English subtitles</span>
+                    <a class="filmcard-imdb" href="https://www.imdb.com/title/tt0120885/" target="_blank" rel="noreferrer" aria-label="Wag the Dog on IMDb (opens in a new tab)">IMDb &#8599;</a>
+                  </p>
                 </div>
                 <p class="filmcard-note">A spin doctor and a Hollywood producer stage a fake war to bury a presidential scandal. Satire that keeps getting more real.</p>
               </div>
@@ -1559,7 +1638,8 @@
   <script>
     /* Next screening — the hero card follows the programme cards' data-date.
        A film stays "next" through its screening day (Stavanger time); earlier films
-       are marked as screened. Preview another day with ?date=YYYY-MM-DD. */
+       are marked as screened. Start time is 19:30 unless a card sets data-time="HH:MM".
+       Preview another day with ?date=YYYY-MM-DD. */
     (function () {
       var hero = document.getElementById('next-screening');
       var cards = [].slice.call(document.querySelectorAll('.filmcard[data-date]'));
@@ -1597,7 +1677,11 @@
         card.removeAttribute('data-date');
         card.querySelector('img').loading = 'eager';
         var badge = card.querySelector('.filmcard-date');
-        badge.textContent = 'Next screening · ' + badge.textContent;
+        var label = document.createElement('span');
+        label.className = 'filmcard-date-label';
+        label.textContent = 'Next screening';
+        badge.textContent = badge.textContent + ' · ' + (next.getAttribute('data-time') || '19:30');
+        badge.prepend(label);
       } else {
         card = document.getElementById('season-break').content.firstElementChild.cloneNode(true);
       }
